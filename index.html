@@ -78,7 +78,7 @@ header.nav{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--
 .codewin{background:#0b1226;border:2px solid var(--line);border-radius:var(--r);box-shadow:8px 8px 0 var(--hard);overflow:hidden}
 .codewin .bar{display:flex;gap:6px;padding:10px 14px;background:#131c38;border-bottom:2px solid var(--line)}
 .codewin .bar i{width:10px;height:10px;background:#f87171}.codewin .bar i:nth-child(2){background:#fbbf24}.codewin .bar i:nth-child(3){background:#34d399}
-.codewin pre{padding:18px;font-family:'Press Start 2P',monospace;font-size:10px;line-height:2;color:#a5b4fc;min-height:230px;white-space:pre-wrap;color:#22d3ee}
+.codewin pre{padding:18px;font-family:'Press Start 2P',monospace;font-size:10px;line-height:2;min-height:230px;white-space:pre-wrap;color:#22d3ee}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}
 .stat{background:var(--surface);border:2px solid var(--border);border-radius:var(--r);padding:20px;box-shadow:4px 4px 0 var(--hard)}
 .stat b{font-size:30px;display:block;font-family:var(--pf)}.stat span{color:var(--muted);font-size:13px}
@@ -100,6 +100,14 @@ section.sec{padding:80px 0}section.alt{background:var(--bg2)}
 .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
 .tag{font-size:12px;padding:3px 10px;border-radius:6px;background:var(--surface2);color:var(--muted)}
 .step .n{font-family:'Press Start 2P',monospace;font-size:22px;color:var(--brand);margin-bottom:12px}
+/* COMPARATIVA */
+.cmp{background:var(--surface);border:2px solid var(--border);border-radius:var(--r);box-shadow:4px 4px 0 var(--hard);overflow:hidden;max-width:860px}
+.cmp .r{display:grid;grid-template-columns:2fr 1fr 1fr;padding:14px 18px;border-bottom:2px solid var(--border);align-items:center;gap:8px;font-size:14px}
+.cmp .r:last-child{border:none}.cmp .h{font-family:var(--pf);font-size:11px;color:var(--muted);background:var(--surface2)}
+.cmp .ok{color:var(--ok)}.cmp .no{color:var(--muted);font-size:13px}
+/* EJEMPLOS */
+.thumb{position:relative;aspect-ratio:16/11;overflow:hidden;border-radius:8px;background:#fff;border:2px solid var(--border)}
+.thumb iframe{position:absolute;top:0;left:0;width:1100px;height:760px;border:none;transform-origin:top left;pointer-events:none}
 /* PRECIOS */
 .plan{display:flex;flex-direction:column;position:relative}
 .plan.pop{border-color:var(--brand);transform:scale(1.03)}.plan.pop:hover{transform:scale(1.03) translate(-2px,-2px)}
@@ -117,51 +125,60 @@ section.sec{padding:80px 0}section.alt{background:var(--bg2)}
 label.f{display:block;font-size:13px;font-weight:600;margin:14px 0 6px}
 input.in,select.in,textarea.in{width:100%;padding:12px 14px;border-radius:8px;border:2px solid var(--border);background:var(--surface2);color:var(--text);font-family:inherit;font-size:15px;outline:none}
 input.in:focus,select.in:focus,textarea.in:focus{border-color:var(--brand)}
+input[type=color].in{padding:4px;height:46px}
 input[type=range]{width:100%;accent-color:var(--brand)}
 .note{font-size:12px;color:var(--muted);margin-top:10px}
-/* WIZARD */
-.wiz{display:grid;grid-template-columns:420px 1fr;gap:20px;align-items:start}
-@media(max-width:980px){.wiz{grid-template-columns:1fr}}
-#wsteps{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
-.wst{display:flex;gap:8px;align-items:center;padding:7px 12px;border-radius:8px;background:var(--surface2);font-size:12px;font-weight:600;color:var(--muted);border:2px solid transparent}
-.wst b{font-family:var(--pf);font-size:11px}
-.wst.on{border-color:var(--brand);color:var(--text)}.wst.done{color:var(--ok)}
+/* CONSTRUCTOR */
+.wiz{display:grid;grid-template-columns:440px 1fr;gap:20px;align-items:start}
+@media(max-width:1000px){.wiz{grid-template-columns:1fr}}
+.wgrid{display:grid;grid-template-columns:repeat(12,1fr);gap:5px}
+.wb{aspect-ratio:1;border-radius:6px;background:var(--surface2);font-family:var(--pf);font-size:10px;border:2px solid transparent;color:var(--muted);display:grid;place-items:center}
+.wb.done{color:var(--ok);background:rgba(52,211,153,.12)}.wb.on{border-color:var(--brand);color:var(--text)}
+.progress{height:10px;border-radius:99px;background:var(--surface2);overflow:hidden;margin:14px 0 4px}
+.progress i{display:block;height:100%;background:var(--grad);width:0;transition:width .6s}
 .tpls{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
-.tpl{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 10px;border-radius:8px;background:var(--surface2);border:2px solid var(--border);font-weight:600;font-size:14px;font-size:14px}
+.tpl{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 10px;border-radius:8px;background:var(--surface2);border:2px solid var(--border);font-weight:600;font-size:14px}
 .tpl .i{font-size:26px}.tpl.on{border-color:var(--brand);background:rgba(99,102,241,.14)}
 .sws{display:flex;gap:8px;flex-wrap:wrap}
 .sw{width:34px;height:34px;border-radius:6px;border:3px solid transparent}.sw.on{border-color:var(--text)}
 .sg{display:flex;gap:8px;flex-wrap:wrap}
 .sg button{padding:9px 14px;border-radius:8px;background:var(--surface2);border:2px solid var(--border);font-weight:600;font-size:13px;display:flex;gap:6px;align-items:center}
 .sg button.on{border-color:var(--brand);background:rgba(99,102,241,.14)}
-.fbar{display:flex;align-items:center;gap:10px;background:var(--surface2);border:2px solid var(--border);border-bottom:none;border-radius:var(--r) var(--r) 0 0;padding:8px 12px}
-.fbar .u{flex:1;background:var(--bg);border-radius:6px;padding:4px 10px;font-size:12px;color:var(--muted);overflow:hidden;white-space:nowrap}
-.fbar button{background:var(--surface);border:2px solid var(--border);border-radius:6px;padding:4px 8px}
-.fbar button.on{border-color:var(--brand)}
-.frame{border:2px solid var(--border);border-radius:0 0 var(--r) var(--r);background:#e5e7eb;padding:0;transition:.3s;overflow:hidden}
-.frame iframe{width:100%;height:380px;border:none;background:#fff;display:block;margin:auto;transition:.3s}
-.frame.mob{padding:12px 0}.frame.mob iframe{width:375px;max-width:100%}
-.progress{height:10px;border-radius:99px;background:var(--surface2);overflow:hidden;margin:14px 0 4px}
-.progress i{display:block;height:100%;background:var(--grad);width:0;transition:width .6s}
-.steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:6px;margin-top:12px}
+.ig3{background:var(--surface2);border-radius:8px;padding:10px 12px;margin-top:12px}
+.ig3 b{font-size:12px;color:var(--muted)}
+.snip{background:#fff;color:#202124;border-radius:8px;padding:14px;margin-top:14px;font-family:Arial,sans-serif}
+.snip b{display:block;color:#1a0dab;font-size:18px;font-weight:400}.snip small{color:#006621;font-size:13px}.snip p{font-size:13px;color:#4d5156}
+.chk{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:6px;margin-top:12px}
 .st{font-size:12px;padding:7px 10px;border-radius:6px;background:var(--surface2);color:var(--muted);display:flex;gap:6px;align-items:center}
 .st.done{color:var(--ok);background:rgba(52,211,153,.12)}
+.fbar{display:flex;align-items:center;gap:8px;background:var(--surface2);border:2px solid var(--border);border-bottom:none;border-radius:var(--r) var(--r) 0 0;padding:8px 12px}
+.fbar .u{flex:1;background:var(--bg);border-radius:6px;padding:4px 10px;font-size:12px;color:var(--muted);overflow:hidden;white-space:nowrap}
+.fbar button{background:var(--surface);border:2px solid var(--border);border-radius:6px;padding:4px 8px}.fbar button.on{border-color:var(--brand)}
+.frame{border:2px solid var(--border);border-radius:0 0 var(--r) var(--r);background:#e5e7eb;overflow:hidden;transition:.3s}
+.frame iframe{width:100%;height:560px;border:none;background:#fff;display:block;margin:auto}
+.frame.mob{padding:12px 0}.frame.mob iframe{width:375px;max-width:100%}
 /* SIM */
 .sim-out{display:grid;gap:14px}
 .bar-wrap{background:var(--surface2);border-radius:8px;overflow:hidden;height:36px}
 .bar{height:100%;background:var(--grad);transition:width .5s;display:flex;align-items:center;padding-left:12px;font-weight:700;font-size:13px;color:#fff;white-space:nowrap}.bar.gray{background:#64748b}
 .kpi{display:flex;justify-content:space-between;padding:10px 0;border-bottom:2px solid var(--border);font-size:15px}.kpi b{font-size:17px}
-/* FAQ / FOOTER */
+/* FAQ / CONTACTO / FOOTER */
 details{background:var(--surface);border:2px solid var(--border);border-radius:var(--r);padding:16px 20px;margin-bottom:10px}
 summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between}
 summary::after{content:"+";font-family:var(--pf);color:var(--brand2)}details[open] summary::after{content:"-"}
 details p{color:var(--muted);margin-top:10px;font-size:14px}
+.soc{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:20px}
+.soc-i{display:flex;gap:12px;align-items:center;background:var(--surface);border:2px solid var(--border);border-radius:var(--r);padding:14px;box-shadow:4px 4px 0 var(--hard);font-size:22px}
+.soc-i:hover{border-color:var(--brand)}.soc-i span{display:flex;flex-direction:column;font-size:14px}.soc-i small{color:var(--muted);font-size:12px}
 footer{background:var(--bg2);border-top:2px solid var(--border);padding:60px 0 30px}
 .fgrid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:30px}
 @media(max-width:760px){.fgrid{grid-template-columns:1fr 1fr}}
 footer h4{font-family:var(--pf);font-size:11px;margin-bottom:12px;color:var(--muted)}
 footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--muted)}footer li a:hover{color:var(--text)}
+#fsoc{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
 .credits{margin-top:40px;padding-top:22px;border-top:2px solid var(--border);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:13px}.credits strong{color:var(--text)}
+#toTop{position:fixed;left:20px;bottom:20px;z-index:150;opacity:0;pointer-events:none;transition:.3s}
+#toTop.show{opacity:1;pointer-events:auto}
 /* MODALES */
 .overlay{position:fixed;inset:0;background:rgba(3,6,20,.78);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:300;padding:16px}
 .overlay.show{display:flex}
@@ -181,14 +198,12 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
 .paybox .big{width:64px;height:64px;margin:0 auto;border-radius:10px;background:var(--grad);display:grid;place-items:center;color:#fff;font-size:30px}
 .paybox h3{margin:14px 0 8px;font-size:16px;line-height:1.4}.paybox p{color:var(--muted);font-size:14px;margin-bottom:18px}
 @media(max-width:760px){.auth{grid-template-columns:1fr}.auth-side{display:none}}
-/* PALETA */
 #pal{align-items:flex-start;padding-top:12vh}
 .palbox{width:100%;max-width:560px;background:var(--surface);border:2px solid var(--line);border-radius:var(--r);box-shadow:8px 8px 0 var(--hard);overflow:hidden}
 .palbox input{width:100%;padding:16px 18px;background:transparent;border:none;border-bottom:2px solid var(--border);color:var(--text);font-size:16px;outline:none;font-family:inherit}
 .palbox ul{list-style:none;max-height:340px;overflow:auto}
 .palbox li{display:flex;gap:12px;align-items:center;padding:12px 18px;cursor:pointer;font-size:14px}
 .palbox li.on,.palbox li:hover{background:var(--surface2)}
-.kbd{font-family:var(--pf);font-size:10px;background:var(--surface2);border:2px solid var(--border);padding:2px 6px;border-radius:4px;color:var(--muted)}
 /* DASHBOARD */
 #dash{display:none;min-height:100vh}#dash.show{display:block}
 .dlayout{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 68px)}
@@ -251,6 +266,7 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
 <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
 <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
 <symbol id="i-arrowl" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></symbol>
+<symbol id="i-up" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></symbol>
 <symbol id="i-trash" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></symbol>
 <symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
 <symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
@@ -266,6 +282,10 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
 <symbol id="i-layers" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></symbol>
 <symbol id="i-msg" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
 <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></symbol>
+<symbol id="i-expand" viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></symbol>
+<symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></symbol>
+<symbol id="i-tt" viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V3c.5 2.5 2.5 4 5 4"/></symbol>
+<symbol id="i-call" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
 <symbol id="i-bot" viewBox="0 0 12 12" shape-rendering="crispEdges"><rect x="5" y="0" width="2" height="2" fill="currentColor"/><rect x="1" y="2" width="10" height="7" fill="currentColor"/><rect x="0" y="4" width="1" height="3" fill="currentColor"/><rect x="11" y="4" width="1" height="3" fill="currentColor"/><rect x="3" y="4" width="2" height="2" fill="#fff"/><rect x="7" y="4" width="2" height="2" fill="#fff"/><rect x="3" y="7" width="6" height="1" fill="#fff"/><rect x="3" y="10" width="6" height="2" fill="currentColor"/></symbol>
 </defs></svg>
 
@@ -282,10 +302,11 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
       <a href="#servicios"><span class="ic"><i data-ic="phone"></i></span><span><strong>Apps</strong><small>Apps web instalables (PWA)</small></span></a>
       <a href="#servicios"><span class="ic"><i data-ic="code"></i></span><span><strong>Proyectos de código</strong><small>Bots, scripts y automatizaciones</small></span></a></div></li>
     <li><button onclick="toggleDrop(this)">Proyectos <span class="chev"></span></button><div class="drop">
+      <a href="#ejemplos"><span class="ic"><i data-ic="monitor"></i></span><span><strong>Ejemplos de webs</strong><small>Plantillas listas para usar</small></span></a>
       <a href="#portafolio"><span class="ic"><i data-ic="layers"></i></span><span><strong>Portafolio</strong><small>Lo que hemos construido</small></span></a>
       <a href="#proceso"><span class="ic"><i data-ic="activity"></i></span><span><strong>Cómo trabajamos</strong><small>De la idea al lanzamiento</small></span></a></div></li>
     <li><button onclick="toggleDrop(this)">Herramientas <span class="chev"></span></button><div class="drop">
-      <a href="#probar"><span class="ic"><i data-ic="flask"></i></span><span><strong>Prueba gratis</strong><small>Diseña tu mini-web en vivo</small></span></a>
+      <a href="#probar"><span class="ic"><i data-ic="flask"></i></span><span><strong>Constructor gratis</strong><small>Crea tu web en 12 pasos</small></span></a>
       <a href="#simulador"><span class="ic"><i data-ic="chart"></i></span><span><strong>Simulador de ROI</strong><small>¿Cuánto podría generarte una web?</small></span></a>
       <a href="#cotizador"><span class="ic"><i data-ic="calc"></i></span><span><strong>Cotizador</strong><small>Estimado al instante</small></span></a>
       <a href="#" onclick="openChat(true);return false"><span class="ic"><svg class="i px"><use href="#i-bot"/></svg></span><span><strong>Forja AI</strong><small>Asistente virtual</small></span></a></div></li>
@@ -310,8 +331,8 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
       <h1>Construimos <span class="grad" id="tw">páginas web</span><span class="caret"></span><br>que se sienten como app.</h1>
       <p class="lead">Somos un estudio de desarrollo que crea páginas web, apps y proyectos de código a la medida, con diseño profesional y detalles de producto real.</p>
       <div class="row left">
-        <button class="btn primary lg" onclick="location.hash='probar'"><i data-ic="flask"></i> Probar gratis</button>
-        <a class="btn lg" href="#cotizador">Cotizar mi proyecto <i data-ic="arrow"></i></a>
+        <button class="btn primary lg" onclick="location.hash='probar'"><i data-ic="flask"></i> Crear mi web gratis</button>
+        <a class="btn lg" href="#ejemplos">Ver ejemplos <i data-ic="arrow"></i></a>
       </div>
       <p class="trust">Cotización gratis · Sin compromiso · Respuesta en menos de 24 h</p>
     </div>
@@ -344,6 +365,25 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
   </div>
 </div></section>
 
+<section class="sec" id="comparativa"><div class="container">
+  <span class="eyebrow">COMPARATIVA</span><h2>Por qué código a medida</h2>
+  <p class="sub">Qué cambia frente a los constructores de plantillas.</p>
+  <div class="cmp reveal">
+    <div class="r h"><span></span><span>PIXELFORGE</span><span>PLANTILLAS</span></div>
+    <div class="r"><span>Diseño a medida</span><span class="ok"><i data-ic="check"></i></span><span class="no">Limitado</span></div>
+    <div class="r"><span>Código fuente tuyo al terminar</span><span class="ok"><i data-ic="check"></i></span><span class="no">No</span></div>
+    <div class="r"><span>Funciones propias (login, pagos, panel)</span><span class="ok"><i data-ic="check"></i></span><span class="no">Limitado</span></div>
+    <div class="r"><span>Velocidad optimizada</span><span class="ok"><i data-ic="check"></i></span><span class="no">Variable</span></div>
+    <div class="r"><span>Trato directo con los fundadores</span><span class="ok"><i data-ic="check"></i></span><span class="no">No</span></div>
+  </div>
+</div></section>
+
+<section class="sec alt" id="ejemplos"><div class="container">
+  <span class="eyebrow">EJEMPLOS</span><h2>Webs que darían ganas de tener</h2>
+  <p class="sub">Cinco plantillas terminadas, hechas con nuestro constructor. Elige una y personalízala paso a paso.</p>
+  <div class="grid g3" id="exGrid"></div>
+</div></section>
+
 <section class="sec" id="portafolio"><div class="container">
   <span class="eyebrow">PORTAFOLIO</span><h2>Proyectos que ya funcionan</h2>
   <p class="sub">Edita esta lista en el código (<code>PORTFOLIO</code>) con tus proyectos reales y sus links.</p>
@@ -356,25 +396,24 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
   <div class="grid g3" id="planGrid" style="align-items:stretch"></div>
 </div></section>
 
-<!-- PRUEBA GRATIS: WIZARD CON VISTA PREVIA EN VIVO -->
+<!-- CONSTRUCTOR DE 12 PASOS -->
 <section class="sec" id="probar"><div class="container">
-  <span class="eyebrow">PRUEBA GRATIS</span><h2>Diseña tu mini-web y míra cómo queda en vivo</h2>
-  <p class="sub">Juega con la plantilla, el nombre y los colores: la vista previa cambia al instante. Con tu cuenta gratis guardas tu diseño (2 de 15 pasos). Para completar, descargar y publicar tu web necesitas un plan.</p>
+  <span class="eyebrow">CONSTRUCTOR GRATIS</span><h2>Crea tu web paso a paso y mírala en vivo</h2>
+  <p class="sub">12 pasos guiados. Con tu cuenta gratis haces 5 pasos hoy y los otros 7 mañana. Para descargar y publicar tu web necesitas un plan.</p>
   <div class="wiz">
     <div class="card">
-      <div id="wsteps"></div>
-      <div id="wpane"></div>
+      <div id="wgrid" class="wgrid"></div>
+      <div class="progress"><i id="prog"></i></div><p class="note" id="progTxt"></p>
+      <div id="wpane" style="margin-top:14px"></div>
       <div class="row left" style="margin-top:20px" id="wnav"></div>
-      <p class="note" id="demoUsage"></p>
+      <p class="note" id="winfo"></p>
     </div>
     <div>
       <div class="fbar"><span class="u" id="furl">tu-marca.com</span>
         <button class="on" id="dDesk" onclick="setDev('desk')" aria-label="Computadora"><i data-ic="monitor"></i></button>
-        <button id="dMob" onclick="setDev('mob')" aria-label="Celular"><i data-ic="phone"></i></button></div>
+        <button id="dMob" onclick="setDev('mob')" aria-label="Celular"><i data-ic="phone"></i></button>
+        <button onclick="openFull()" aria-label="Pantalla completa"><i data-ic="expand"></i></button></div>
       <div class="frame" id="frameBox"><iframe id="prev" sandbox title="Vista previa"></iframe></div>
-      <div class="progress"><i id="prog"></i></div>
-      <p class="note" id="progTxt"></p>
-      <div class="steps" id="stepsBox"></div>
     </div>
   </div>
 </div></section>
@@ -431,9 +470,10 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
   <details><summary>¿El código es mío al final?</summary><p>Sí. Al terminar y liquidar el proyecto, recibes el código fuente completo.</p></details>
   <details><summary>¿Hacen cambios después de entregar?</summary><p>Sí, todos los planes incluyen un periodo de soporte. También ofrecemos mantenimiento mensual.</p></details>
   <details><summary>¿Pueden hacer estilo pixel art o retro?</summary><p>Claro, es una de nuestras especialidades: juegos, interfaces retro y marcas con identidad pixel.</p></details>
+  <details><summary>¿Cómo funciona el constructor gratis?</summary><p>Son 12 pasos guiados. Con tu cuenta gratis haces 5 pasos el primer día y 7 al siguiente. Para descargar o publicar tu web necesitas un plan.</p></details>
 </div></section>
 
-<section class="sec" id="contacto"><div class="container" style="max-width:720px">
+<section class="sec" id="contacto"><div class="container" style="max-width:760px">
   <span class="eyebrow">CONTACTO</span><h2>Platiquemos de tu proyecto</h2>
   <p class="sub">Cuéntanos qué quieres construir y te respondemos pronto.</p>
   <form class="card" onsubmit="sendContact(event)">
@@ -444,14 +484,15 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
     <label class="f">Mensaje</label><textarea class="in" id="cMsg" rows="4" required></textarea>
     <div class="row left" style="margin-top:18px"><button class="btn primary lg" type="submit" id="cBtn">Enviar mensaje</button><a class="btn lg" id="waBtn" style="display:none" target="_blank" rel="noopener"><i data-ic="msg"></i> WhatsApp</a></div>
   </form>
+  <div class="soc" id="socBox"></div>
 </div></section>
 </main>
 
 <footer><div class="container">
   <div class="fgrid">
-    <div><div class="logo" style="margin-bottom:12px"><span class="pixel"><b>PIXEL</b><br>FORGE</span></div><p style="color:var(--muted);font-size:14px;max-width:280px">Estudio de desarrollo de webs, apps y proyectos de código a la medida.</p></div>
+    <div><div class="logo" style="margin-bottom:12px"><span class="pixel"><b>PIXEL</b><br>FORGE</span></div><p style="color:var(--muted);font-size:14px;max-width:280px">Estudio de desarrollo de webs, apps y proyectos de código a la medida.</p><div id="fsoc"></div></div>
     <div><h4>SERVICIOS</h4><ul><li><a href="#servicios">Páginas web</a></li><li><a href="#servicios">Apps</a></li><li><a href="#servicios">Código a medida</a></li></ul></div>
-    <div><h4>EMPRESA</h4><ul><li><a href="#portafolio">Portafolio</a></li><li><a href="#proceso">Proceso</a></li><li><a href="#precios">Precios</a></li></ul></div>
+    <div><h4>EMPRESA</h4><ul><li><a href="#ejemplos">Ejemplos</a></li><li><a href="#portafolio">Portafolio</a></li><li><a href="#precios">Precios</a></li></ul></div>
     <div><h4>AYUDA</h4><ul><li><a href="#faq">FAQ</a></li><li><a href="#contacto">Contacto</a></li><li><a href="#" onclick="openChat(true);return false">Forja AI</a></li></ul></div>
   </div>
   <div class="credits"><span>© <span id="yr"></span> PixelForge Studio. Todos los derechos reservados.</span><span>Hecho por <strong>Cristóbal López</strong> y <strong>Beto Mazón</strong></span></div>
@@ -480,7 +521,8 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
           <div class="card"><p style="color:var(--muted);font-size:13px">Tu plan</p><div style="font-family:var(--pf);font-size:16px;margin:8px 0" id="kPlan">Gratis</div><p style="font-size:12px;color:var(--muted)" id="kUse"></p></div>
         </div>
         <div class="row left" style="margin-top:24px">
-          <button class="btn primary" onclick="dTab('proyectos')"><i data-ic="plus"></i> Nuevo proyecto</button>
+          <button class="btn primary" onclick="showSite();location.hash='probar'"><i data-ic="flask"></i> Seguir mi web</button>
+          <button class="btn" onclick="dTab('proyectos')"><i data-ic="plus"></i> Nuevo proyecto</button>
           <button class="btn" onclick="dTab('agenda')">Agendar llamada</button>
           <button class="btn" onclick="showSite();location.hash='precios'">Mejorar plan</button>
         </div>
@@ -527,7 +569,7 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
 <div class="overlay" id="authOv" onclick="if(event.target===this)closeAuth()">
   <div class="auth">
     <button class="icon-btn close" onclick="closeAuth()" aria-label="Cerrar"><i data-ic="x"></i></button>
-    <div class="auth-side"><h3>Tu equipo de desarrollo, tus ideas hechas realidad.</h3><p>Crea tu cuenta para guardar tu diseño, solicitar proyectos y agendar llamadas.</p></div>
+    <div class="auth-side"><h3>Tu equipo de desarrollo, tus ideas hechas realidad.</h3><p>Crea tu cuenta para construir tu web, solicitar proyectos y agendar llamadas.</p></div>
     <div class="auth-form">
       <a href="#" onclick="closeAuth();return false" style="color:var(--muted);font-size:13px">Volver al inicio</a>
       <h3 style="margin-top:14px">Bienvenido a PixelForge</h3>
@@ -549,14 +591,22 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
 
 <!-- PAYWALL -->
 <div class="overlay" id="payOv" onclick="if(event.target===this)closePay()">
-  <div class="paybox"><div class="big"><i data-ic="lock"></i></div><h3>Esto es parte de los planes de pago</h3><p id="payMsg"></p>
+  <div class="paybox"><div class="big"><i data-ic="lock"></i></div><h3 id="payTitle">Esto es parte de los planes de pago</h3><p id="payMsg"></p>
     <div class="row"><button class="btn primary" onclick="closePay();showSite();location.hash='precios'">Ver planes</button><button class="btn" onclick="closePay()">Ahora no</button></div></div>
+</div>
+
+<!-- VISTA PREVIA COMPLETA -->
+<div class="overlay" id="pvOv" onclick="if(event.target===this)closeFull()">
+  <div style="width:100%;max-width:1200px"><div class="fbar"><span class="u">Vista previa completa</span><button onclick="closeFull()" aria-label="Cerrar"><i data-ic="x"></i></button></div>
+  <iframe id="pvFull" sandbox title="Vista previa completa" style="width:100%;height:80vh;border:2px solid var(--border);border-radius:0 0 10px 10px;background:#fff;display:block"></iframe></div>
 </div>
 
 <!-- PALETA DE COMANDOS -->
 <div class="overlay" id="pal" onclick="if(event.target===this)closePal()">
   <div class="palbox"><input id="palIn" placeholder="Busca una sección o acción..." autocomplete="off"><ul id="palList"></ul></div>
 </div>
+
+<button class="icon-btn" id="toTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba"><i data-ic="up"></i></button>
 
 <!-- CHAT IA -->
 <button id="chatFab" onclick="openChat()" aria-label="Asistente"><svg class="i px" style="width:34px;height:34px"><use href="#i-bot"/></svg></button>
@@ -579,11 +629,13 @@ const CONFIG = {
   currency: "MXN",
   FORM_ENDPOINT: "",   // "https://api.web3forms.com/submit" o "https://formspree.io/f/xxxxxxx"
   FORM_KEY: "",        // access key de Web3Forms (público por diseño). Vacío con Formspree.
-  WHATSAPP: "",        // código de país + número, ej. "5216671234567". Quedará PÚBLICO en la página.
+  WHATSAPP: "",        // código de país + número, ej. "5216671234567". Quedará PÚBLICO.
   PAY_LINK: "",        // Link de pago (Stripe Payment Link, Mercado Pago, etc.)
   AI_ENDPOINT: "",     // URL de un backend que llame a una IA. NUNCA pongas API keys aquí.
   FIREBASE: null,      // {apiKey:"...",authDomain:"...",projectId:"...",appId:"..."}
-  FREE: { chatPerDay: 12 }
+  // Redes y contacto públicos. Solo aparecen los que llenes. Instagram/TikTok sin @. Teléfono con código de país.
+  SOCIAL: { instagram: "", tiktok: "", email: "", phone: "" },
+  FREE: { chatPerDay: 12, stepsDay1: 5 }   // constructor: 5 pasos el día 1, los 12 desde el día 2
 };
 const money=n=>"$"+Number(n).toLocaleString("es-MX")+" "+CONFIG.currency;
 const ic=(n,c="")=>`<svg class="i ${c}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
@@ -602,7 +654,7 @@ const PORTFOLIO=[
  {i:"book",t:"WordMaster PRO",d:"App para aprender inglés con quizzes de nivel C1.",tags:["App","Educación"]},
  {i:"zap",t:"Tu proyecto aquí",d:"Cambia esta tarjeta por tu siguiente proyecto.",tags:["Próximamente"]}
 ];
-/* Señuelo: Starter (ancla barata) · Pro (señuelo) · Completo (mejor valor). Precios en MXN. */
+/* Señuelo: Starter (ancla barata), Pro (señuelo), Completo (mejor valor). Precios en MXN. */
 const PLANS=[
  {n:"Starter",p:199,u:"pago único",f:["Landing page de 1 sección","Diseño responsivo","Formulario de contacto","1 ronda de cambios","Soporte 7 días"]},
  {n:"Pro",p:349,u:"pago único",f:["Sitio de hasta 3 páginas","Diseño a medida","SEO básico","2 rondas de cambios","Soporte 14 días"]},
@@ -617,7 +669,7 @@ const TECH=["HTML5","CSS3","JAVASCRIPT","REACT","NODE.JS","PYTHON","FIREBASE","G
    ===================================================== */
 const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove("show"),3000);}
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove("show"),3200);}
 function download(name,text,type="text/plain"){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500);}
 async function sha256(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("");}
 const today=()=>new Date().toISOString().slice(0,10);
@@ -627,13 +679,13 @@ const norm=s=>String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/
    ALMACÉN LOCAL
    ===================================================== */
 const KEY="pixelforge_v3";
-let DB={theme:"dark",session:null,users:{},profiles:{},quote:{base:"landing",extras:[]},usage:{},contacts:[]};
+let DB={theme:"dark",session:null,users:{},profiles:{},quote:{base:"landing",extras:[]},usage:{},contacts:[],guest:{W:null}};
 try{const r=localStorage.getItem(KEY)||localStorage.getItem("pixelforge_v2");if(r)DB=Object.assign(DB,JSON.parse(r));}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){}};
 const me=()=>DB.session;
 function prof(){
   const s=DB.session;if(!s)return null;
-  if(!DB.profiles[s.id]){DB.profiles[s.id]={since:new Date().toISOString(),projects:[],bookings:[],design:null,plan:"free",act:[]};save();
+  if(!DB.profiles[s.id]){DB.profiles[s.id]={since:new Date().toISOString(),projects:[],bookings:[],build:{start:null,W:null},plan:"free",act:[]};save();
     sendLead({tipo:"Nuevo registro",name:s.name,email:s.email,message:"Se creó una cuenta nueva en "+CONFIG.brand+"."});act("Creaste tu cuenta");}
   return DB.profiles[s.id];
 }
@@ -669,12 +721,13 @@ document.addEventListener("click",e=>{
   if(e.target.closest(".drop a, .menu>li>a")){closeMenus();return;}
   if(!e.target.closest(".menu")&&!e.target.closest(".burger"))$$(".menu>li").forEach(x=>x.classList.remove("open"));
 });
-window.addEventListener("scroll",()=>{const h=document.documentElement;$("#sp").style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight||1)*100)+"%";},{passive:true});
+window.addEventListener("scroll",()=>{const h=document.documentElement;$("#sp").style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight||1)*100)+"%";$("#toTop").classList.toggle("show",h.scrollTop>700);},{passive:true});
+window.addEventListener("resize",()=>scaleThumbs());
 function typeWriter(){
-  const W=["páginas web","apps","bots","juegos pixel","tiendas en línea"],el=$("#tw");let wi=0,ci=W[0].length,del=true;
-  (function tick(){const w=W[wi];
-    if(del){ci--;if(ci<=0){del=false;wi=(wi+1)%W.length;}}else{ci++;if(ci>=W[wi].length){del=true;el.textContent=W[wi];return setTimeout(tick,1600);}}
-    el.textContent=W[wi].slice(0,Math.max(ci,0))||"\u00a0";setTimeout(tick,del?45:85);})();
+  const W2=["páginas web","apps","bots","juegos pixel","tiendas en línea"],el=$("#tw");let wi=0,ci=W2[0].length,del=true;
+  (function tick(){
+    if(del){ci--;if(ci<=0){del=false;wi=(wi+1)%W2.length;}}else{ci++;if(ci>=W2[wi].length){del=true;el.textContent=W2[wi];return setTimeout(tick,1600);}}
+    el.textContent=W2[wi].slice(0,Math.max(ci,0))||"\u00a0";setTimeout(tick,del?45:85);})();
 }
 function typeCode(){
   const code=`<main class="hero">\n  <h1>Tu idea,</h1>\n  <h2>hecha código.</h2>\n  <button>Empezar</button>\n</main>\n\n// listo para lanzar_`;
@@ -687,6 +740,15 @@ function renderStatic(){
   $("#marq").innerHTML=[...TECH,...TECH].map(t=>`<span>${t}</span>`).join("");
   $("#yr").textContent=new Date().getFullYear();
   if(CONFIG.WHATSAPP){const w=$("#waBtn");w.style.display="";w.href="https://wa.me/"+CONFIG.WHATSAPP.replace(/\D/g,"")+"?text="+encodeURIComponent("Hola, vi su página y quiero cotizar un proyecto.");}
+}
+function renderSocial(){
+  const s=CONFIG.SOCIAL,L=[],ig=(s.instagram||"").replace(/^@/,""),tt=(s.tiktok||"").replace(/^@/,""),ph=(s.phone||"").replace(/\D/g,"");
+  if(ig)L.push(["ig","Instagram","@"+ig,"https://instagram.com/"+ig]);
+  if(tt)L.push(["tt","TikTok","@"+tt,"https://tiktok.com/@"+tt]);
+  if(s.email)L.push(["mail","Correo",s.email,"mailto:"+s.email]);
+  if(ph)L.push(["call","Teléfono","+"+ph,"tel:+"+ph]);
+  $("#socBox").innerHTML=L.map(x=>`<a class="soc-i" href="${esc(x[3])}" target="_blank" rel="noopener">${ic(x[0])}<span><small>${x[1]}</small><b>${esc(x[2])}</b></span></a>`).join("");
+  $("#fsoc").innerHTML=L.map(x=>`<a class="icon-btn" href="${esc(x[3])}" target="_blank" rel="noopener" aria-label="${x[1]}">${ic(x[0])}</a>`).join("");
 }
 function choosePlan(n){$("#cMsg").value="Hola, me interesa el plan "+n+".";if(CONFIG.PAY_LINK&&me())window.open(CONFIG.PAY_LINK,"_blank");location.hash="contacto";toast("Plan "+n+" seleccionado. Cuéntanos de tu proyecto.");}
 function observeReveal(){
@@ -701,97 +763,198 @@ function observeReveal(){
    ===================================================== */
 function jump(id){showSite();closePal();setTimeout(()=>{const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:"smooth"});},60);}
 const CMDS=[
- {t:"Ir a Servicios",i:"globe",f:()=>jump("servicios")},{t:"Ir a Portafolio",i:"layers",f:()=>jump("portafolio")},
- {t:"Ver precios",i:"star",f:()=>jump("precios")},{t:"Probar la mini-web gratis",i:"flask",f:()=>jump("probar")},
- {t:"Simulador de ROI",i:"chart",f:()=>jump("simulador")},{t:"Cotizador",i:"calc",f:()=>jump("cotizador")},
- {t:"Contacto",i:"mail",f:()=>jump("contacto")},{t:"Abrir Forja AI",i:"msg",f:()=>{closePal();openChat(true);}},
- {t:"Cambiar tema claro u oscuro",i:"sun",f:()=>{closePal();toggleTheme();}},
+ {t:"Ir a Servicios",i:"globe",f:()=>jump("servicios")},{t:"Ver ejemplos de webs",i:"monitor",f:()=>jump("ejemplos")},
+ {t:"Ir a Portafolio",i:"layers",f:()=>jump("portafolio")},{t:"Ver precios",i:"star",f:()=>jump("precios")},
+ {t:"Crear mi web gratis (constructor)",i:"flask",f:()=>jump("probar")},{t:"Simulador de ROI",i:"chart",f:()=>jump("simulador")},
+ {t:"Cotizador",i:"calc",f:()=>jump("cotizador")},{t:"Contacto",i:"mail",f:()=>jump("contacto")},
+ {t:"Abrir Forja AI",i:"msg",f:()=>{closePal();openChat(true);}},{t:"Cambiar tema claro u oscuro",i:"sun",f:()=>{closePal();toggleTheme();}},
  {t:"Iniciar sesión",i:"user",f:()=>{closePal();openAuth("login");}},{t:"Crear cuenta gratis",i:"plus",f:()=>{closePal();openAuth("join");}},
  {t:"Abrir mi panel",i:"home",f:()=>{closePal();showDash();}}
 ];
 let palSel=0,palList=[];
 function openPal(){$("#pal").classList.add("show");$("#palIn").value="";renderPal();setTimeout(()=>$("#palIn").focus(),50);}
 function closePal(){$("#pal").classList.remove("show");}
-function renderPal(){
-  const q=norm($("#palIn").value);palList=CMDS.filter(c=>norm(c.t).includes(q));palSel=0;
-  $("#palList").innerHTML=palList.map((c,i)=>`<li class="${i===0?"on":""}" onclick="palRun(${i})">${ic(c.i)} ${c.t}</li>`).join("")||`<li>Sin resultados</li>`;
-}
+function renderPal(){const q=norm($("#palIn").value);palList=CMDS.filter(c=>norm(c.t).includes(q));palSel=0;
+  $("#palList").innerHTML=palList.map((c,i)=>`<li class="${i===0?"on":""}" onclick="palRun(${i})">${ic(c.i)} ${c.t}</li>`).join("")||`<li>Sin resultados</li>`;}
 function palRun(i){if(palList[i])palList[i].f();}
 $("#palIn").addEventListener("input",renderPal);
-$("#palIn").addEventListener("keydown",e=>{
-  const lis=$$("#palList li");
+$("#palIn").addEventListener("keydown",e=>{const lis=$$("#palList li");
   if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();palSel=(palSel+(e.key==="ArrowDown"?1:-1)+lis.length)%lis.length;lis.forEach((l,i)=>l.classList.toggle("on",i===palSel));}
-  if(e.key==="Enter")palRun(palSel);
-});
+  if(e.key==="Enter")palRun(palSel);});
 document.addEventListener("keydown",e=>{
   if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();openPal();}
-  if(e.key==="Escape"){closePal();closeAuth();closePay();}
+  if(e.key==="Escape"){closePal();closeAuth();closePay();closeFull();}
 });
 
 /* =====================================================
    PAYWALL / LÍMITES (en el navegador; para blindarlos hace falta backend)
    ===================================================== */
-function payWall(msg){$("#payMsg").textContent=msg;$("#payOv").classList.add("show");}
+function payWall(msg,title){$("#payTitle").textContent=title||"Esto es parte de los planes de pago";$("#payMsg").textContent=msg;$("#payOv").classList.add("show");}
 function closePay(){$("#payOv").classList.remove("show");}
 const isFree=()=>{const p=prof();return !p||p.plan==="free";};
 function usage(){const a=me()?me().id:"guest",d=today();let u=DB.usage[a];if(!u||u.d!==d)u=DB.usage[a]={d,n:0};return u;}
 function updateChatCount(){const u=usage();$("#chatCount").textContent=isFree()?`Mensajes hoy: ${u.n}/${CONFIG.FREE.chatPerDay}`:"Plan de pago: sin límite";}
 
 /* =====================================================
-   MINI-WEB: WIZARD CON VISTA PREVIA EN VIVO
+   MOTOR DE VISTA PREVIA (webs completas y profesionales)
    ===================================================== */
-const TPL={
- cafe:{n:"Restaurante",i:"coffee",eb:"Cocina local",items:["Menú del día","Ubicación","Horarios"],cta:"Ver menú",tag:"Sabor que se disfruta"},
- tienda:{n:"Tienda",i:"bag",eb:"Tienda en línea",items:["Productos","Envíos","Pagos seguros"],cta:"Comprar ahora",tag:"Todo lo que buscas, en un solo lugar"},
- serv:{n:"Servicios",i:"brief",eb:"Servicios profesionales",items:["Servicios","Casos de éxito","Agenda tu cita"],cta:"Agendar cita",tag:"Soluciones a tu medida"},
- port:{n:"Portafolio",i:"user",eb:"Portafolio personal",items:["Proyectos","Sobre mí","Contacto"],cta:"Ver proyectos",tag:"Diseño y desarrollo con detalle"},
- edu:{n:"Educación",i:"book",eb:"Plataforma educativa",items:["Cursos","Progreso","Comunidad"],cta:"Empezar a aprender",tag:"Aprende a tu ritmo"}
+const IP={
+ coffee:'<path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>',
+ bag:'<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>',
+ brief:'<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
+ user:'<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+ book:'<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',
+ star:'<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+ check:'<polyline points="20 6 9 17 4 12"/>',
+ pin:'<path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
+ clock:'<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+ mail:'<path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/>',
+ call:'<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>',
+ ig:'<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/>',
+ tt:'<path d="M9 12a4 4 0 1 0 4 4V3c.5 2.5 2.5 4 5 4"/>'
 };
-const COLORS=["#6366f1","#0ea5e9","#10b981","#f59e0b","#ef4444","#ec4899","#8b5cf6","#14b8a6"];
-const STEPS=["Plantilla","Marca","Secciones","Galería","Formulario","SEO","Móvil avanzado","Animaciones","Login","Base de datos","Pagos","Panel admin","Dominio","Publicación","Soporte"];
-let W={step:1,tpl:"cafe",name:"",tag:"",color:"#6366f1",font:"moderna",dev:"desk"};
-function pvHTML(){
-  const t=TPL[W.tpl],c=/^#[0-9a-f]{6}$/i.test(W.color)?W.color:"#6366f1",nm=esc(W.name||"Tu marca"),tg=esc(W.tag||t.tag),px=W.font==="pixel",
-  ff=px?"'Silkscreen',monospace":"'Inter',system-ui,sans-serif",rd=px?0:10;
-  return `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Silkscreen&display=swap" rel="stylesheet"><style>*{box-sizing:border-box;margin:0}body{font-family:${ff};color:#111;background:#fff}nav{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:${c};color:#fff;font-weight:800;gap:10px}nav span{font-size:11px;font-weight:600;opacity:.92}.h{padding:44px 20px;text-align:center;background:linear-gradient(180deg,${c}26,#fff)}.e{font-size:11px;letter-spacing:.12em;color:${c};font-weight:800;text-transform:uppercase}h1{font-size:30px;margin:10px 0;line-height:1.2}p{color:#555;max-width:440px;margin:0 auto 20px;font-size:15px}a{display:inline-block;background:${c};color:#fff;padding:12px 22px;border-radius:${rd}px;font-weight:700;font-size:14px}.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px;padding:8px 20px 22px}.g div{background:#f3f4f8;border-radius:${rd}px;padding:18px 10px;text-align:center;font-weight:700;font-size:13px;border-bottom:3px solid ${c}}footer{text-align:center;font-size:10px;color:#999;padding:10px}</style></head><body><nav>${nm}<span>Inicio · ${t.items[0]} · Contacto</span></nav><div class="h"><div class="e">${t.eb}</div><h1>${nm}</h1><p>${tg}</p><a>${t.cta}</a></div><div class="g">${t.items.map(x=>`<div>${x}</div>`).join("")}</div><footer>Vista previa · hecho con PixelForge</footer></body></html>`;
+const sv=(k,s=20,x="")=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ${x}>${IP[k]}</svg>`;
+const TPL={
+ cafe:{n:"Restaurante",i:"coffee",eb:"Cocina y café",color:"#b45309",name:"Brasa & Grano",tag:"Café de especialidad, desayunos y cocina casera en el corazón de la ciudad.",cta:"Reservar mesa",sec:"Lo más pedido",subsec:"Platillos y bebidas que nuestros clientes piden una y otra vez.",btn:"Pedir",chip1:"Abierto hoy",chip2:"Hecho al momento",
+  items:[["Latte de la casa","Espresso doble con leche texturizada.","$55"],["Chilaquiles verdes","Con pollo deshebrado y crema.","$95"],["Pan de elote","Horneado cada mañana.","$45"]],
+  about:"Somos un lugar pensado para quedarse: buen café, comida hecha al momento y atención cercana. Todo se prepara con ingredientes locales y mucho cuidado.",hours:"Lun a Dom · 8:00 a 21:00",addr:"Calle Principal 123, Centro"},
+ tienda:{n:"Tienda",i:"bag",eb:"Tienda en línea",color:"#0ea5e9",name:"Nómada Goods",tag:"Accesorios y básicos de diseño para tu día a día, con envíos a todo el país.",cta:"Comprar ahora",sec:"Productos destacados",subsec:"Lo más querido de la temporada, listo para enviarse.",btn:"Agregar",chip1:"Envío a todo el país",chip2:"Pago seguro",
+  items:[["Mochila urbana","Resistente al agua, 20 L.","$899"],["Botella térmica","Mantiene el frío por 24 h.","$349"],["Cartera minimal","Piel vegana con 6 ranuras.","$429"]],
+  about:"Diseñamos y seleccionamos productos útiles, bonitos y duraderos. Cada pedido se empaca con cuidado y se envía en menos de 48 horas.",hours:"Atención Lun a Sáb · 9:00 a 19:00",addr:"Envíos desde Ciudad de México"},
+ serv:{n:"Servicios",i:"brief",eb:"Servicios profesionales",color:"#0f766e",name:"Lumen Consultores",tag:"Estrategia, finanzas y tecnología para que tu negocio crezca con orden.",cta:"Agendar asesoría",sec:"Nuestros servicios",subsec:"Acompañamiento claro, con objetivos medibles y reportes simples.",btn:"Cotizar",chip1:"Primera asesoría",chip2:"Atención personalizada",
+  items:[["Diagnóstico","Revisamos tu operación y detectamos oportunidades.","Desde $1,500"],["Plan de crecimiento","Objetivos, métricas y calendario de acciones.","Desde $3,500"],["Acompañamiento","Seguimiento mensual con reportes claros.","$2,000/mes"]],
+  about:"Somos un equipo que combina experiencia en negocios y tecnología. Escuchamos primero, proponemos después y damos seguimiento hasta ver resultados.",hours:"Lun a Vie · 9:00 a 18:00",addr:"Oficina y videollamadas"},
+ port:{n:"Portafolio",i:"user",eb:"Diseño y desarrollo",color:"#a855f7",name:"Alex Rivera",tag:"Diseñador y desarrollador que crea productos digitales con identidad propia.",cta:"Ver mis proyectos",sec:"Proyectos recientes",subsec:"Una muestra de trabajos de marca, web y producto.",btn:"Ver",chip1:"Disponible para proyectos",chip2:"Entregas a tiempo",
+  items:[["Marca para cafetería","Identidad visual y sitio web.","2026"],["App de hábitos","Diseño de interfaz y prototipo.","2026"],["Tienda en línea","Desarrollo y pasarela de pagos.","2025"]],
+  about:"Llevo años diseñando y programando interfaces. Me gusta convertir ideas confusas en productos simples, rápidos y con personalidad.",hours:"Respondo en menos de 24 h",addr:"Trabajo remoto"},
+ edu:{n:"Educación",i:"book",eb:"Plataforma educativa",color:"#2563eb",name:"Aula Viva",tag:"Cursos cortos y prácticos para aprender a tu ritmo, con acompañamiento.",cta:"Ver cursos",sec:"Cursos populares",subsec:"Contenido práctico, ejemplos reales y seguimiento de tu avance.",btn:"Inscribirme",chip1:"Clases en vivo",chip2:"A tu ritmo",
+  items:[["Inglés conversacional","12 clases en vivo con práctica.","$1,200"],["Excel desde cero","Fórmulas y tablas dinámicas.","$890"],["Introducción a la programación","Tu primer proyecto web.","$1,490"]],
+  about:"Creamos cursos pensados para aplicar lo aprendido desde la primera clase. Cada alumno recibe retroalimentación y material de apoyo.",hours:"Clases Lun a Vie · 18:00 a 21:00",addr:"100% en línea"}
+};
+function pvHTML(w){
+  w=w||W;const t=TPL[w.tpl],c=/^#[0-9a-f]{6}$/i.test(w.color)?w.color:"#6366f1",d=w.dark,px=w.round==="pixel",E=esc,nm=E(w.name||"Tu marca"),
+  hf=w.font==="pixel"?"'Silkscreen',monospace":w.font==="elegante"?"'Playfair Display',Georgia,serif":"'Inter',system-ui,sans-serif";
+  const css=`:root{--c:${c};--bg:${d?"#0b1020":"#ffffff"};--bg2:${d?"#111a33":"#f5f6fb"};--tx:${d?"#eef2ff":"#101733"};--mu:${d?"#9aa7c9":"#5b668a"};--bd:${d?"rgba(255,255,255,.1)":"rgba(16,23,51,.1)"};--r:${px?0:12}px}
+*{box-sizing:border-box;margin:0}html,body{overflow-x:hidden}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.6}
+h1,h2,h3{font-family:${hf};line-height:1.2}a{color:inherit;text-decoration:none}.w{max-width:1040px;margin:auto;padding:0 22px}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--bd)}nav .w{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
+.lg{font-weight:800;font-family:${hf};display:flex;align-items:center;gap:8px;font-size:17px}.lg i{width:28px;height:28px;border-radius:var(--r);background:var(--c);color:#fff;display:grid;place-items:center}
+.nl{display:flex;gap:20px;font-size:14px;color:var(--mu)}
+.btn{display:inline-block;background:var(--c);color:#fff;padding:12px 22px;border-radius:var(--r);font-weight:700;font-size:14px;box-shadow:0 8px 20px color-mix(in srgb,var(--c) 35%,transparent)}
+.btn.o{background:transparent;color:var(--tx);border:1.5px solid var(--bd);box-shadow:none}.btn.wh{background:#fff;color:var(--c);box-shadow:none}
+.hero{padding:56px 0 50px;background:radial-gradient(600px 260px at 85% 0%,color-mix(in srgb,var(--c) 24%,transparent),transparent 70%)}
+.hero .w{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center}
+.eb{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--c)}
+h1{font-size:clamp(28px,5vw,46px);margin:12px 0}.hero p{color:var(--mu);font-size:16px;margin-bottom:22px}.rw{display:flex;gap:10px;flex-wrap:wrap}
+.art{aspect-ratio:1/1;max-width:330px;margin:auto;width:100%;border-radius:calc(var(--r)*2);background:linear-gradient(145deg,var(--c),color-mix(in srgb,var(--c) 40%,#000));display:grid;place-items:center;color:#fff;position:relative;box-shadow:0 24px 50px color-mix(in srgb,var(--c) 35%,transparent)}
+.chip{position:absolute;background:var(--bg);color:var(--tx);border-radius:var(--r);padding:8px 12px;font-size:12px;font-weight:700;box-shadow:0 10px 24px rgba(0,0,0,.25);display:flex;gap:6px;align-items:center}.chip svg{color:var(--c)}
+section{padding:54px 0}section:nth-of-type(even){background:var(--bg2)}h2{font-size:clamp(22px,3.4vw,30px);margin-bottom:8px}.sub{color:var(--mu);margin-bottom:26px;max-width:520px}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.cd{background:var(--bg);border:1px solid var(--bd);border-radius:calc(var(--r)*1.2);overflow:hidden}
+.cd .im{height:110px;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 85%,#fff),color-mix(in srgb,var(--c) 45%,#000));display:grid;place-items:center;color:#fff}
+.cd .bd{padding:16px}.cd h3{font-size:16px;margin-bottom:4px}.cd p{color:var(--mu);font-size:13px}
+.pr{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-weight:800;color:var(--c)}.pr span:last-child{font-size:12px;border:1.5px solid var(--c);padding:4px 10px;border-radius:var(--r)}
+.gl{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.gl div{aspect-ratio:1/1;border-radius:var(--r);display:grid;place-items:center;color:rgba(255,255,255,.6)}
+.ab{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}.ab .sub{max-width:none;margin:0}
+.fl{display:grid;gap:10px}.fl div{display:flex;gap:10px;align-items:center;background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);padding:12px 14px;font-weight:600;font-size:14px}.fl svg{color:var(--c)}
+.stars{display:flex;gap:2px;color:#f59e0b;margin-bottom:8px}.rv p{color:var(--tx);font-size:14px;margin-bottom:10px}.rv b{font-size:13px;color:var(--mu)}
+.ci{display:flex;gap:12px;align-items:center;background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);padding:14px;font-size:14px}.ci svg{color:var(--c);flex:none}
+.cta{background:var(--c)!important;color:#fff;text-align:center}.cta h2{color:#fff}.cta p{opacity:.9;margin-bottom:18px}
+footer{padding:26px 0;text-align:center;font-size:12px;color:var(--mu);border-top:1px solid var(--bd)}
+@media(max-width:700px){.hero .w,.ab{grid-template-columns:1fr}.nl{display:none}.art{max-width:230px}.gl{grid-template-columns:repeat(3,1fr)}}`;
+  const items=w.items.map(it=>`<div class="cd"><div class="im">${sv(t.i,40)}</div><div class="bd"><h3>${E(it[0])}</h3><p>${E(it[1])}</p><div class="pr"><span>${E(it[2])}</span><span>${E(t.btn)}</span></div></div></div>`).join("");
+  const tiles=Array.from({length:w.galN},(_,i)=>`<div style="background:linear-gradient(${135+i*28}deg,color-mix(in srgb,var(--c) ${92-i*6}%,#fff),color-mix(in srgb,var(--c) ${58-i*3}%,#000))">${sv(t.i,26)}</div>`).join("");
+  const stars=Array.from({length:5},()=>sv("star",14,'fill="currentColor"')).join("");
+  const revs=w.revs.map(r=>`<div class="cd rv"><div class="bd"><div class="stars">${stars}</div><p>${E(r[1])}</p><b>${E(r[0])}</b></div></div>`).join("");
+  const ig=(w.ig||"").replace(/^@/,""),tt=(w.tt||"").replace(/^@/,"");
+  const cts=[w.hours?`<div class="ci">${sv("clock",20)}<span>${E(w.hours)}</span></div>`:"",w.addr?`<div class="ci">${sv("pin",20)}<span>${E(w.addr)}</span></div>`:"",
+    w.mail?`<div class="ci">${sv("mail",20)}<span>${E(w.mail)}</span></div>`:"",w.phone?`<div class="ci">${sv("call",20)}<span>${E(w.phone)}</span></div>`:"",
+    ig?`<div class="ci">${sv("ig",20)}<span>@${E(ig)}</span></div>`:"",tt?`<div class="ci">${sv("tt",20)}<span>@${E(tt)}</span></div>`:""].join("");
+  return `<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${E(w.seoT||w.name)}</title><meta name="description" content="${E(w.seoD||w.tag)}"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;800&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet"><style>${css}</style></head><body>
+<nav><div class="w"><div class="lg"><i>${sv(t.i,16)}</i>${nm}</div><div class="nl"><span>Inicio</span><span>${E(t.sec)}</span><span>Contacto</span></div><a class="btn">${E(w.cta)}</a></div></nav>
+<header class="hero"><div class="w"><div><div class="eb">${E(t.eb)}</div><h1>${nm}</h1><p>${E(w.tag)}</p><div class="rw"><a class="btn">${E(w.cta)}</a><a class="btn o">Saber más</a></div></div><div class="art">${sv(t.i,110)}<div class="chip" style="top:10%;left:-4%">${sv("check",14)}${E(t.chip1)}</div><div class="chip" style="bottom:10%;right:-3%">${sv("star",14,'fill="currentColor"')}${E(t.chip2)}</div></div></div></header>
+<section><div class="w"><h2>${E(t.sec)}</h2><p class="sub">${E(t.subsec)}</p><div class="g">${items}</div></div></section>
+${w.gal?`<section><div class="w"><h2>Galería</h2><p class="sub">Un vistazo a lo que hacemos.</p><div class="gl">${tiles}</div></div></section>`:""}
+<section><div class="w ab"><div><h2>Sobre nosotros</h2><p class="sub">${E(w.about)}</p></div><div class="fl"><div>${sv("check",18)}Atención cercana</div><div>${sv("check",18)}Calidad constante</div><div>${sv("check",18)}Resultados a tiempo</div></div></div></section>
+${w.rev?`<section><div class="w"><h2>Lo que dicen nuestros clientes</h2><p class="sub">Opiniones de personas que ya confiaron en nosotros.</p><div class="g">${revs}</div></div></section>`:""}
+<section><div class="w"><h2>Visítanos o escríbenos</h2><p class="sub">Estamos para ayudarte.</p><div class="g">${cts}</div></div></section>
+<section class="cta"><div class="w"><h2>${E(w.cta)}</h2><p>${E(w.tag)}</p><a class="btn wh">${E(w.cta)}</a></div></section>
+<footer>© ${new Date().getFullYear()} ${nm} · Hecho con PixelForge</footer></body></html>`;
 }
-let pvT;function schedPrev(){clearTimeout(pvT);pvT=setTimeout(()=>{$("#prev").srcdoc=pvHTML();$("#furl").textContent=(W.name?W.name.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""):"tu-marca")+".com";},120);}
+
+/* =====================================================
+   CONSTRUCTOR DE WEBS (12 pasos)
+   ===================================================== */
+const STEPS12=[["Plantilla","Elige el tipo de web"],["Nombre y frase","Cómo se llama y qué ofreces"],["Colores y letra","Tu identidad visual"],["Estilo","Modo claro u oscuro y esquinas"],["Productos o servicios","Tus 3 destacados"],["Galería","Imágenes de tu negocio"],["Reseñas","Opiniones de clientes"],["Sobre nosotros","Cuenta tu historia"],["Horario y lugar","Cuándo y dónde"],["Contacto y redes","Correo, teléfono y redes"],["SEO","Cómo te ve Google"],["Revisión y publicación","Último vistazo"]];
+const COLORS=["#6366f1","#0ea5e9","#10b981","#f59e0b","#ef4444","#ec4899","#a855f7","#14b8a6","#b45309","#0f766e"];
+function newW(k,o){const t=TPL[k];return Object.assign({tpl:k,step:1,done:0,name:t.name,tag:t.tag,cta:t.cta,color:t.color,font:"moderna",dark:false,round:"suave",items:t.items.map(x=>x.slice()),gal:true,galN:6,rev:true,
+  revs:[["María G.","Excelente atención y resultados. Lo recomiendo mucho."],["Carlos R.","Todo salió como lo pedí y a tiempo."]],about:t.about,hours:t.hours,addr:t.addr,mail:"",phone:"",ig:"",tt:"",seoT:"",seoD:"",dev:"desk"},o||{});}
+let W=newW("cafe"),lastSid=null,svT,pvT;
+function bld(){const p=prof();if(p){p.build=p.build||{start:null,W:null};return p.build;}DB.guest=DB.guest||{W:null};return DB.guest;}
+function loadW(){const b=bld();if(me()&&!b.W&&DB.guest&&DB.guest.W)b.W=DB.guest.W;const dev=W.dev;W=b.W?Object.assign(newW("cafe"),b.W):newW("cafe");W.dev=dev||"desk";}
+function saveW(){clearTimeout(svT);svT=setTimeout(()=>{bld().W=W;save();},300);}
+function stepCap(){if(!me())return 3;if(!isFree())return 12;const b=bld();if(!b.start){b.start=today();save();}return b.start===today()?CONFIG.FREE.stepsDay1:12;}
+function wizInfo(){
+  const cap=stepCap();let t;
+  if(!me())t="Prueba libre: pasos 1 a 3. Crea tu cuenta gratis para seguir.";
+  else if(!isFree())t="Plan de pago: los 12 pasos sin límite, con descarga y publicación.";
+  else if(cap<12)t=`Plan gratis: hoy puedes hacer ${cap} pasos. Mañana se desbloquean los pasos ${cap+1} a 12.`;
+  else t="Los 12 pasos están desbloqueados. Para descargar y publicar necesitas un plan.";
+  $("#winfo").textContent=t;
+}
+function wizGo(n){
+  const cap=stepCap();
+  if(n>cap){
+    if(!me()){toast("Crea tu cuenta gratis para seguir con el paso "+n);openAuth("join");return;}
+    payWall(`Hoy completaste tus ${cap} pasos gratis. Mañana se desbloquean los pasos ${cap+1} a 12, o pasa a un plan para seguir ahora.`,"Vuelve mañana o desbloquea ahora");return;}
+  W.step=n;renderWiz();saveW();
+}
+function nextStep(){if(me()&&W.step>W.done)act("Completaste el paso "+W.step+" del constructor");W.done=Math.max(W.done,W.step);wizGo(W.step+1);}
+function pickTpl(k){W=newW(k,{step:W.step,done:W.done,dev:W.dev});renderWiz();schedPrev();saveW();}
+function setW(path,v,nr){const ks=path.split(".");let o=W;for(let i=0;i<ks.length-1;i++)o=o[ks[i]];o[ks[ks.length-1]]=v;if(!nr)renderWiz();schedPrev();saveW();}
+function schedPrev(){clearTimeout(pvT);pvT=setTimeout(()=>{$("#prev").srcdoc=pvHTML();$("#furl").textContent=(W.name?W.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""):"tu-marca")+".com";},150);}
 function setDev(d){W.dev=d;$("#frameBox").classList.toggle("mob",d==="mob");$("#dDesk").classList.toggle("on",d==="desk");$("#dMob").classList.toggle("on",d==="mob");}
-function setW(k,v,noRender){W[k]=v;if(!noRender)renderWiz();schedPrev();}
-function wizGo(n){W.step=n;renderWiz();}
-function savedDesign(){const p=prof();return p&&p.design;}
-function renderSteps(done){
-  $("#stepsBox").innerHTML=STEPS.map((s,i)=>`<div class="st ${i<done?"done":""}">${ic(i<done?"check":"lock")} ${i+1}. ${s}</div>`).join("");
-  $("#prog").style.width=(done/15*100)+"%";$("#progTxt").textContent=`Progreso: ${done} de 15 pasos`+(done<15?" · desbloquea el resto con un plan":"");
-}
+function openFull(){$("#pvFull").srcdoc=pvHTML();$("#pvOv").classList.add("show");}
+function closeFull(){$("#pvOv").classList.remove("show");}
+const lit=v=>typeof v==="string"?`'${v}'`:v;
+const fld=(l,p,v,o={})=>`<label class="f">${l}</label>${o.area?`<textarea class="in" rows="3" maxlength="${o.max||300}" oninput="setW('${p}',this.value,1)">${esc(v)}</textarea>`:`<input class="in" ${o.type?`type="${o.type}"`:""} maxlength="${o.max||70}" value="${esc(v)}" placeholder="${esc(o.ph||"")}" oninput="setW('${p}',this.value,1)">`}`;
+const seg=(p,opts,cur)=>`<div class="sg">${opts.map(([v,l])=>`<button class="${cur===v?"on":""}" onclick="setW('${p}',${lit(v)})">${l}</button>`).join("")}</div>`;
+function updSeo(){const a=$("#sT"),b=$("#sD");if(a)a.textContent=W.seoT||(W.name+" | "+TPL[W.tpl].eb);if(b)b.textContent=W.seoD||W.tag;}
 function renderWiz(){
-  const s=W.step;
-  $("#wsteps").innerHTML=["Plantilla","Marca","Secciones"].map((n,i)=>`<button class="wst ${s===i+1?"on":""} ${s>i+1?"done":""}" onclick="wizGo(${i+1})"><b>${i+1}</b>${n}</button>`).join("")+`<span class="wst">${ic("lock")} 4 a 15</span>`;
-  let h="";
-  if(s===1)h=`<h3>Elige una plantilla</h3><p class="note">Toca una opción: la vista previa cambia al instante.</p><div class="tpls">${Object.entries(TPL).map(([k,t])=>`<button class="tpl ${W.tpl===k?"on":""}" onclick="setW('tpl','${k}')">${ic(t.i)}<span>${t.n}</span></button>`).join("")}</div>`;
-  if(s===2)h=`<h3>Dale identidad a tu marca</h3>
-   <label class="f">Nombre</label><input class="in" value="${esc(W.name)}" maxlength="32" placeholder="Ej. Tacos El Güero" oninput="setW('name',this.value,true)">
-   <label class="f">Frase principal</label><input class="in" value="${esc(W.tag)}" maxlength="70" placeholder="${esc(TPL[W.tpl].tag)}" oninput="setW('tag',this.value,true)">
-   <label class="f">Color de marca</label><div class="sws">${COLORS.map(c=>`<button class="sw ${W.color===c?"on":""}" style="background:${c}" onclick="setW('color','${c}')" aria-label="${c}"></button>`).join("")}</div>
-   <label class="f">Estilo de letra</label><div class="sg"><button class="${W.font==="moderna"?"on":""}" onclick="setW('font','moderna')">Moderna</button><button class="${W.font==="pixel"?"on":""}" onclick="setW('font','pixel')" style="font-family:var(--pf)">Pixel</button></div>`;
-  if(s===3){const sc=["Galería","Testimonios","Precios","Mapa","Blog","Tienda"];
-   h=`<h3>Secciones extra</h3><p class="note">Tu mini-web ya incluye portada y 3 bloques. Las secciones extra son de los planes de pago.</p><div class="sg" style="margin-top:12px">${sc.map(x=>`<button onclick="payWall('Las secciones extra, la descarga del código y la publicación son parte de los planes de pago.')">${ic("lock")} ${x}</button>`).join("")}</div>`;}
+  const s=W.step,cap=stepCap();let h="";
+  $("#wgrid").innerHTML=STEPS12.map((x,i)=>{const n=i+1;return `<button class="wb ${s===n?"on":""} ${W.done>=n?"done":""}" onclick="wizGo(${n})" title="${x[0]}">${n>cap?ic("lock"):n}</button>`;}).join("");
+  $("#prog").style.width=(W.done/12*100)+"%";$("#progTxt").textContent=`${W.done} de 12 pasos completados`;
+  h=`<h3 style="font-size:14px">Paso ${s} de 12: ${STEPS12[s-1][0]}</h3><p class="note" style="margin-top:4px">${STEPS12[s-1][1]}</p>`;
+  if(s===1)h+=`<div class="tpls">${Object.entries(TPL).map(([k,t])=>`<button class="tpl ${W.tpl===k?"on":""}" onclick="pickTpl('${k}')">${ic(t.i)}<span>${t.n}</span></button>`).join("")}</div><p class="note">Al cambiar de plantilla se cargan textos de ejemplo que podrás editar en los siguientes pasos.</p>`;
+  if(s===2)h+=fld("Nombre","name",W.name,{max:32})+fld("Frase principal","tag",W.tag,{area:1,max:140})+fld("Texto del botón","cta",W.cta,{max:28});
+  if(s===3)h+=`<label class="f">Color de marca</label><div class="sws">${COLORS.map(c=>`<button class="sw ${W.color===c?"on":""}" style="background:${c}" onclick="setW('color','${c}')" aria-label="${c}"></button>`).join("")}</div><label class="f">Color personalizado</label><input class="in" type="color" value="${esc(W.color)}" oninput="setW('color',this.value,1)"><label class="f">Estilo de letra</label>${seg("font",[["moderna","Moderna"],["elegante","Elegante"],["pixel","Pixel"]],W.font)}`;
+  if(s===4)h+=`<label class="f">Modo</label>${seg("dark",[[false,"Claro"],[true,"Oscuro"]],W.dark)}<label class="f">Esquinas</label>${seg("round",[["suave","Suaves"],["pixel","Pixel"]],W.round)}`;
+  if(s===5)h+=W.items.map((it,i)=>`<div class="ig3"><b>Destacado ${i+1}</b>${fld("Título",`items.${i}.0`,it[0],{max:40})}${fld("Descripción",`items.${i}.1`,it[1],{max:90})}${fld("Precio",`items.${i}.2`,it[2],{max:18})}</div>`).join("");
+  if(s===6)h+=`<label class="f">Galería</label>${seg("gal",[[true,"Mostrar"],[false,"Ocultar"]],W.gal)}<label class="f">Cantidad de imágenes</label>${seg("galN",[[3,"3"],[6,"6"],[9,"9"]],W.galN)}<p class="note">Aquí se muestran espacios de ejemplo. Con tu proyecto final colocamos tus fotos reales.</p>`;
+  if(s===7)h+=`<label class="f">Reseñas</label>${seg("rev",[[true,"Mostrar"],[false,"Ocultar"]],W.rev)}`+W.revs.map((r,i)=>`<div class="ig3"><b>Reseña ${i+1}</b>${fld("Nombre",`revs.${i}.0`,r[0],{max:30})}${fld("Opinión",`revs.${i}.1`,r[1],{area:1,max:140})}</div>`).join("")+`<p class="note">Usa opiniones reales de tus clientes.</p>`;
+  if(s===8)h+=fld("Cuenta tu historia","about",W.about,{area:1,max:400});
+  if(s===9)h+=fld("Horario","hours",W.hours,{max:60})+fld("Dirección o zona","addr",W.addr,{max:80});
+  if(s===10)h+=fld("Correo","mail",W.mail,{type:"email",ph:"hola@tunegocio.com"})+fld("Teléfono","phone",W.phone,{ph:"+52 000 000 0000"})+fld("Instagram","ig",W.ig,{ph:"tunegocio"})+fld("TikTok","tt",W.tt,{ph:"tunegocio"});
+  if(s===11)h+=`<label class="f">Título en Google</label><input class="in" maxlength="60" value="${esc(W.seoT)}" placeholder="${esc(W.name+" | "+TPL[W.tpl].eb)}" oninput="setW('seoT',this.value,1);updSeo()"><label class="f">Descripción en Google</label><textarea class="in" rows="3" maxlength="160" oninput="setW('seoD',this.value,1);updSeo()">${esc(W.seoD)}</textarea><div class="snip"><b id="sT"></b><small>${esc(($("#furl")&&$("#furl").textContent)||"tu-marca.com")}</small><p id="sD"></p></div>`;
+  if(s===12)h+=`<div class="chk">${STEPS12.slice(0,11).map((x,i)=>`<div class="st ${W.done>i?"done":""}">${ic(W.done>i?"check":"lock")} ${i+1}. ${x[0]}</div>`).join("")}</div><div class="row left" style="margin-top:16px"><button class="btn primary" onclick="publishW(false)">${ic("download")} Descargar mi web</button><button class="btn" onclick="publishW(true)">${ic("globe")} Publicar en mi dominio</button></div><p class="note">Con tu cuenta gratis diseñas y guardas los 12 pasos. Descargar el código y publicar son parte de los planes de pago.</p>`;
   $("#wpane").innerHTML=h;
-  $("#wnav").innerHTML=(s>1?`<button class="btn" onclick="wizGo(${s-1})">${ic("arrowl")} Atrás</button>`:"")+(s<3?`<button class="btn primary" onclick="wizGo(${s+1})">Siguiente ${ic("arrow")}</button>`:`<button class="btn primary" onclick="saveDesign()">${ic("check")} Guardar mi diseño</button>`)+`<button class="btn ghost" onclick="newDesign()">Reiniciar</button>`;
-  renderSteps(savedDesign()?2:Math.min(s,3)-1);demoUsageTxt();
+  $("#wnav").innerHTML=(s>1?`<button class="btn" onclick="wizGo(${s-1})">${ic("arrowl")} Atrás</button>`:"")+(s<12?`<button class="btn primary" onclick="nextStep()">Siguiente ${ic("arrow")}</button>`:"");
+  if(s===11)updSeo();wizInfo();
 }
-function demoUsageTxt(){
-  const p=prof();
-  $("#demoUsage").textContent=!me()?"Prueba libre. Crea tu cuenta gratis para guardar tu diseño.":(isFree()?(p.design?"Mini-prueba usada (1/1). Puedes seguir editando tu diseño guardado.":"Mini-prueba disponible (0/1)."):"Plan de pago: diseños ilimitados.");
+function publishW(pub){
+  if(!me()){toast("Crea tu cuenta gratis para guardar tu web");openAuth("join");return;}
+  if(isFree()){payWall("Descargar el código y publicar tu web son parte de los planes de pago. Con tu cuenta gratis ya diseñaste y guardaste tu web.");return;}
+  if(pub){sendLead({tipo:"Publicar web",name:me().name,email:me().email,message:"Quiere publicar la web: "+W.name});toast("Recibimos tu solicitud. Te contactamos para conectar tu dominio");}
+  else{download("mi-web.html",pvHTML(),"text/html");toast("Descargado");}
 }
-function saveDesign(){
-  if(!me()){toast("Crea tu cuenta gratis para guardar tu diseño");openAuth("join");return;}
-  const p=prof();p.design={tpl:W.tpl,name:W.name,tag:W.tag,color:W.color,font:W.font};save();act("Guardaste tu diseño de prueba");renderWiz();toast("Diseño guardado");
+/* EJEMPLOS */
+const PRESETS=[["cafe",{color:"#b45309",font:"elegante"}],["tienda",{color:"#0ea5e9",dark:true}],["serv",{color:"#0f766e"}],["port",{color:"#a855f7",font:"pixel",dark:true,round:"pixel"}],["edu",{color:"#2563eb"}]];
+function renderEx(){
+  $("#exGrid").innerHTML=PRESETS.map(([k,o],i)=>{const w=newW(k,o);return `<div class="card ex reveal"><div class="thumb"><iframe loading="lazy" sandbox="" tabindex="-1" title="${esc(w.name)}" srcdoc="${esc(pvHTML(w))}"></iframe></div><h3 style="margin-top:14px">${esc(w.name)}</h3><p>${TPL[k].eb}</p><button class="btn" style="margin-top:12px" onclick="usePreset(${i})">Usar esta plantilla</button></div>`;}).join("");
+  requestAnimationFrame(scaleThumbs);
 }
-function newDesign(){
-  if(me()&&isFree()&&savedDesign()){payWall("Tu plan gratis incluye una mini-prueba por cuenta. Con un plan puedes crear tantos diseños como quieras.");return;}
-  W={step:1,tpl:"cafe",name:"",tag:"",color:"#6366f1",font:"moderna",dev:W.dev};renderWiz();schedPrev();
-}
+function scaleThumbs(){$$(".thumb").forEach(t=>{const f=t.querySelector("iframe");if(f&&t.clientWidth)f.style.transform=`scale(${t.clientWidth/1100})`;});}
+function usePreset(i){const [k,o]=PRESETS[i];W=newW(k,Object.assign({step:2,done:1,dev:W.dev},o));renderWiz();schedPrev();saveW();location.hash="probar";toast("Plantilla cargada. Personalízala en el constructor");}
 
 /* =====================================================
    SIMULADOR DE ROI
@@ -837,7 +1000,7 @@ function printQuote(){
 /* =====================================================
    AUTH: Firebase real (si CONFIG.FIREBASE) o demo local
    ===================================================== */
-let FB=null,authM="login";
+let FB=null,authM="login",wizReady=false;
 async function initFirebase(){
   if(!CONFIG.FIREBASE)return;
   try{
@@ -881,7 +1044,12 @@ async function forgot(){
   try{await FB.reset(m);toast("Te enviamos un correo para restablecerla");}catch(e){$("#aErr").textContent=fbMsg(e.code);}
 }
 async function logout(){if(FB){try{await FB.out();}catch(e){}}DB.session=null;save();updateAuthUI();showSite();toast("Sesión cerrada");}
-function updateAuthUI(){const u=me();$("#loginBtn").style.display=u?"none":"";$("#joinBtn").style.display=u?"none":"";$("#panelBtn").style.display=u?"":"none";if($("#wpane").innerHTML)demoUsageTxt();updateChatCount();if($("#dash").classList.contains("show"))renderDash();}
+function updateAuthUI(){
+  const u=me();$("#loginBtn").style.display=u?"none":"";$("#joinBtn").style.display=u?"none":"";$("#panelBtn").style.display=u?"":"none";
+  updateChatCount();
+  if(wizReady){const sid=u?u.id:"guest";if(sid!==lastSid){lastSid=sid;loadW();schedPrev();}renderWiz();}
+  if($("#dash").classList.contains("show"))renderDash();
+}
 function showSite(){$("#dash").classList.remove("show");$("#site").style.display="";}
 function showDash(){if(!me()){openAuth("login");return;}$("#site").style.display="none";$("#dash").classList.add("show");window.scrollTo(0,0);renderDash();}
 
@@ -893,10 +1061,11 @@ function dTab(id){$$(".side button").forEach(b=>b.classList.toggle("on",b.datase
 $$(".side button").forEach(b=>b.onclick=()=>dTab(b.dataset.d));
 function renderDash(){
   const s=me(),p=prof();if(!s||!p)return;
+  const dn=p.build&&p.build.W?p.build.W.done:0;
   $("#hello").textContent="Hola, "+s.name.split(" ")[0];
   $("#kP").textContent=p.projects.length;$("#kB").textContent=p.bookings.length;
   $("#kPlan").textContent=p.plan==="free"?"GRATIS":p.plan.toUpperCase();
-  $("#kUse").textContent=p.plan==="free"?`Diseño ${p.design?1:0}/1 · Chat hoy ${usage().n}/${CONFIG.FREE.chatPerDay}`:"Sin límites";
+  $("#kUse").textContent=p.plan==="free"?`Mi web ${dn}/12 · Chat hoy ${usage().n}/${CONFIG.FREE.chatPerDay}`:"Sin límites";
   $("#actList").innerHTML=(p.act&&p.act.length)?p.act.map(a=>`<li><span>${esc(a.x)}</span><small>${new Date(a.t).toLocaleString("es-MX",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})}</small></li>`).join(""):`<li><span style="color:var(--muted)">Todavía no hay actividad.</span></li>`;
   $("#pList").innerHTML=p.projects.length?p.projects.map(x=>`<div class="item"><div><strong>${esc(x.name)}</strong><br><small style="color:var(--muted)">${esc(x.type)} · ${esc(x.bud)}</small></div><button class="btn danger" onclick="delProject(${x.id})" aria-label="Quitar">${ic("trash")}</button><div class="trk">${STAGES.map((g,i)=>`<span class="${i<=(x.stage||0)?"on":""}">${g}</span>`).join("")}</div></div>`).join(""):`<p style="color:var(--muted);margin-top:16px">Aún no tienes proyectos. Crea el primero.</p>`;
   $("#aList").innerHTML=p.bookings.length?p.bookings.map(b=>`<div class="item"><div><strong>${esc(b.date)} · ${esc(b.time)}</strong><br><small style="color:var(--muted)">${esc(b.topic||"Videollamada")}</small></div><button class="btn danger" onclick="delBooking(${b.id})" aria-label="Quitar">${ic("trash")}</button></div>`).join(""):`<p style="color:var(--muted);margin-top:16px">Sin citas todavía.</p>`;
@@ -925,7 +1094,7 @@ async function deleteAccount(){if(!confirm("¿Borrar tus datos guardados en este
 function exportProjects(){const p=prof();if(!p.projects.length){toast("No hay proyectos");return;}
   const csv=["Nombre,Tipo,Presupuesto,Descripcion",...p.projects.map(x=>[x.name,x.type,x.bud,x.desc].map(v=>`"${String(v||"").replace(/"/g,'""')}"`).join(","))].join("\n");
   download("proyectos.csv","\ufeff"+csv,"text/csv");toast("Exportado");}
-function exportAll(){const p=prof(),s=me();download("mis-datos.json",JSON.stringify({email:s.email,name:s.name,since:p.since,plan:p.plan,design:p.design,projects:p.projects,bookings:p.bookings},null,2),"application/json");toast("Exportado");}
+function exportAll(){const p=prof(),s=me();download("mis-datos.json",JSON.stringify({email:s.email,name:s.name,since:p.since,plan:p.plan,build:p.build,projects:p.projects,bookings:p.bookings},null,2),"application/json");toast("Exportado");}
 function exportICS(){
   const p=prof();if(!p.bookings.length){toast("No hay citas");return;}const pad=n=>String(n).padStart(2,"0");
   const ev=p.bookings.map(b=>{const [Y,M,D]=b.date.split("-"),[h,m]=b.time.split(":");return `BEGIN:VEVENT\nUID:${b.id}@pixelforge\nDTSTAMP:${new Date().toISOString().replace(/[-:]/g,"").split(".")[0]}Z\nDTSTART:${Y}${M}${D}T${h}${m}00\nDTEND:${Y}${M}${D}T${pad(+h+1)}${m}00\nSUMMARY:Llamada con ${CONFIG.brand}\nDESCRIPTION:${(b.topic||"").replace(/\n/g," ")}\nEND:VEVENT`;}).join("\n");
@@ -954,7 +1123,7 @@ function pushMsg(who,text){const d=document.createElement("div");d.className="m 
 function sendChat(){const i=$("#chatIn"),t=i.value.trim();if(!t)return;i.value="";askAI(t);}
 async function askAI(text){
   const u=usage();
-  if(isFree()&&u.n>=CONFIG.FREE.chatPerDay){pushMsg("me",text);pushMsg("bot","Llegaste al límite de mensajes gratis de hoy. Con un plan de pago no hay límite.");payWall(`Usaste tus ${CONFIG.FREE.chatPerDay} mensajes gratis de hoy con Forja AI. Mañana se renuevan, o desbloquea acceso ilimitado con un plan.`);return;}
+  if(isFree()&&u.n>=CONFIG.FREE.chatPerDay){pushMsg("me",text);pushMsg("bot","Llegaste al límite de mensajes gratis de hoy. Con un plan de pago no hay límite.");payWall(`Usaste tus ${CONFIG.FREE.chatPerDay} mensajes gratis de hoy con Forja AI. Mañana se renuevan, o desbloquea acceso ilimitado con un plan.`,"Límite de mensajes de hoy");return;}
   u.n++;save();updateChatCount();pushMsg("me",text);chatHist.push({role:"user",content:text});
   const typing=pushMsg("bot","...");
   if(CONFIG.AI_ENDPOINT){try{const r=await fetch(CONFIG.AI_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:chatHist.slice(-10)})});const j=await r.json();typing.textContent=j.reply||"Lo siento, no pude responder.";chatHist.push({role:"assistant",content:typing.textContent});return;}catch(e){}}
@@ -965,7 +1134,9 @@ async function askAI(text){
 /* =====================================================
    INIT
    ===================================================== */
-hyd();applyTheme();renderStatic();renderWiz();schedPrev();initSim();renderQuote();updateAuthUI();observeReveal();typeWriter();typeCode();initFirebase();
+hyd();applyTheme();renderStatic();renderSocial();initSim();renderQuote();
+lastSid=me()?me().id:"guest";loadW();renderWiz();schedPrev();wizReady=true;
+renderEx();updateAuthUI();observeReveal();typeWriter();typeCode();initFirebase();
 document.title=CONFIG.brand+" · Webs, apps y proyectos de código";
 </script>
 </body>
