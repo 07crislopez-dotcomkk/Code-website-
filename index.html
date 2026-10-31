@@ -9,26 +9,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#0a0f1f; --bg2:#0f1730; --surface:#131c38; --surface2:#1a2547; --text:#eef2ff; --muted:#9aa7c9;
-  --brand:#6366f1; --brand2:#22d3ee; --ok:#34d399; --warn:#fbbf24; --danger:#f87171;
-  --border:rgba(255,255,255,.09); --shadow:0 20px 50px rgba(0,0,0,.4); --r:16px;
-  --grad:linear-gradient(135deg,#6366f1 0%,#22d3ee 100%);
-}
-[data-theme="light"]{
-  --bg:#f6f8ff; --bg2:#eef1fc; --surface:#ffffff; --surface2:#eef1fc; --text:#101733; --muted:#5b668a;
-  --border:rgba(16,23,51,.1); --shadow:0 20px 50px rgba(60,70,160,.15);
-}
+:root{--bg:#0a0f1f;--bg2:#0f1730;--surface:#131c38;--surface2:#1a2547;--text:#eef2ff;--muted:#9aa7c9;--brand:#6366f1;--brand2:#22d3ee;--ok:#34d399;--warn:#fbbf24;--danger:#f87171;--border:rgba(255,255,255,.09);--shadow:0 20px 50px rgba(0,0,0,.4);--r:16px;--grad:linear-gradient(135deg,#6366f1 0%,#22d3ee 100%)}
+[data-theme="light"]{--bg:#f6f8ff;--bg2:#eef1fc;--surface:#ffffff;--surface2:#eef1fc;--text:#101733;--muted:#5b668a;--border:rgba(16,23,51,.1);--shadow:0 20px 50px rgba(60,70,160,.15)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:80px}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;transition:background .3s,color .3s}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;color:inherit}
-img,svg{max-width:100%}
 .container{max-width:1160px;margin:auto;padding:0 20px}
-.pixel{font-family:'Press Start 2P',monospace;letter-spacing:0}
-
-/* ---------- NAV ---------- */
+.pixel{font-family:'Press Start 2P',monospace}
+/* NAV */
 header.nav{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
 .nav-in{display:flex;align-items:center;gap:20px;height:68px}
 .logo{display:flex;align-items:center;gap:10px;font-weight:800}
@@ -38,13 +28,11 @@ header.nav{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--
 .menu>li{list-style:none;position:relative}
 .menu>li>a,.menu>li>button{background:none;padding:8px 12px;border-radius:10px;font-weight:600;font-size:14px;color:var(--muted);display:flex;align-items:center;gap:6px}
 .menu>li>a:hover,.menu>li>button:hover,.menu>li.open>button{color:var(--text);background:var(--surface)}
-.drop{position:absolute;top:calc(100% + 6px);left:0;min-width:260px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:8px;box-shadow:var(--shadow);opacity:0;visibility:hidden;transform:translateY(6px);transition:.18s}
+.drop{position:absolute;top:calc(100% + 6px);left:0;min-width:270px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:8px;box-shadow:var(--shadow);opacity:0;visibility:hidden;transform:translateY(6px);transition:.18s}
 .menu>li:hover .drop,.menu>li.open .drop{opacity:1;visibility:visible;transform:none}
 .drop a{display:flex;gap:12px;padding:10px;border-radius:10px;align-items:flex-start}
 .drop a:hover{background:var(--surface2)}
-.drop .ic{font-size:20px}
-.drop strong{display:block;font-size:14px}
-.drop small{color:var(--muted);font-size:12px}
+.drop .ic{font-size:20px}.drop strong{display:block;font-size:14px}.drop small{color:var(--muted);font-size:12px}
 .spacer{flex:1}
 .icon-btn{background:var(--surface);width:40px;height:40px;border-radius:12px;font-size:18px;border:1px solid var(--border)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 20px;border-radius:12px;font-weight:700;font-size:14px;transition:.18s;background:var(--surface);border:1px solid var(--border)}
@@ -53,18 +41,15 @@ header.nav{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--
 .btn.lg{padding:15px 28px;font-size:16px;border-radius:14px}
 .btn.ghost{background:transparent}
 .btn.danger{background:rgba(248,113,113,.12);color:var(--danger);border-color:transparent}
+.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none}
 .burger{display:none}
 @media(max-width:900px){
-  .menu{position:fixed;top:68px;left:0;right:0;background:var(--bg);flex-direction:column;padding:14px 20px 24px;border-bottom:1px solid var(--border);display:none;max-height:calc(100vh - 68px);overflow:auto;margin:0}
-  .menu.show{display:flex}
-  .drop{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;display:none;margin:4px 0 8px}
-  .menu>li.open .drop{display:block}
-  .menu>li:hover .drop{opacity:1}
-  .burger{display:inline-block}
-  .nav-cta .hide-m{display:none}
-}
-
-/* ---------- HERO ---------- */
+.menu{position:fixed;top:68px;left:0;right:0;background:var(--bg);flex-direction:column;padding:14px 20px 24px;border-bottom:1px solid var(--border);display:none;max-height:calc(100vh - 68px);overflow:auto;margin:0}
+.menu.show{display:flex}
+.drop{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;display:none;margin:4px 0 8px}
+.menu>li.open .drop{display:block}
+.burger{display:inline-block}.nav-cta .hide-m{display:none}}
+/* HERO */
 .hero{position:relative;padding:90px 0 70px;text-align:center;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:-20% -10% auto;height:560px;background:radial-gradient(600px 300px at 30% 30%,rgba(99,102,241,.35),transparent 70%),radial-gradient(500px 300px at 75% 20%,rgba(34,211,238,.25),transparent 70%);pointer-events:none}
 .hero .container{position:relative}
@@ -77,80 +62,81 @@ header.nav{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--
 .trust{margin-top:26px;color:var(--muted);font-size:14px}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:54px}
 .stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px}
-.stat b{font-size:32px;display:block}
-.stat span{color:var(--muted);font-size:13px}
+.stat b{font-size:32px;display:block}.stat span{color:var(--muted);font-size:13px}
 @media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
-
-/* ---------- SECCIONES ---------- */
-section.sec{padding:80px 0}
-section.alt{background:var(--bg2)}
+/* SECCIONES */
+section.sec{padding:80px 0}section.alt{background:var(--bg2)}
 .eyebrow{font-family:'Press Start 2P',monospace;font-size:10px;color:var(--brand2);margin-bottom:14px;display:block}
 .sec h2{font-size:clamp(28px,4vw,42px);line-height:1.15;letter-spacing:-.02em;margin-bottom:12px}
-.sec .sub{color:var(--muted);max-width:620px;margin-bottom:40px}
-.grid{display:grid;gap:18px}
-.g3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-.g4{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.sec .sub{color:var(--muted);max-width:640px;margin-bottom:40px}
+.grid{display:grid;gap:18px}.g3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}.g4{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px;transition:.25s}
 .card:hover{transform:translateY(-4px);border-color:rgba(99,102,241,.5);box-shadow:var(--shadow)}
 .card .ic{width:50px;height:50px;border-radius:14px;background:var(--grad);display:grid;place-items:center;font-size:24px;margin-bottom:16px}
-.card h3{margin-bottom:8px;font-size:18px}
-.card p{color:var(--muted);font-size:14px}
+.card h3{margin-bottom:8px;font-size:18px}.card p{color:var(--muted);font-size:14px}
 .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
 .tag{font-size:12px;padding:3px 10px;border-radius:999px;background:var(--surface2);color:var(--muted)}
-.step{position:relative}
 .step .n{font-family:'Press Start 2P',monospace;font-size:22px;color:var(--brand);margin-bottom:12px}
-
-/* ---------- PRECIOS ---------- */
-.plan{display:flex;flex-direction:column}
-.plan.pop{border-color:var(--brand);box-shadow:0 0 0 1px var(--brand),var(--shadow);position:relative}
-.plan.pop::before{content:"MÁS POPULAR";position:absolute;top:-12px;left:24px;background:var(--grad);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px}
-.price{font-size:38px;font-weight:800;margin:10px 0}
+/* PRECIOS */
+.plan{display:flex;flex-direction:column;position:relative}
+.plan.pop{border-color:var(--brand);box-shadow:0 0 0 1px var(--brand),var(--shadow);transform:scale(1.03)}
+.plan.pop:hover{transform:scale(1.03) translateY(-4px)}
+.plan .ribbon{position:absolute;top:-12px;left:24px;background:var(--grad);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px}
+.price{font-size:42px;font-weight:800;margin:10px 0}
 .price small{font-size:14px;color:var(--muted);font-weight:500}
 .plan ul{list-style:none;margin:16px 0 22px;flex:1}
 .plan li{padding:6px 0;font-size:14px;color:var(--muted)}
 .plan li::before{content:"✓ ";color:var(--ok);font-weight:800}
-
-/* ---------- COTIZADOR ---------- */
+/* COTIZADOR / FORMS */
 .two{display:grid;grid-template-columns:1.2fr 1fr;gap:20px}
 @media(max-width:820px){.two{grid-template-columns:1fr}}
 .opt{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--border);border-radius:12px;margin-bottom:8px;cursor:pointer;background:var(--surface2)}
 .opt:has(input:checked){border-color:var(--brand);background:rgba(99,102,241,.12)}
 .opt b{margin-left:auto;font-size:14px}
 .total{font-size:44px;font-weight:800}
-
-/* ---------- FORMULARIOS ---------- */
 label.f{display:block;font-size:13px;font-weight:600;margin:14px 0 6px}
 input.in,select.in,textarea.in{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-family:inherit;font-size:15px;outline:none}
 input.in:focus,select.in:focus,textarea.in:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.25)}
-
-/* ---------- FAQ ---------- */
+input[type=color].in{padding:4px;height:46px}
+input[type=range]{width:100%;accent-color:var(--brand)}
+/* SIMULADOR */
+.sim-out{display:grid;gap:14px}
+.bar-wrap{background:var(--surface2);border-radius:12px;overflow:hidden;height:34px;position:relative}
+.bar{height:100%;background:var(--grad);transition:width .5s;display:flex;align-items:center;padding-left:12px;font-weight:700;font-size:13px;color:#fff;white-space:nowrap}
+.bar.gray{background:#64748b}
+.kpi{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:15px}
+.kpi b{font-size:18px}
+.note{font-size:12px;color:var(--muted);margin-top:12px}
+/* PRUEBA GRATIS */
+.preview{width:100%;height:340px;border:1px solid var(--border);border-radius:14px;background:#fff}
+.steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:14px}
+.st{font-size:13px;padding:8px 12px;border-radius:10px;background:var(--surface2);color:var(--muted)}
+.st.done{color:var(--ok);background:rgba(52,211,153,.12)}
+.progress{height:10px;border-radius:99px;background:var(--surface2);overflow:hidden;margin:12px 0 4px}
+.progress i{display:block;height:100%;background:var(--grad);width:0;transition:width .6s}
+/* FAQ */
 details{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 20px;margin-bottom:10px}
 summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between}
-summary::after{content:"+";font-size:20px;color:var(--brand2)}
-details[open] summary::after{content:"–"}
+summary::after{content:"+";font-size:20px;color:var(--brand2)}details[open] summary::after{content:"–"}
 details p{color:var(--muted);margin-top:10px;font-size:14px}
-
-/* ---------- FOOTER ---------- */
+/* FOOTER */
 footer{background:var(--bg2);border-top:1px solid var(--border);padding:60px 0 30px}
 .fgrid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:30px}
 @media(max-width:760px){.fgrid{grid-template-columns:1fr 1fr}}
 footer h4{font-size:13px;margin-bottom:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-footer li{list-style:none;margin:8px 0;font-size:14px}
-footer li a{color:var(--muted)} footer li a:hover{color:var(--text)}
+footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--muted)}footer li a:hover{color:var(--text)}
 .credits{margin-top:40px;padding-top:22px;border-top:1px solid var(--border);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:13px}
 .credits strong{color:var(--text)}
-
-/* ---------- MODAL AUTH ---------- */
+/* MODALES */
 .overlay{position:fixed;inset:0;background:rgba(3,6,20,.75);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:300;padding:16px}
 .overlay.show{display:flex}
-.auth{display:grid;grid-template-columns:1fr 1fr;max-width:880px;width:100%;border-radius:22px;overflow:hidden;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);max-height:92vh}
+.auth{display:grid;grid-template-columns:1fr 1fr;max-width:880px;width:100%;border-radius:22px;overflow:hidden;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);max-height:92vh;position:relative}
 .auth-side{background:var(--grad);padding:40px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden}
-.auth-side h3{font-size:30px;line-height:1.15;margin-bottom:10px;position:relative}
-.auth-side p{opacity:.9;font-size:14px;position:relative}
+.auth-side h3{font-size:30px;line-height:1.15;margin-bottom:10px;position:relative}.auth-side p{opacity:.9;font-size:14px;position:relative}
 .auth-side::before{content:"";position:absolute;width:260px;height:260px;border:30px solid rgba(255,255,255,.14);border-radius:50%;top:-60px;right:-60px}
 .auth-form{padding:34px;overflow:auto}
 .auth-form h3{font-size:24px;text-align:center}
-.auth-form .sub2{text-align:center;color:var(--muted);font-size:14px;margin-bottom:18px}
+.sub2{text-align:center;color:var(--muted);font-size:14px;margin-bottom:18px}
 .seg2{display:grid;grid-template-columns:1fr 1fr;background:var(--surface2);border-radius:12px;padding:4px;margin-bottom:6px}
 .seg2 button{background:none;padding:10px;border-radius:9px;font-weight:600;color:var(--muted)}
 .seg2 button.on{background:var(--surface);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,.2)}
@@ -158,227 +144,224 @@ footer li a{color:var(--muted)} footer li a:hover{color:var(--text)}
 .or{text-align:center;color:var(--muted);font-size:12px;margin:14px 0}
 .err{color:var(--danger);font-size:13px;min-height:18px;margin-top:8px}
 .close{position:absolute;top:14px;right:14px;z-index:2}
+.paybox{max-width:460px;width:100%;background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:34px;text-align:center;box-shadow:var(--shadow)}
+.paybox .big{font-size:46px}.paybox h3{margin:10px 0 8px;font-size:22px}.paybox p{color:var(--muted);font-size:14px;margin-bottom:18px}
 @media(max-width:760px){.auth{grid-template-columns:1fr}.auth-side{display:none}}
-
-/* ---------- DASHBOARD ---------- */
-#dash{display:none;min-height:100vh}
-#dash.show{display:block}
+/* DASHBOARD */
+#dash{display:none;min-height:100vh}#dash.show{display:block}
 .dlayout{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 68px)}
 .side{background:var(--bg2);border-right:1px solid var(--border);padding:20px 14px}
 .side button{display:flex;gap:10px;width:100%;background:none;padding:11px 14px;border-radius:12px;font-weight:600;color:var(--muted);margin-bottom:4px;text-align:left}
 .side button.on,.side button:hover{background:var(--surface);color:var(--text)}
-.dmain{padding:30px;max-width:900px}
-.dmain h2{margin-bottom:4px}
+.dmain{padding:30px;max-width:900px;width:100%}
 .dview{display:none}.dview.on{display:block}
 .item{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-top:10px}
-.pill{font-size:12px;padding:3px 10px;border-radius:999px;font-weight:700}
-.pill.rev{background:rgba(251,191,36,.15);color:var(--warn)}
+.pill{font-size:12px;padding:3px 10px;border-radius:999px;font-weight:700;background:rgba(251,191,36,.15);color:var(--warn)}
 .pill.ok{background:rgba(52,211,153,.15);color:var(--ok)}
 @media(max-width:760px){.dlayout{grid-template-columns:1fr}.side{display:flex;overflow:auto;gap:6px;border-right:none;border-bottom:1px solid var(--border)}.side button{width:auto;white-space:nowrap;margin:0}.dmain{padding:20px}}
-
-/* ---------- CHAT IA ---------- */
+/* CHAT */
 #chatFab{position:fixed;right:20px;bottom:20px;z-index:200;width:60px;height:60px;border-radius:50%;background:var(--grad);font-size:26px;box-shadow:0 10px 30px rgba(99,102,241,.5);color:#fff}
-#chat{position:fixed;right:20px;bottom:92px;width:370px;max-width:calc(100vw - 40px);height:520px;max-height:calc(100vh - 120px);background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);display:none;flex-direction:column;z-index:200;overflow:hidden}
+#chat{position:fixed;right:20px;bottom:92px;width:380px;max-width:calc(100vw - 40px);height:540px;max-height:calc(100vh - 120px);background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);display:none;flex-direction:column;z-index:200;overflow:hidden}
 #chat.show{display:flex}
 .chat-h{background:var(--grad);padding:14px 16px;color:#fff;display:flex;justify-content:space-between;align-items:center}
-.chat-h b{display:block}.chat-h small{opacity:.85}
+.chat-h b{display:block}.chat-h small{opacity:.9}
 #msgs{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
 .m{max-width:85%;padding:10px 14px;border-radius:16px;font-size:14px;white-space:pre-wrap}
 .m.bot{background:var(--surface2);border-bottom-left-radius:4px}
 .m.me{background:var(--brand);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
 .quick{display:flex;gap:6px;flex-wrap:wrap;padding:0 14px 8px}
 .quick button{font-size:12px;padding:6px 10px;border-radius:999px;background:var(--surface2);border:1px solid var(--border)}
-.chat-f{display:flex;gap:8px;padding:12px;border-top:1px solid var(--border)}
-.chat-f input{flex:1}
-
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--surface);border:1px solid var(--border);padding:12px 20px;border-radius:12px;box-shadow:var(--shadow);z-index:500;transition:.3s;font-weight:600;font-size:14px}
+.chat-f{display:flex;gap:8px;padding:12px;border-top:1px solid var(--border)}.chat-f input{flex:1}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--surface);border:1px solid var(--border);padding:12px 20px;border-radius:12px;box-shadow:var(--shadow);z-index:500;transition:.3s;font-weight:600;font-size:14px;max-width:92vw;text-align:center}
 .toast.show{transform:translateX(-50%)}
-.reveal{opacity:0;transform:translateY(24px);transition:.7s}
-.reveal.in{opacity:1;transform:none}
+.reveal{opacity:0;transform:translateY(24px);transition:.7s}.reveal.in{opacity:1;transform:none}
 </style>
 </head>
 <body>
 
 <!-- ================= SITIO PÚBLICO ================= -->
 <div id="site">
-<header class="nav">
-  <div class="container nav-in">
-    <a href="#top" class="logo" onclick="showSite()">
-      <svg width="30" height="30" viewBox="0 0 6 6" shape-rendering="crispEdges"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6366f1"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs><g fill="url(#lg)"><rect x="1" y="0" width="4" height="1"/><rect x="0" y="1" width="2" height="1"/><rect x="0" y="2" width="4" height="1"/><rect x="0" y="3" width="2" height="1"/><rect x="0" y="4" width="2" height="1"/><rect x="4" y="4" width="1" height="1"/><rect x="2" y="5" width="3" height="1"/></g></svg>
-      <span class="pixel"><b data-brand1>PIXEL</b><br data-x>FORGE</span>
-    </a>
-    <ul class="menu" id="menu">
-      <li><button onclick="toggleDrop(this)">Servicios ▾</button>
-        <div class="drop">
-          <a href="#servicios"><span class="ic">🌐</span><span><strong>Páginas web</strong><small>Landing pages y sitios de negocio</small></span></a>
-          <a href="#servicios"><span class="ic">📱</span><span><strong>Apps</strong><small>Apps web instalables (PWA)</small></span></a>
-          <a href="#servicios"><span class="ic">⚙️</span><span><strong>Proyectos de código</strong><small>Bots, scripts y automatizaciones</small></span></a>
-        </div></li>
-      <li><button onclick="toggleDrop(this)">Proyectos ▾</button>
-        <div class="drop">
-          <a href="#portafolio"><span class="ic">🗂️</span><span><strong>Portafolio</strong><small>Lo que hemos construido</small></span></a>
-          <a href="#proceso"><span class="ic">🧭</span><span><strong>Cómo trabajamos</strong><small>De la idea al lanzamiento</small></span></a>
-        </div></li>
-      <li><button onclick="toggleDrop(this)">Recursos ▾</button>
-        <div class="drop">
-          <a href="#cotizador"><span class="ic">🧮</span><span><strong>Cotizador</strong><small>Estimado al instante</small></span></a>
-          <a href="#faq"><span class="ic">❓</span><span><strong>Preguntas frecuentes</strong><small>Resolvemos tus dudas</small></span></a>
-          <a href="#" onclick="openChat();return false"><span class="ic">🤖</span><span><strong>Forja AI</strong><small>Asistente 24/7</small></span></a>
-        </div></li>
-      <li><a href="#precios">Precios</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-    <div class="spacer"></div>
-    <div class="row nav-cta" style="gap:8px;flex-wrap:nowrap">
-      <button class="icon-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Tema">🌙</button>
-      <button class="btn ghost hide-m" id="loginBtn" onclick="openAuth('login')">Iniciar sesión</button>
-      <button class="btn primary hide-m" id="joinBtn" onclick="openAuth('join')">Empezar gratis</button>
-      <button class="btn primary" id="panelBtn" style="display:none" onclick="showDash()">Mi panel</button>
-      <button class="icon-btn burger" onclick="document.getElementById('menu').classList.toggle('show')" aria-label="Menú">☰</button>
-    </div>
+<header class="nav"><div class="container nav-in">
+  <a href="#top" class="logo" onclick="showSite()">
+    <svg width="30" height="30" viewBox="0 0 6 6" shape-rendering="crispEdges"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6366f1"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs><g fill="url(#lg)"><rect x="1" y="0" width="4" height="1"/><rect x="0" y="1" width="2" height="1"/><rect x="0" y="2" width="4" height="1"/><rect x="0" y="3" width="2" height="1"/><rect x="0" y="4" width="2" height="1"/><rect x="4" y="4" width="1" height="1"/><rect x="2" y="5" width="3" height="1"/></g></svg>
+    <span class="pixel"><b>PIXEL</b><br>FORGE</span>
+  </a>
+  <ul class="menu" id="menu">
+    <li><button onclick="toggleDrop(this)">Servicios ▾</button><div class="drop">
+      <a href="#servicios"><span class="ic">🌐</span><span><strong>Páginas web</strong><small>Landing pages y sitios de negocio</small></span></a>
+      <a href="#servicios"><span class="ic">📱</span><span><strong>Apps</strong><small>Apps web instalables (PWA)</small></span></a>
+      <a href="#servicios"><span class="ic">⚙️</span><span><strong>Proyectos de código</strong><small>Bots, scripts y automatizaciones</small></span></a></div></li>
+    <li><button onclick="toggleDrop(this)">Proyectos ▾</button><div class="drop">
+      <a href="#portafolio"><span class="ic">🗂️</span><span><strong>Portafolio</strong><small>Lo que hemos construido</small></span></a>
+      <a href="#proceso"><span class="ic">🧭</span><span><strong>Cómo trabajamos</strong><small>De la idea al lanzamiento</small></span></a></div></li>
+    <li><button onclick="toggleDrop(this)">Herramientas ▾</button><div class="drop">
+      <a href="#probar"><span class="ic">🧪</span><span><strong>Prueba gratis</strong><small>Genera tu mini-web</small></span></a>
+      <a href="#simulador"><span class="ic">📈</span><span><strong>Simulador de ROI</strong><small>¿Cuánto podría generarte una web?</small></span></a>
+      <a href="#cotizador"><span class="ic">🧮</span><span><strong>Cotizador</strong><small>Estimado al instante</small></span></a>
+      <a href="#" onclick="openChat(true);return false"><span class="ic">🤖</span><span><strong>Forja AI</strong><small>Asistente virtual</small></span></a></div></li>
+    <li><a href="#precios">Precios</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <div class="spacer"></div>
+  <div class="row nav-cta" style="gap:8px;flex-wrap:nowrap">
+    <button class="icon-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Tema">🌙</button>
+    <button class="btn ghost hide-m" id="loginBtn" onclick="openAuth('login')">Iniciar sesión</button>
+    <button class="btn primary hide-m" id="joinBtn" onclick="openAuth('join')">Empezar gratis</button>
+    <button class="btn primary" id="panelBtn" style="display:none" onclick="showDash()">Mi panel</button>
+    <button class="icon-btn burger" onclick="document.getElementById('menu').classList.toggle('show')" aria-label="Menú">☰</button>
   </div>
-</header>
+</div></header>
 
 <main id="top">
-<!-- HERO -->
-<section class="hero">
-  <div class="container">
-    <div class="badge"><i></i> Aceptando nuevos proyectos</div>
-    <h1>Construimos tu idea.<br><span class="grad">Lanzamos tu producto.</span></h1>
-    <p class="lead">Somos un estudio de desarrollo que crea páginas web, apps y proyectos de código a la medida, con diseño profesional y detalles que se sienten como app.</p>
-    <div class="row">
-      <button class="btn primary lg" onclick="openAuth('join')">✨ Empezar gratis</button>
-      <a class="btn lg" href="#cotizador">Cotizar mi proyecto →</a>
+<section class="hero"><div class="container">
+  <div class="badge"><i></i> Aceptando nuevos proyectos</div>
+  <h1>Construimos tu idea.<br><span class="grad">Lanzamos tu producto.</span></h1>
+  <p class="lead">Somos un estudio de desarrollo que crea páginas web, apps y proyectos de código a la medida, con diseño profesional y detalles que se sienten como app.</p>
+  <div class="row">
+    <button class="btn primary lg" onclick="location.hash='probar'">🧪 Probar gratis</button>
+    <a class="btn lg" href="#cotizador">Cotizar mi proyecto →</a>
+  </div>
+  <p class="trust">Cotización gratis · Sin compromiso · Respuesta en menos de 24 h</p>
+  <div class="stats">
+    <div class="stat reveal"><b data-count="25">0</b><span>Proyectos entregados</span></div>
+    <div class="stat reveal"><b data-count="100" data-suf="%">0</b><span>Código a la medida</span></div>
+    <div class="stat reveal"><b data-count="24" data-suf="h">0</b><span>Tiempo de respuesta</span></div>
+    <div class="stat reveal"><b data-count="2">0</b><span>Fundadores programando</span></div>
+  </div>
+</div></section>
+
+<section class="sec" id="servicios"><div class="container">
+  <span class="eyebrow">SERVICIOS</span><h2>Todo lo que necesitas para lanzar</h2>
+  <p class="sub">Desde una landing rápida hasta una app completa con login, base de datos y panel de administración.</p>
+  <div class="grid g3" id="servGrid"></div>
+</div></section>
+
+<section class="sec alt" id="proceso"><div class="container">
+  <span class="eyebrow">PROCESO</span><h2>De la idea al lanzamiento en 4 pasos</h2>
+  <p class="sub">Un proceso claro, sin sorpresas, con avances que puedes ver desde el primer día.</p>
+  <div class="grid g4">
+    <div class="card step reveal"><div class="n">01</div><h3>Platicamos</h3><p>Entendemos tu idea, tu público y tus objetivos en una llamada gratis.</p></div>
+    <div class="card step reveal"><div class="n">02</div><h3>Diseñamos</h3><p>Te mostramos el diseño y la estructura antes del código final.</p></div>
+    <div class="card step reveal"><div class="n">03</div><h3>Construimos</h3><p>Desarrollamos por etapas y te enseñamos avances reales funcionando.</p></div>
+    <div class="card step reveal"><div class="n">04</div><h3>Lanzamos</h3><p>Publicamos, probamos y te damos soporte después del lanzamiento.</p></div>
+  </div>
+</div></section>
+
+<section class="sec" id="portafolio"><div class="container">
+  <span class="eyebrow">PORTAFOLIO</span><h2>Proyectos que ya funcionan</h2>
+  <p class="sub">Edita esta lista en el código (<code>PORTFOLIO</code>) con tus proyectos reales y sus links.</p>
+  <div class="grid g3" id="portGrid"></div>
+</div></section>
+
+<section class="sec alt" id="precios"><div class="container">
+  <span class="eyebrow">PRECIOS</span><h2>Planes claros, sin letras chiquitas</h2>
+  <p class="sub">Elige el plan que va contigo. Ajusta precios y características en el código (<code>PLANS</code>).</p>
+  <div class="grid g3" id="planGrid" style="align-items:stretch"></div>
+</div></section>
+
+<!-- PRUEBA GRATIS -->
+<section class="sec" id="probar"><div class="container">
+  <span class="eyebrow">PRUEBA GRATIS</span><h2>Genera tu mini-web en 30 segundos</h2>
+  <p class="sub">Con tu cuenta gratis puedes generar <b>una</b> mini-prueba (2 de los 15 pasos de un proyecto real). Para completar tu web, descargarla y publicarla necesitas un plan.</p>
+  <div class="two">
+    <div class="card">
+      <label class="f" style="margin-top:0">Nombre de tu negocio o proyecto</label><input class="in" id="dName" placeholder="Ej. Tacos El Güero" maxlength="40">
+      <label class="f">Tipo</label>
+      <select class="in" id="dType"><option value="Restaurante">Restaurante / comida</option><option value="Tienda">Tienda</option><option value="Servicios">Servicios profesionales</option><option value="Portafolio">Portafolio personal</option><option value="Educación">Educación</option></select>
+      <label class="f">Frase principal</label><input class="in" id="dTag" placeholder="Ej. Lo mejor de la ciudad" maxlength="70">
+      <label class="f">Color de marca</label><input class="in" type="color" id="dColor" value="#6366f1">
+      <div class="row" style="justify-content:flex-start;margin-top:18px"><button class="btn primary" onclick="genDemo()">✨ Generar mi mini-web</button></div>
+      <p class="note" id="demoUsage"></p>
     </div>
-    <p class="trust">Cotización gratis · Sin compromiso · Respuesta en menos de 24 h</p>
-    <div class="stats">
-      <div class="stat reveal"><b data-count="25">0</b><span>Proyectos entregados</span></div>
-      <div class="stat reveal"><b data-count="100" data-suf="%">0</b><span>Código a la medida</span></div>
-      <div class="stat reveal"><b data-count="24" data-suf="h">0</b><span>Tiempo de respuesta</span></div>
-      <div class="stat reveal"><b data-count="2">0</b><span>Devs apasionados</span></div>
+    <div class="card">
+      <h3 style="margin-bottom:10px">Vista previa</h3>
+      <iframe class="preview" id="prev" sandbox="" srcdoc="<body style='font-family:sans-serif;display:grid;place-items:center;height:100%;color:#888'>Tu vista previa aparecerá aquí</body>"></iframe>
+      <div class="progress"><i id="prog"></i></div>
+      <p class="note" id="progTxt">Progreso: 0 de 15 pasos</p>
+      <div class="steps" id="stepsBox"></div>
+      <div class="row" style="justify-content:flex-start;margin-top:14px"><button class="btn primary" onclick="location.hash='precios'">🔓 Desbloquear mi web completa</button></div>
     </div>
   </div>
-</section>
+</div></section>
 
-<!-- SERVICIOS -->
-<section class="sec" id="servicios">
-  <div class="container">
-    <span class="eyebrow">SERVICIOS</span>
-    <h2>Todo lo que necesitas para lanzar</h2>
-    <p class="sub">Desde una landing rápida hasta una app completa con login, base de datos y panel de administración.</p>
-    <div class="grid g3" id="servGrid"></div>
-  </div>
-</section>
-
-<!-- PROCESO -->
-<section class="sec alt" id="proceso">
-  <div class="container">
-    <span class="eyebrow">PROCESO</span>
-    <h2>De la idea al lanzamiento en 4 pasos</h2>
-    <p class="sub">Un proceso claro, sin sorpresas, con avances que puedes ver desde el primer día.</p>
-    <div class="grid g4">
-      <div class="card step reveal"><div class="n">01</div><h3>Platicamos</h3><p>Entendemos tu idea, tu público y tus objetivos en una llamada gratis.</p></div>
-      <div class="card step reveal"><div class="n">02</div><h3>Diseñamos</h3><p>Te mostramos el diseño y la estructura antes de escribir el código final.</p></div>
-      <div class="card step reveal"><div class="n">03</div><h3>Construimos</h3><p>Desarrollamos por etapas y te enseñamos avances reales funcionando.</p></div>
-      <div class="card step reveal"><div class="n">04</div><h3>Lanzamos</h3><p>Publicamos, probamos y te damos soporte después del lanzamiento.</p></div>
+<!-- SIMULADOR -->
+<section class="sec alt" id="simulador"><div class="container">
+  <span class="eyebrow">SIMULADOR</span><h2>Simulador de ROI: ¿cuánto podría generarte una web?</h2>
+  <p class="sub">Mueve los controles y compara cuánto vendes hoy contra cuánto podrías vender con una web profesional.</p>
+  <div class="two">
+    <div class="card">
+      <label class="f" style="margin-top:0">Visitas mensuales: <b id="vVis"></b></label><input type="range" id="sVis" min="100" max="20000" step="100" value="1500">
+      <label class="f">Ticket promedio por venta: <b id="vTk"></b></label><input type="range" id="sTk" min="10" max="1000" step="5" value="60">
+      <label class="f">Conversión actual: <b id="vC0"></b></label><input type="range" id="sC0" min="0.1" max="5" step="0.1" value="0.5">
+      <label class="f">Conversión con tu web nueva: <b id="vC1"></b></label><input type="range" id="sC1" min="0.1" max="10" step="0.1" value="2.5">
+      <label class="f">Plan a evaluar</label><select class="in" id="sPlan"></select>
+    </div>
+    <div class="card sim-out">
+      <div><small style="color:var(--muted)">Hoy</small><div class="bar-wrap"><div class="bar gray" id="b0"></div></div></div>
+      <div><small style="color:var(--muted)">Con tu web nueva</small><div class="bar-wrap"><div class="bar" id="b1"></div></div></div>
+      <div class="kpi"><span>Ganancia extra al mes</span><b class="grad" id="kDiff"></b></div>
+      <div class="kpi"><span>Ganancia extra al año</span><b id="kYear"></b></div>
+      <div class="kpi"><span>Se paga en</span><b id="kPay"></b></div>
+      <p class="note">Simulación con los datos que tú ingresas. Son estimaciones, no una garantía de resultados.</p>
     </div>
   </div>
-</section>
+</div></section>
 
-<!-- PORTAFOLIO -->
-<section class="sec" id="portafolio">
-  <div class="container">
-    <span class="eyebrow">PORTAFOLIO</span>
-    <h2>Proyectos que ya funcionan</h2>
-    <p class="sub">Ejemplos de lo que construimos. Edita esta lista en el código (<code>PORTFOLIO</code>) con tus proyectos reales y sus links.</p>
-    <div class="grid g3" id="portGrid"></div>
-  </div>
-</section>
-
-<!-- PRECIOS -->
-<section class="sec alt" id="precios">
-  <div class="container">
-    <span class="eyebrow">PRECIOS</span>
-    <h2>Planes claros, sin letras chiquitas</h2>
-    <p class="sub">Precios de ejemplo en MXN. Ajústalos en el código (<code>PLANS</code>).</p>
-    <div class="grid g3" id="planGrid"></div>
-  </div>
-</section>
-
-<!-- COTIZADOR + IA -->
-<section class="sec" id="cotizador">
-  <div class="container">
-    <span class="eyebrow">COTIZADOR</span>
-    <h2>Calcula tu proyecto al instante</h2>
-    <p class="sub">Elige el tipo de proyecto y los extras. Obtén un estimado y expórtalo.</p>
-    <div class="two">
-      <div class="card">
-        <h3 style="margin-bottom:12px">Tipo de proyecto</h3><div id="qBase"></div>
-        <h3 style="margin:18px 0 12px">Extras</h3><div id="qExtras"></div>
+<!-- COTIZADOR -->
+<section class="sec" id="cotizador"><div class="container">
+  <span class="eyebrow">COTIZADOR</span><h2>Calcula tu proyecto al instante</h2>
+  <p class="sub">Elige el tipo de proyecto y los extras. Cópialo, descárgalo, guárdalo en PDF o envíalo directo a nuestro equipo.</p>
+  <div class="two">
+    <div class="card"><h3 style="margin-bottom:12px">Tipo de proyecto</h3><div id="qBase"></div><h3 style="margin:18px 0 12px">Extras</h3><div id="qExtras"></div></div>
+    <div class="card" style="position:sticky;top:90px;align-self:start">
+      <p style="color:var(--muted)">Estimado</p>
+      <div class="total grad" id="qTotal">$0</div>
+      <p style="color:var(--muted);font-size:14px" id="qDays"></p>
+      <label class="f">Tu nombre</label><input class="in" id="qName" placeholder="Nombre">
+      <label class="f">Tu email (para enviarte la cotización)</label><input class="in" id="qMail" type="email" placeholder="tu@correo.com">
+      <div class="row" style="justify-content:flex-start;margin-top:16px">
+        <button class="btn primary" onclick="sendQuote()">📨 Enviar al equipo</button>
+        <button class="btn" onclick="printQuote()">🖨️ PDF</button>
+        <button class="btn" onclick="copyQuote()">Copiar</button>
+        <button class="btn" onclick="downloadQuote()">.txt</button>
       </div>
-      <div class="card" style="position:sticky;top:90px;align-self:start">
-        <p class="muted" style="color:var(--muted)">Estimado</p>
-        <div class="total grad" id="qTotal">$0</div>
-        <p style="color:var(--muted);font-size:14px" id="qDays"></p>
-        <label class="f">Tu nombre</label><input class="in" id="qName" placeholder="Nombre">
-        <div class="row" style="justify-content:flex-start;margin-top:16px">
-          <button class="btn primary" onclick="copyQuote()">Copiar</button>
-          <button class="btn" onclick="downloadQuote()">Descargar .txt</button>
-          <button class="btn" onclick="askAIQuote()">🤖 Preguntar a la IA</button>
-        </div>
-      </div>
     </div>
   </div>
-</section>
+</div></section>
 
-<!-- FAQ -->
-<section class="sec alt" id="faq">
-  <div class="container" style="max-width:800px">
-    <span class="eyebrow">FAQ</span>
-    <h2>Preguntas frecuentes</h2><br>
-    <details><summary>¿Cuánto tarda un proyecto?</summary><p>Una landing puede estar lista en 3–5 días; un sitio completo en 1–2 semanas; una app en 3–4 semanas, según lo que incluya.</p></details>
-    <details><summary>¿Necesito saber de programación?</summary><p>No. Nos explicas la idea con tus palabras y nosotros nos encargamos de lo técnico.</p></details>
-    <details><summary>¿El código es mío al final?</summary><p>Sí. Al terminar y liquidar el proyecto, recibes el código fuente completo.</p></details>
-    <details><summary>¿Hacen cambios después de entregar?</summary><p>Sí, todos los planes incluyen un periodo de soporte. También ofrecemos mantenimiento mensual.</p></details>
-    <details><summary>¿Pueden hacer estilo pixel art o retro?</summary><p>Claro, es una de nuestras especialidades: juegos, interfaces retro y marcas con identidad pixel.</p></details>
-  </div>
-</section>
+<section class="sec alt" id="faq"><div class="container" style="max-width:800px">
+  <span class="eyebrow">FAQ</span><h2>Preguntas frecuentes</h2><br>
+  <details><summary>¿Cuánto tarda un proyecto?</summary><p>Una landing puede estar lista en 3–5 días; un sitio completo en 1–2 semanas; una app en 3–4 semanas, según lo que incluya.</p></details>
+  <details><summary>¿Necesito saber de programación?</summary><p>No. Nos explicas la idea con tus palabras y nosotros nos encargamos de lo técnico.</p></details>
+  <details><summary>¿El código es mío al final?</summary><p>Sí. Al terminar y liquidar el proyecto, recibes el código fuente completo.</p></details>
+  <details><summary>¿Hacen cambios después de entregar?</summary><p>Sí, todos los planes incluyen un periodo de soporte. También ofrecemos mantenimiento mensual.</p></details>
+  <details><summary>¿Pueden hacer estilo pixel art o retro?</summary><p>Claro, es una de nuestras especialidades: juegos, interfaces retro y marcas con identidad pixel.</p></details>
+</div></section>
 
-<!-- CONTACTO -->
-<section class="sec" id="contacto">
-  <div class="container" style="max-width:720px">
-    <span class="eyebrow">CONTACTO</span>
-    <h2>Platiquemos de tu proyecto</h2>
-    <p class="sub">Cuéntanos qué quieres construir y te respondemos pronto.</p>
-    <form class="card" onsubmit="sendContact(event)">
-      <label class="f">Nombre</label><input class="in" id="cName" required>
-      <label class="f">Email</label><input class="in" id="cMail" type="email" required>
-      <label class="f">¿Qué necesitas?</label>
-      <select class="in" id="cType"><option>Página web</option><option>App</option><option>Proyecto de código</option><option>Otro</option></select>
-      <label class="f">Mensaje</label><textarea class="in" id="cMsg" rows="4" required></textarea>
-      <div class="row" style="justify-content:flex-start;margin-top:18px"><button class="btn primary lg" type="submit">Enviar mensaje</button></div>
-    </form>
-  </div>
-</section>
+<section class="sec" id="contacto"><div class="container" style="max-width:720px">
+  <span class="eyebrow">CONTACTO</span><h2>Platiquemos de tu proyecto</h2>
+  <p class="sub">Cuéntanos qué quieres construir y te respondemos pronto.</p>
+  <form class="card" onsubmit="sendContact(event)">
+    <label class="f" style="margin-top:0">Nombre</label><input class="in" id="cName" required>
+    <label class="f">Email</label><input class="in" id="cMail" type="email" required>
+    <label class="f">¿Qué necesitas?</label>
+    <select class="in" id="cType"><option>Página web</option><option>App</option><option>Proyecto de código</option><option>Otro</option></select>
+    <label class="f">Mensaje</label><textarea class="in" id="cMsg" rows="4" required></textarea>
+    <div class="row" style="justify-content:flex-start;margin-top:18px"><button class="btn primary lg" type="submit" id="cBtn">Enviar mensaje</button><a class="btn lg" id="waBtn" style="display:none" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+  </form>
+</div></section>
 </main>
 
-<footer>
-  <div class="container">
-    <div class="fgrid">
-      <div>
-        <div class="logo" style="margin-bottom:12px"><span class="pixel"><b>PIXEL</b><br>FORGE</span></div>
-        <p style="color:var(--muted);font-size:14px;max-width:280px">Estudio de desarrollo de webs, apps y proyectos de código a la medida.</p>
-      </div>
-      <div><h4>Servicios</h4><ul><li><a href="#servicios">Páginas web</a></li><li><a href="#servicios">Apps</a></li><li><a href="#servicios">Código a medida</a></li></ul></div>
-      <div><h4>Empresa</h4><ul><li><a href="#portafolio">Portafolio</a></li><li><a href="#proceso">Proceso</a></li><li><a href="#precios">Precios</a></li></ul></div>
-      <div><h4>Ayuda</h4><ul><li><a href="#faq">FAQ</a></li><li><a href="#contacto">Contacto</a></li><li><a href="#" onclick="openChat();return false">Forja AI</a></li></ul></div>
-    </div>
-    <div class="credits">
-      <span>© <span id="yr"></span> PixelForge Studio. Todos los derechos reservados.</span>
-      <span>Hecho por <strong>Cristóbal López</strong> y <strong>Beto Mazón</strong></span>
-    </div>
+<footer><div class="container">
+  <div class="fgrid">
+    <div><div class="logo" style="margin-bottom:12px"><span class="pixel"><b>PIXEL</b><br>FORGE</span></div><p style="color:var(--muted);font-size:14px;max-width:280px">Estudio de desarrollo de webs, apps y proyectos de código a la medida.</p></div>
+    <div><h4>Servicios</h4><ul><li><a href="#servicios">Páginas web</a></li><li><a href="#servicios">Apps</a></li><li><a href="#servicios">Código a medida</a></li></ul></div>
+    <div><h4>Empresa</h4><ul><li><a href="#portafolio">Portafolio</a></li><li><a href="#proceso">Proceso</a></li><li><a href="#precios">Precios</a></li></ul></div>
+    <div><h4>Ayuda</h4><ul><li><a href="#faq">FAQ</a></li><li><a href="#contacto">Contacto</a></li><li><a href="#" onclick="openChat(true);return false">Forja AI</a></li></ul></div>
   </div>
-</footer>
+  <div class="credits"><span>© <span id="yr"></span> PixelForge Studio. Todos los derechos reservados.</span><span>Hecho por <strong>Cristóbal López</strong> y <strong>Beto Mazón</strong></span></div>
+</div></footer>
 </div>
 
 <!-- ================= PANEL DE CLIENTE ================= -->
@@ -392,10 +375,7 @@ footer li a{color:var(--muted)} footer li a:hover{color:var(--text)}
   </div></header>
   <div class="dlayout">
     <aside class="side">
-      <button class="on" data-d="resumen">🏠 Resumen</button>
-      <button data-d="proyectos">📁 Mis proyectos</button>
-      <button data-d="agenda">📅 Agenda</button>
-      <button data-d="cuenta">👤 Mi cuenta</button>
+      <button class="on" data-d="resumen">🏠 Resumen</button><button data-d="proyectos">📁 Mis proyectos</button><button data-d="agenda">📅 Agenda</button><button data-d="cuenta">👤 Mi cuenta</button>
     </aside>
     <div class="dmain">
       <div class="dview on" id="d-resumen">
@@ -403,11 +383,12 @@ footer li a{color:var(--muted)} footer li a:hover{color:var(--text)}
         <div class="grid g3" style="margin-top:20px">
           <div class="card"><p style="color:var(--muted);font-size:13px">Proyectos</p><div class="total" id="kP">0</div></div>
           <div class="card"><p style="color:var(--muted);font-size:13px">Citas agendadas</p><div class="total" id="kB">0</div></div>
-          <div class="card"><p style="color:var(--muted);font-size:13px">Miembro desde</p><div style="font-size:20px;font-weight:700;margin-top:10px" id="kS">—</div></div>
+          <div class="card"><p style="color:var(--muted);font-size:13px">Tu plan</p><div style="font-size:22px;font-weight:800;margin:6px 0" id="kPlan">Gratis</div><p style="font-size:12px;color:var(--muted)" id="kUse"></p></div>
         </div>
         <div class="row" style="justify-content:flex-start;margin-top:24px">
           <button class="btn primary" onclick="dTab('proyectos')">+ Nuevo proyecto</button>
           <button class="btn" onclick="dTab('agenda')">Agendar llamada</button>
+          <button class="btn" onclick="showSite();location.hash='precios'">⭐ Mejorar plan</button>
         </div>
       </div>
       <div class="dview" id="d-proyectos">
@@ -415,7 +396,7 @@ footer li a{color:var(--muted)} footer li a:hover{color:var(--text)}
         <div class="card" style="margin-top:16px">
           <label class="f" style="margin-top:0">Nombre del proyecto</label><input class="in" id="pName">
           <label class="f">Tipo</label><select class="in" id="pType"><option>Página web</option><option>App</option><option>Proyecto de código</option><option>Juego pixel</option></select>
-          <label class="f">Presupuesto aproximado</label><select class="in" id="pBud"><option>Menos de $5,000</option><option>$5,000 – $15,000</option><option>$15,000 – $40,000</option><option>Más de $40,000</option></select>
+          <label class="f">Presupuesto aproximado</label><select class="in" id="pBud"><option>Menos de $200</option><option>$200 – $400</option><option>$400 – $1,000</option><option>Más de $1,000</option></select>
           <label class="f">Descripción</label><textarea class="in" id="pDesc" rows="3"></textarea>
           <div class="row" style="justify-content:flex-start;margin-top:16px"><button class="btn primary" onclick="addProject()">Enviar solicitud</button></div>
         </div>
@@ -440,7 +421,7 @@ footer li a{color:var(--muted)} footer li a:hover{color:var(--text)}
         <div class="card" style="margin-top:16px">
           <label class="f" style="margin-top:0">Nombre</label><input class="in" id="uName">
           <label class="f">Email</label><input class="in" id="uMail" disabled>
-          <div class="row" style="justify-content:flex-start;margin-top:16px"><button class="btn primary" onclick="saveProfile()">Guardar</button><button class="btn danger" onclick="deleteAccount()">Eliminar mi cuenta</button></div>
+          <div class="row" style="justify-content:flex-start;margin-top:16px"><button class="btn primary" onclick="saveProfile()">Guardar</button><button class="btn danger" onclick="deleteAccount()">Borrar mis datos</button></div>
         </div>
       </div>
     </div>
@@ -449,12 +430,9 @@ footer li a{color:var(--muted)} footer li a:hover{color:var(--text)}
 
 <!-- ================= MODAL LOGIN / REGISTRO ================= -->
 <div class="overlay" id="authOv" onclick="if(event.target===this)closeAuth()">
-  <div class="auth" style="position:relative">
+  <div class="auth">
     <button class="icon-btn close" onclick="closeAuth()">✕</button>
-    <div class="auth-side">
-      <h3>Tu equipo de desarrollo, tus ideas hechas realidad.</h3>
-      <p>Crea tu cuenta para solicitar proyectos, agendar llamadas y dar seguimiento a todo en un solo lugar.</p>
-    </div>
+    <div class="auth-side"><h3>Tu equipo de desarrollo, tus ideas hechas realidad.</h3><p>Crea tu cuenta para probar gratis, solicitar proyectos y agendar llamadas.</p></div>
     <div class="auth-form">
       <a href="#" onclick="closeAuth();return false" style="color:var(--muted);font-size:13px">← Volver al inicio</a>
       <h3 style="margin-top:14px">Bienvenido a PixelForge</h3>
@@ -463,37 +441,56 @@ footer li a{color:var(--muted)} footer li a:hover{color:var(--text)}
       <div id="nameBox" style="display:none"><label class="f">Nombre</label><input class="in" id="aName" placeholder="Tu nombre"></div>
       <label class="f">Email</label><input class="in" id="aMail" type="email" placeholder="tu@correo.com">
       <label class="f">Contraseña</label><input class="in" id="aPass" type="password" placeholder="Mínimo 8 caracteres">
+      <div style="text-align:right"><a href="#" onclick="forgot();return false" style="font-size:12px;color:var(--brand2)">¿Olvidaste tu contraseña?</a></div>
       <div class="err" id="aErr"></div>
-      <p class="lock">🔒 Tus datos son privados y nunca se comparten.</p>
+      <p class="lock">🔒 Tus datos son privados. Al crear tu cuenta avisamos a nuestro equipo de tu registro.</p>
       <button class="btn primary lg" style="width:100%" id="aGo" onclick="submitAuth()">Iniciar sesión</button>
       <p class="or">— O USA —</p>
-      <button class="btn" style="width:100%" onclick="toast('Google Sign-In requiere backend (ver notas)')"><b style="color:#4285f4">G</b> Continuar con Google</button>
+      <button class="btn" style="width:100%" onclick="googleAuth()"><b style="color:#4285f4">G</b> Continuar con Google</button>
+      <p class="note" id="demoNote"></p>
     </div>
+  </div>
+</div>
+
+<!-- ================= MODAL PAYWALL ================= -->
+<div class="overlay" id="payOv" onclick="if(event.target===this)closePay()">
+  <div class="paybox">
+    <div class="big">🔒</div><h3>Llegaste al límite del plan gratis</h3>
+    <p id="payMsg"></p>
+    <div class="row"><button class="btn primary" onclick="closePay();showSite();location.hash='precios'">Ver planes</button><button class="btn" onclick="closePay()">Ahora no</button></div>
   </div>
 </div>
 
 <!-- ================= CHAT IA ================= -->
 <button id="chatFab" onclick="openChat()" aria-label="Asistente">🤖</button>
 <div id="chat">
-  <div class="chat-h"><div><b>Forja AI</b><small>Asistente de PixelForge</small></div><button class="icon-btn" style="background:rgba(255,255,255,.2);border:none;color:#fff" onclick="openChat()">✕</button></div>
-  <div id="msgs"></div>
-  <div class="quick" id="quick"></div>
+  <div class="chat-h"><div><b>Forja AI</b><small id="chatCount">Asistente de PixelForge</small></div><button class="icon-btn" style="background:rgba(255,255,255,.2);border:none;color:#fff" onclick="openChat()">✕</button></div>
+  <div id="msgs"></div><div class="quick" id="quick"></div>
   <div class="chat-f"><input class="in" id="chatIn" placeholder="Escribe tu pregunta…" onkeydown="if(event.key==='Enter')sendChat()"><button class="btn primary" onclick="sendChat()">➤</button></div>
 </div>
 <div class="toast" id="toast"></div>
 
 <script>
 /* =====================================================
-   CONFIG — cambia aquí nombre, créditos y la IA
+   CONFIG — TODO lo que tienen que llenar está aquí
    ===================================================== */
 const CONFIG = {
   brand: "PixelForge Studio",
-  credits: "Cristóbal López y Beto Mazón",
-  // Si tienes un backend (ej. Cloudflare Worker) que llame a una IA, pon aquí su URL.
-  // Debe aceptar POST {messages:[{role,content}]} y responder {reply:"..."}.
-  // NUNCA pongas una API key directamente en este archivo.
-  AI_ENDPOINT: ""
+  founders: "Cristóbal López y Beto Mazón",
+  origin: "",          // Cuenten aquí dónde/cómo empezó el negocio. Forja AI lo usará al responder.
+  currency: "USD",     // Cambia a "MXN" si tus precios son en pesos
+  // Correos REALES: crea un formulario en web3forms.com o formspree.io (el correo destino se configura
+  // allá, NO aquí). Pega la URL y, si usas Web3Forms, su access key.
+  FORM_ENDPOINT: "",   // ej. "https://api.web3forms.com/submit"  o  "https://formspree.io/f/xxxxxxx"
+  FORM_KEY: "",        // access key de Web3Forms (público por diseño). Déjalo vacío con Formspree.
+  WHATSAPP: "",        // ej. "5216671234567" (código de país + número). Quedará PÚBLICO en la página.
+  PAY_LINK: "",        // Link de pago (Stripe Payment Link, Mercado Pago, etc.)
+  AI_ENDPOINT: "",     // URL de un backend que llame a una IA. NUNCA pongas API keys aquí.
+  // Login real + Google: crea un proyecto en Firebase y pega aquí su configuración web.
+  FIREBASE: null,      // ej. {apiKey:"...",authDomain:"...",projectId:"...",appId:"..."}
+  FREE: { chatPerDay: 8, demos: 1 }
 };
+const money=n=>"$"+Number(n).toLocaleString("en-US")+" "+CONFIG.currency;
 
 const SERVICES=[
  {i:"🌐",t:"Páginas web",d:"Landing pages, sitios de negocio y tiendas. Rápidas, responsivas y listas para Google.",tags:["HTML","CSS","JavaScript"]},
@@ -508,77 +505,142 @@ const PORTFOLIO=[
  {i:"📚",t:"WordMaster PRO",d:"App para aprender inglés con quizzes de nivel C1.",tags:["App","Educación"]},
  {i:"🚀",t:"Tu proyecto aquí",d:"Cambia esta tarjeta por tu siguiente proyecto.",tags:["Próximamente"]}
 ];
+/* Estrategia del señuelo: Starter (ancla barata) · Pro (señuelo: caro para lo poco que da) · Completo (mejor valor). */
 const PLANS=[
- {n:"Starter",p:3500,u:"pago único",f:["Landing page de 1 sección","Diseño responsivo","Formulario de contacto","1 ronda de cambios","Soporte 7 días"]},
- {n:"Pro",p:9500,u:"pago único",pop:true,f:["Sitio de hasta 6 páginas","Diseño a medida","SEO básico","Panel de contacto","3 rondas de cambios","Soporte 30 días"]},
- {n:"App",p:24000,u:"desde",f:["App web completa","Login y base de datos","Panel de administración","Exportar datos","Cambios ilimitados en desarrollo","Soporte 60 días"]}
+ {n:"Starter",p:199,u:"pago único",f:["Landing page de 1 sección","Diseño responsivo","Formulario de contacto","1 ronda de cambios","Soporte 7 días"]},
+ {n:"Pro",p:349,u:"pago único",f:["Sitio de hasta 3 páginas","Diseño a medida","SEO básico","2 rondas de cambios","Soporte 14 días"]},
+ {n:"Completo",p:399,u:"pago único",pop:true,f:["Todo lo del plan Pro","Sitio de hasta 6 páginas","App web con login y base de datos","Panel de administración","Dominio configurado","Cambios ilimitados en desarrollo","Soporte 60 días"]}
 ];
 const BASE=[
- {id:"landing",n:"Landing page",p:3500,d:5},
- {id:"site",n:"Sitio multi-página",p:8500,d:10},
- {id:"app",n:"App web",p:20000,d:25},
- {id:"script",n:"Script / Bot",p:2500,d:4},
- {id:"game",n:"Juego pixel art",p:9000,d:14}
+ {id:"landing",n:"Landing page",p:199,d:5},{id:"site",n:"Sitio multi-página",p:349,d:10},
+ {id:"app",n:"Web + App completa",p:399,d:25},{id:"script",n:"Script / Bot",p:99,d:4},{id:"game",n:"Juego pixel art",p:299,d:14}
 ];
 const EXTRAS=[
- {id:"login",n:"Login de usuarios",p:3500,d:4},
- {id:"cal",n:"Calendario / reservas",p:2500,d:3},
- {id:"export",n:"Exportar datos",p:1200,d:1},
- {id:"pay",n:"Pagos en línea",p:4500,d:5},
- {id:"ai",n:"Asistente con IA",p:6000,d:6},
- {id:"pixel",n:"Estilo pixel art",p:1800,d:2},
- {id:"admin",n:"Panel de administración",p:5000,d:6}
+ {id:"login",n:"Login de usuarios",p:60,d:4},{id:"cal",n:"Calendario / reservas",p:40,d:3},{id:"export",n:"Exportar datos",p:20,d:1},
+ {id:"pay",n:"Pagos en línea",p:80,d:5},{id:"ai",n:"Asistente con IA",p:100,d:6},{id:"pixel",n:"Estilo pixel art",p:30,d:2},{id:"admin",n:"Panel de administración",p:90,d:6}
 ];
 
 /* =====================================================
    UTILIDADES
    ===================================================== */
-const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
-const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const money=n=>"$"+n.toLocaleString("es-MX")+" MXN";
-function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove("show"),2600);}
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove("show"),3000);}
 function download(name,text,type="text/plain"){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500);}
 async function sha256(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("");}
+const today=()=>new Date().toISOString().slice(0,10);
+const norm=s=>String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
 
 /* =====================================================
-   ALMACÉN (localStorage) — demo sin backend
+   ALMACÉN LOCAL
    ===================================================== */
-const KEY="pixelforge_v1";
-let DB={theme:"dark",users:{},session:null,quote:{base:"landing",extras:[]}};
+const KEY="pixelforge_v2";
+let DB={theme:"dark",session:null,users:{},profiles:{},quote:{base:"landing",extras:[]},usage:{},contacts:[]};
 try{const r=localStorage.getItem(KEY);if(r)DB=Object.assign(DB,JSON.parse(r));}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){}};
-const me=()=>DB.session?DB.users[DB.session]:null;
+const me=()=>DB.session;
+function prof(){
+  const s=DB.session;if(!s)return null;
+  if(!DB.profiles[s.id]){
+    DB.profiles[s.id]={since:new Date().toISOString(),projects:[],bookings:[],demos:0,plan:"free"};save();
+    sendLead({tipo:"Nuevo registro",name:s.name,email:s.email,message:"Se creó una cuenta nueva en "+CONFIG.brand+"."});
+  }
+  return DB.profiles[s.id];
+}
 
 /* =====================================================
-   TEMA + NAV
+   ENVÍO REAL DE CORREOS (Web3Forms / Formspree)
+   ===================================================== */
+async function sendLead(data){
+  if(!CONFIG.FORM_ENDPOINT){DB.contacts.push(Object.assign({at:Date.now()},data));save();return {ok:false,demo:true};}
+  try{
+    const body=Object.assign({},data);
+    if(CONFIG.FORM_KEY){body.access_key=CONFIG.FORM_KEY;body.subject=(data.tipo||"Mensaje")+" · "+CONFIG.brand;}
+    const r=await fetch(CONFIG.FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(body)});
+    return {ok:r.ok};
+  }catch(e){return {ok:false};}
+}
+async function sendContact(e){
+  e.preventDefault();const b=$("#cBtn");b.disabled=true;b.textContent="Enviando…";
+  const r=await sendLead({tipo:"Contacto",name:$("#cName").value,email:$("#cMail").value,servicio:$("#cType").value,message:$("#cMsg").value});
+  b.disabled=false;b.textContent="Enviar mensaje";
+  if(r.ok){e.target.reset();toast("¡Mensaje enviado! Te respondemos pronto ✔");}
+  else if(r.demo){toast("Modo demo: configura FORM_ENDPOINT para recibir correos reales");}
+  else toast("No se pudo enviar. Inténtalo de nuevo.");
+}
+
+/* =====================================================
+   TEMA / NAV / RENDER
    ===================================================== */
 function applyTheme(){document.documentElement.setAttribute("data-theme",DB.theme);$("#themeBtn").textContent=DB.theme==="dark"?"🌙":"☀️";}
 function toggleTheme(){DB.theme=DB.theme==="dark"?"light":"dark";save();applyTheme();}
-function toggleDrop(btn){
-  const li=btn.parentElement,was=li.classList.contains("open");
-  $$(".menu>li").forEach(x=>x.classList.remove("open"));
-  if(!was)li.classList.add("open");
-}
+function toggleDrop(btn){const li=btn.parentElement,was=li.classList.contains("open");$$(".menu>li").forEach(x=>x.classList.remove("open"));if(!was)li.classList.add("open");}
 document.addEventListener("click",e=>{if(!e.target.closest(".menu"))$$(".menu>li").forEach(x=>x.classList.remove("open"));});
-$$("#menu a").forEach(a=>a.addEventListener("click",()=>{$("#menu").classList.remove("show");}));
-
-/* =====================================================
-   RENDER SECCIONES
-   ===================================================== */
+$$("#menu a").forEach(a=>a.addEventListener("click",()=>$("#menu").classList.remove("show")));
+function card(s){return `<div class="card reveal"><div class="ic">${s.i}</div><h3>${s.t}</h3><p>${s.d}</p><div class="tags">${s.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div></div>`;}
 function renderStatic(){
-  $("#servGrid").innerHTML=SERVICES.map(s=>`<div class="card reveal"><div class="ic">${s.i}</div><h3>${s.t}</h3><p>${s.d}</p><div class="tags">${s.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div></div>`).join("");
-  $("#portGrid").innerHTML=PORTFOLIO.map(s=>`<div class="card reveal"><div class="ic">${s.i}</div><h3>${s.t}</h3><p>${s.d}</p><div class="tags">${s.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div></div>`).join("");
-  $("#planGrid").innerHTML=PLANS.map(p=>`<div class="card plan reveal ${p.pop?"pop":""}"><h3>${p.n}</h3><div class="price">${money(p.p).replace(" MXN","")}<small> ${p.u}</small></div><ul>${p.f.map(x=>`<li>${x}</li>`).join("")}</ul><button class="btn ${p.pop?"primary":""}" onclick="openAuth('join')">Elegir ${p.n}</button></div>`).join("");
+  $("#servGrid").innerHTML=SERVICES.map(card).join("");
+  $("#portGrid").innerHTML=PORTFOLIO.map(card).join("");
+  $("#planGrid").innerHTML=PLANS.map(p=>`<div class="card plan reveal ${p.pop?"pop":""}">${p.pop?'<span class="ribbon">MEJOR VALOR</span>':""}<h3>${p.n}</h3><div class="price">${money(p.p)}<small> ${p.u}</small></div><ul>${p.f.map(x=>`<li>${x}</li>`).join("")}</ul><button class="btn ${p.pop?"primary":""}" onclick="choosePlan('${p.n}')">Elegir ${p.n}</button></div>`).join("");
   $("#yr").textContent=new Date().getFullYear();
+  if(CONFIG.WHATSAPP){const w=$("#waBtn");w.style.display="";w.href="https://wa.me/"+CONFIG.WHATSAPP.replace(/\D/g,"")+"?text="+encodeURIComponent("Hola, vi su página y quiero cotizar un proyecto.");}
+}
+function choosePlan(n){
+  $("#cMsg").value="Hola, me interesa el plan "+n+".";
+  if(CONFIG.PAY_LINK&&me())window.open(CONFIG.PAY_LINK,"_blank");
+  location.hash="contacto";toast("Plan "+n+" seleccionado. Cuéntanos de tu proyecto.");
 }
 function observeReveal(){
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}}),{threshold:.12});
   $$(".reveal").forEach(el=>io.observe(el));
-  const co=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){
-    const el=e.target,end=+el.dataset.count,suf=el.dataset.suf||"";let n=0;
-    const step=Math.max(1,Math.ceil(end/40));const t=setInterval(()=>{n=Math.min(end,n+step);el.textContent=n+suf+(el.dataset.plus?"+":"");if(n>=end)clearInterval(t);},30);
-    co.unobserve(el);}}),{threshold:.5});
+  const co=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const el=e.target,end=+el.dataset.count,suf=el.dataset.suf||"";let n=0;const step=Math.max(1,Math.ceil(end/40));const t=setInterval(()=>{n=Math.min(end,n+step);el.textContent=n+suf;if(n>=end)clearInterval(t);},30);co.unobserve(el);}}),{threshold:.5});
   $$("[data-count]").forEach(el=>co.observe(el));
+}
+
+/* =====================================================
+   PAYWALL / LÍMITES (cliente — ver notas: para blindarlo hace falta backend)
+   ===================================================== */
+function payWall(msg){$("#payMsg").textContent=msg;$("#payOv").classList.add("show");}
+function closePay(){$("#payOv").classList.remove("show");}
+const isFree=()=>{const p=prof();return !p||p.plan==="free";};
+function usage(){const a=me()?me().id:"guest",d=today();let u=DB.usage[a];if(!u||u.d!==d)u=DB.usage[a]={d,n:0};return u;}
+function updateChatCount(){const u=usage();$("#chatCount").textContent=isFree()?`Mensajes hoy: ${u.n}/${CONFIG.FREE.chatPerDay}`:"Plan de pago: sin límite";}
+
+/* =====================================================
+   PRUEBA GRATIS (mini-web)
+   ===================================================== */
+const STEPS=["Nombre y estilo","Portada","Secciones","Galería","Formulario","SEO","Móvil avanzado","Animaciones","Login","Base de datos","Pagos","Panel admin","Dominio","Publicación","Soporte"];
+function renderSteps(done){
+  $("#stepsBox").innerHTML=STEPS.map((s,i)=>`<div class="st ${i<done?"done":""}">${i<done?"✔":"🔒"} ${i+1}. ${s}</div>`).join("");
+  $("#prog").style.width=(done/15*100)+"%";$("#progTxt").textContent=`Progreso: ${done} de 15 pasos`+(done<15&&done>0?" · desbloquea el resto con un plan":"");
+}
+function demoUsageTxt(){const p=prof();$("#demoUsage").textContent=!me()?"Crea tu cuenta gratis para usar tu mini-prueba.":(isFree()?`Mini-pruebas usadas: ${p.demos}/${CONFIG.FREE.demos}`:"Plan de pago: mini-webs ilimitadas");}
+function genDemo(){
+  if(!me()){toast("Crea tu cuenta gratis para usar tu mini-prueba");openAuth("join");return;}
+  const p=prof();
+  if(isFree()&&p.demos>=CONFIG.FREE.demos){payWall("Ya usaste tu mini-prueba gratis. Con un plan puedes crear tu web completa, descargarla y publicarla.");return;}
+  const name=esc($("#dName").value.trim()||"Mi negocio"),type=esc($("#dType").value),tag=esc($("#dTag").value.trim()||"Bienvenido a nuestra página"),
+        col=/^#[0-9a-f]{6}$/i.test($("#dColor").value)?$("#dColor").value:"#6366f1";
+  const feats={Restaurante:["🍽️ Menú","📍 Ubicación","🕒 Horarios"],Tienda:["🛍️ Productos","🚚 Envíos","⭐ Reseñas"],Servicios:["🧰 Servicios","📞 Contacto","✅ Garantía"],Portafolio:["🖼️ Proyectos","👤 Sobre mí","✉️ Contacto"],"Educación":["📚 Cursos","🎯 Metas","🏆 Logros"]}[$("#dType").value]||["✨ Uno","✨ Dos","✨ Tres"];
+  const html=`<body style="margin:0;font-family:system-ui,sans-serif;color:#111"><div style="background:${col};color:#fff;padding:14px 20px;font-weight:800">${name}</div><div style="padding:46px 24px;text-align:center"><div style="font-size:13px;color:${col};font-weight:700;letter-spacing:.1em">${type.toUpperCase()}</div><h1 style="font-size:34px;margin:10px 0">${name}</h1><p style="color:#555;max-width:460px;margin:0 auto 22px">${tag}</p><a style="background:${col};color:#fff;padding:12px 24px;border-radius:10px;font-weight:700;display:inline-block">Contáctanos</a></div><div style="display:flex;gap:12px;padding:0 24px 20px;flex-wrap:wrap;justify-content:center">${feats.map(f=>`<div style="flex:1;min-width:110px;background:#f3f4f6;border-radius:12px;padding:16px;text-align:center;font-weight:600">${f}</div>`).join("")}</div><div style="text-align:center;font-size:11px;color:#999;padding:8px">Vista previa · Hecho con PixelForge (demo)</div></body>`;
+  $("#prev").srcdoc=html;p.demos++;save();renderSteps(2);demoUsageTxt();toast("¡Mini-web generada! Pasos 1 y 2 completados ✔");
+}
+
+/* =====================================================
+   SIMULADOR DE ROI
+   ===================================================== */
+function initSim(){
+  $("#sPlan").innerHTML=PLANS.map(p=>`<option value="${p.p}">${p.n} (${money(p.p)})</option>`).join("");
+  $$("#simulador input,#simulador select").forEach(i=>i.oninput=updSim);updSim();
+}
+function updSim(){
+  const v=+$("#sVis").value,tk=+$("#sTk").value,c0=+$("#sC0").value,c1=+$("#sC1").value,price=+$("#sPlan").value;
+  $("#vVis").textContent=v.toLocaleString("en-US");$("#vTk").textContent=money(tk);$("#vC0").textContent=c0+"%";$("#vC1").textContent=c1+"%";
+  const r0=v*c0/100*tk,r1=v*c1/100*tk,diff=r1-r0,max=Math.max(r0,r1,1);
+  $("#b0").style.width=Math.max(8,r0/max*100)+"%";$("#b0").textContent=money(Math.round(r0))+"/mes";
+  $("#b1").style.width=Math.max(8,r1/max*100)+"%";$("#b1").textContent=money(Math.round(r1))+"/mes";
+  $("#kDiff").textContent=(diff>=0?"+":"")+money(Math.round(diff));$("#kYear").textContent=(diff>=0?"+":"")+money(Math.round(diff*12));
+  $("#kPay").textContent=diff>0?(price/diff<1?"menos de 1 mes":(price/diff).toFixed(1)+" meses"):"—";
 }
 
 /* =====================================================
@@ -591,170 +653,209 @@ function renderQuote(){
   $$("#qExtras input").forEach(i=>i.onchange=()=>{DB.quote.extras=[...$$("#qExtras input:checked")].map(x=>x.value);save();updQuote();});
   updQuote();
 }
-function calcQuote(){
-  const b=BASE.find(x=>x.id===DB.quote.base)||BASE[0];let p=b.p,d=b.d;
-  DB.quote.extras.forEach(id=>{const e=EXTRAS.find(x=>x.id===id);if(e){p+=e.p;d+=e.d;}});
-  return {b,p,d};
-}
+function calcQuote(){const b=BASE.find(x=>x.id===DB.quote.base)||BASE[0];let p=b.p,d=b.d;const ex=[];DB.quote.extras.forEach(id=>{const e=EXTRAS.find(x=>x.id===id);if(e){p+=e.p;d+=e.d;ex.push(e);}});return {b,p,d,ex};}
 function updQuote(){const q=calcQuote();$("#qTotal").textContent=money(q.p);$("#qDays").textContent="Entrega aproximada: "+q.d+" días";}
-function quoteText(){
-  const q=calcQuote();
-  const ex=DB.quote.extras.map(id=>EXTRAS.find(e=>e.id===id)).filter(Boolean).map(e=>`  + ${e.n}: ${money(e.p)}`).join("\n");
-  const nm=$("#qName").value.trim();
-  return `${CONFIG.brand} · Cotización\n${nm?"Cliente: "+nm+"\n":""}\n${q.b.n}: ${money(q.b.p)}\n${ex}\n\nTOTAL: ${money(q.p)}\nEntrega aproximada: ${q.d} días\n\n(Estimado sin compromiso)\n`;
-}
+function quoteText(){const q=calcQuote(),nm=$("#qName").value.trim();return `${CONFIG.brand} · Cotización\n${nm?"Cliente: "+nm+"\n":""}Fecha: ${today()}\n\n${q.b.n}: ${money(q.b.p)}\n${q.ex.map(e=>`  + ${e.n}: ${money(e.p)}`).join("\n")}\n\nTOTAL: ${money(q.p)}\nEntrega aproximada: ${q.d} días\n\n(Estimado sin compromiso)\n`;}
 function copyQuote(){navigator.clipboard.writeText(quoteText()).then(()=>toast("Copiado ✔")).catch(()=>toast("No se pudo copiar"));}
 function downloadQuote(){download("cotizacion.txt",quoteText());toast("Descargado ✔");}
-function askAIQuote(){const q=calcQuote();openChat(true);pushMsg("me",`Mi estimado es ${money(q.p)}. ¿Qué incluye y cómo seguimos?`);botReply(`Mi estimado es ${money(q.p)}`);}
-
-function sendContact(e){
-  e.preventDefault();
-  const item={name:$("#cName").value,mail:$("#cMail").value,type:$("#cType").value,msg:$("#cMsg").value,at:new Date().toISOString()};
-  DB.contacts=(DB.contacts||[]);DB.contacts.push(item);save();
-  e.target.reset();toast("¡Mensaje enviado! (demo: guardado localmente)");
+async function sendQuote(){
+  const mail=$("#qMail").value.trim();if(!/^\S+@\S+\.\S+$/.test(mail)){toast("Escribe un email válido para enviarte la cotización");return;}
+  const r=await sendLead({tipo:"Cotización",name:$("#qName").value||"Sin nombre",email:mail,message:quoteText()});
+  toast(r.ok?"¡Cotización enviada! Te contactamos pronto ✔":(r.demo?"Modo demo: configura FORM_ENDPOINT para enviar":"No se pudo enviar"));
+}
+function printQuote(){
+  const q=calcQuote(),nm=esc($("#qName").value.trim()||"Cliente"),folio="PF-"+Date.now().toString().slice(-6);
+  const w=window.open("","_blank");if(!w){toast("Permite las ventanas emergentes para generar el PDF");return;}
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>Cotización ${folio}</title><style>body{font-family:Arial,sans-serif;max-width:720px;margin:40px auto;color:#111;padding:0 20px}h1{margin:0;color:#4f46e5}table{width:100%;border-collapse:collapse;margin:24px 0}td,th{padding:10px;border-bottom:1px solid #ddd;text-align:left}td:last-child,th:last-child{text-align:right}.t{font-size:22px;font-weight:bold;text-align:right}.m{color:#666;font-size:13px}</style></head><body><h1>${esc(CONFIG.brand)}</h1><p class="m">Cotización ${folio} · ${today()}<br>Cliente: ${nm}</p><table><tr><th>Concepto</th><th>Precio</th></tr><tr><td>${esc(q.b.n)}</td><td>${money(q.b.p)}</td></tr>${q.ex.map(e=>`<tr><td>+ ${esc(e.n)}</td><td>${money(e.p)}</td></tr>`).join("")}</table><p class="t">TOTAL: ${money(q.p)}</p><p class="m">Entrega aproximada: ${q.d} días. Estimado sin compromiso. ${esc(CONFIG.founders)}.</p></body></html>`);
+  w.document.close();w.focus();setTimeout(()=>w.print(),400);
 }
 
 /* =====================================================
-   AUTH (demo local — ver notas para backend real)
+   AUTH — Firebase real (si CONFIG.FIREBASE) o demo local
    ===================================================== */
-let authM="login";
-function openAuth(m){authMode(m);$("#authOv").classList.add("show");$("#aErr").textContent="";}
-function closeAuth(){$("#authOv").classList.remove("show");}
-function authMode(m){
-  authM=m;
-  $("#tLogin").classList.toggle("on",m==="login");$("#tJoin").classList.toggle("on",m==="join");
-  $("#nameBox").style.display=m==="join"?"block":"none";
-  $("#aGo").textContent=m==="join"?"Crear cuenta y empezar":"Iniciar sesión";
-  $("#aErr").textContent="";
+let FB=null,authM="login";
+async function initFirebase(){
+  if(!CONFIG.FIREBASE)return;
+  try{
+    const A="https://www.gstatic.com/firebasejs/10.12.0/";
+    const app=await import(A+"firebase-app.js"),au=await import(A+"firebase-auth.js");
+    const auth=au.getAuth(app.initializeApp(CONFIG.FIREBASE));
+    FB={auth,signIn:(m,p)=>au.signInWithEmailAndPassword(auth,m,p),create:(m,p)=>au.createUserWithEmailAndPassword(auth,m,p),
+        google:()=>au.signInWithPopup(auth,new au.GoogleAuthProvider()),reset:m=>au.sendPasswordResetEmail(auth,m),out:()=>au.signOut(auth),
+        upd:(u,n)=>au.updateProfile(u,{displayName:n})};
+    au.onAuthStateChanged(auth,u=>{
+      if(u)setSession(u);
+      else if(DB.session&&DB.session.fb){DB.session=null;save();updateAuthUI();}
+    });
+    $("#demoNote").textContent="";
+  }catch(e){console.warn("Firebase no cargó",e);FB=null;}
 }
+function setSession(u,n){
+  DB.session={id:u.uid,email:u.email,name:n||u.displayName||(u.email||"usuario").split("@")[0],fb:true};
+  prof();save();updateAuthUI();
+}
+function fbMsg(c){return({"auth/invalid-credential":"Email o contraseña incorrectos.","auth/wrong-password":"Email o contraseña incorrectos.","auth/user-not-found":"Email o contraseña incorrectos.","auth/email-already-in-use":"Ese email ya tiene cuenta. Inicia sesión.","auth/weak-password":"Contraseña demasiado débil.","auth/popup-closed-by-user":"Cerraste la ventana de Google.","auth/unauthorized-domain":"Este dominio no está autorizado en Firebase.","auth/too-many-requests":"Demasiados intentos. Espera un momento."})[c]||"Ocurrió un error. Inténtalo de nuevo.";}
+function openAuth(m){authMode(m);$("#authOv").classList.add("show");$("#aErr").textContent="";$("#demoNote").textContent=FB?"":"Modo demo: las cuentas se guardan solo en este navegador. Activa Firebase en CONFIG para cuentas reales.";}
+function closeAuth(){$("#authOv").classList.remove("show");}
+function authMode(m){authM=m;$("#tLogin").classList.toggle("on",m==="login");$("#tJoin").classList.toggle("on",m==="join");$("#nameBox").style.display=m==="join"?"block":"none";$("#aGo").textContent=m==="join"?"Crear cuenta y empezar":"Iniciar sesión";$("#aErr").textContent="";}
 async function submitAuth(){
   const mail=$("#aMail").value.trim().toLowerCase(),pass=$("#aPass").value,name=$("#aName").value.trim(),err=$("#aErr");
   if(!/^\S+@\S+\.\S+$/.test(mail)){err.textContent="Escribe un email válido.";return;}
   if(pass.length<8){err.textContent="La contraseña debe tener al menos 8 caracteres.";return;}
-  const h=await sha256(mail+"::"+pass);
-  if(authM==="join"){
-    if(!name){err.textContent="Escribe tu nombre.";return;}
-    if(DB.users[mail]){err.textContent="Ese email ya tiene cuenta. Inicia sesión.";return;}
-    DB.users[mail]={name,hash:h,since:new Date().toISOString(),projects:[],bookings:[]};
-    DB.session=mail;save();toast("¡Cuenta creada! Bienvenido 🎉");
-  }else{
-    const u=DB.users[mail];
-    if(!u||u.hash!==h){err.textContent="Email o contraseña incorrectos.";return;}
-    DB.session=mail;save();toast("¡Hola de nuevo, "+u.name.split(" ")[0]+"!");
-  }
-  $("#aPass").value="";closeAuth();updateAuthUI();showDash();
+  if(authM==="join"&&!name){err.textContent="Escribe tu nombre.";return;}
+  try{
+    if(FB){
+      if(authM==="join"){const c=await FB.create(mail,pass);await FB.upd(c.user,name);setSession(c.user,name);}
+      else{const c=await FB.signIn(mail,pass);setSession(c.user);}
+    }else{
+      const h=await sha256(mail+"::"+pass);
+      if(authM==="join"){
+        if(DB.users[mail]){err.textContent="Ese email ya tiene cuenta. Inicia sesión.";return;}
+        DB.users[mail]={name,hash:h};DB.session={id:mail,email:mail,name};
+      }else{
+        const u=DB.users[mail];if(!u||u.hash!==h){err.textContent="Email o contraseña incorrectos.";return;}
+        DB.session={id:mail,email:mail,name:u.name};
+      }
+      prof();save();
+    }
+  }catch(e){err.textContent=fbMsg(e.code);return;}
+  $("#aPass").value="";closeAuth();updateAuthUI();toast("¡Hola, "+me().name.split(" ")[0]+"! 🎉");showDash();
 }
-function logout(){DB.session=null;save();updateAuthUI();showSite();toast("Sesión cerrada");}
-function updateAuthUI(){
-  const u=me();
-  $("#loginBtn").style.display=u?"none":"";$("#joinBtn").style.display=u?"none":"";
-  $("#panelBtn").style.display=u?"":"none";
+async function googleAuth(){
+  if(!FB){toast("Para Google real, activa Firebase en CONFIG (ver pasos)");return;}
+  try{const c=await FB.google();setSession(c.user);closeAuth();toast("¡Hola, "+me().name.split(" ")[0]+"! 🎉");showDash();}
+  catch(e){$("#aErr").textContent=fbMsg(e.code);}
 }
+async function forgot(){
+  const m=$("#aMail").value.trim();if(!/^\S+@\S+\.\S+$/.test(m)){$("#aErr").textContent="Escribe tu email arriba primero.";return;}
+  if(!FB){toast("Recuperar contraseña requiere Firebase activo");return;}
+  try{await FB.reset(m);toast("Te enviamos un correo para restablecerla ✔");}catch(e){$("#aErr").textContent=fbMsg(e.code);}
+}
+async function logout(){if(FB){try{await FB.out();}catch(e){}}DB.session=null;save();updateAuthUI();showSite();toast("Sesión cerrada");}
+function updateAuthUI(){const u=me();$("#loginBtn").style.display=u?"none":"";$("#joinBtn").style.display=u?"none":"";$("#panelBtn").style.display=u?"":"none";demoUsageTxt();updateChatCount();if($("#dash").classList.contains("show"))renderDash();}
 function showSite(){$("#dash").classList.remove("show");$("#site").style.display="";}
-function showDash(){
-  const u=me();if(!u){openAuth("login");return;}
-  $("#site").style.display="none";$("#dash").classList.add("show");window.scrollTo(0,0);renderDash();
-}
+function showDash(){if(!me()){openAuth("login");return;}$("#site").style.display="none";$("#dash").classList.add("show");window.scrollTo(0,0);renderDash();}
 
 /* =====================================================
    PANEL DE CLIENTE
    ===================================================== */
-function dTab(id){
-  $$(".side button").forEach(b=>b.classList.toggle("on",b.dataset.d===id));
-  $$(".dview").forEach(v=>v.classList.toggle("on",v.id==="d-"+id));
-}
+function dTab(id){$$(".side button").forEach(b=>b.classList.toggle("on",b.dataset.d===id));$$(".dview").forEach(v=>v.classList.toggle("on",v.id==="d-"+id));}
 $$(".side button").forEach(b=>b.onclick=()=>dTab(b.dataset.d));
 function renderDash(){
-  const u=me();if(!u)return;
-  $("#hello").textContent="Hola, "+u.name.split(" ")[0]+" 👋";
-  $("#kP").textContent=u.projects.length;$("#kB").textContent=u.bookings.length;
-  $("#kS").textContent=new Date(u.since).toLocaleDateString("es-MX",{year:"numeric",month:"long"});
-  $("#pList").innerHTML=u.projects.length?u.projects.map(p=>`<div class="item"><div><strong>${esc(p.name)}</strong><br><small style="color:var(--muted)">${esc(p.type)} · ${esc(p.bud)}</small></div><div class="row" style="flex-wrap:nowrap"><span class="pill rev">En revisión</span><button class="btn danger" onclick="delProject(${p.id})">✕</button></div></div>`).join(""):`<p style="color:var(--muted);margin-top:16px">Aún no tienes proyectos. ¡Crea el primero!</p>`;
-  $("#aList").innerHTML=u.bookings.length?u.bookings.map(b=>`<div class="item"><div><strong>📅 ${esc(b.date)} · ${esc(b.time)}</strong><br><small style="color:var(--muted)">${esc(b.topic||"Videollamada")}</small></div><button class="btn danger" onclick="delBooking(${b.id})">✕</button></div>`).join(""):`<p style="color:var(--muted);margin-top:16px">Sin citas todavía.</p>`;
-  $("#uName").value=u.name;$("#uMail").value=DB.session;
+  const s=me(),p=prof();if(!s||!p)return;
+  $("#hello").textContent="Hola, "+s.name.split(" ")[0]+" 👋";
+  $("#kP").textContent=p.projects.length;$("#kB").textContent=p.bookings.length;
+  $("#kPlan").textContent=p.plan==="free"?"Gratis":"Plan "+p.plan;
+  $("#kUse").textContent=p.plan==="free"?`Mini-pruebas ${p.demos}/${CONFIG.FREE.demos} · Chat hoy ${usage().n}/${CONFIG.FREE.chatPerDay}`:"Sin límites";
+  $("#pList").innerHTML=p.projects.length?p.projects.map(x=>`<div class="item"><div><strong>${esc(x.name)}</strong><br><small style="color:var(--muted)">${esc(x.type)} · ${esc(x.bud)}</small></div><div class="row" style="flex-wrap:nowrap"><span class="pill">En revisión</span><button class="btn danger" onclick="delProject(${x.id})">✕</button></div></div>`).join(""):`<p style="color:var(--muted);margin-top:16px">Aún no tienes proyectos. ¡Crea el primero!</p>`;
+  $("#aList").innerHTML=p.bookings.length?p.bookings.map(b=>`<div class="item"><div><strong>📅 ${esc(b.date)} · ${esc(b.time)}</strong><br><small style="color:var(--muted)">${esc(b.topic||"Videollamada")}</small></div><button class="btn danger" onclick="delBooking(${b.id})">✕</button></div>`).join(""):`<p style="color:var(--muted);margin-top:16px">Sin citas todavía.</p>`;
+  $("#uName").value=s.name;$("#uMail").value=s.email||"";
   const t=new Date();t.setDate(t.getDate()+1);$("#aDate").min=t.toISOString().slice(0,10);
 }
-function addProject(){
-  const u=me(),name=$("#pName").value.trim();
-  if(!name){toast("Ponle nombre al proyecto");return;}
-  u.projects.push({id:Date.now(),name,type:$("#pType").value,bud:$("#pBud").value,desc:$("#pDesc").value.trim()});
-  save();$("#pName").value="";$("#pDesc").value="";toast("Solicitud enviada ✔");renderDash();
+async function addProject(){
+  const p=prof(),name=$("#pName").value.trim();if(!name){toast("Ponle nombre al proyecto");return;}
+  const item={id:Date.now(),name,type:$("#pType").value,bud:$("#pBud").value,desc:$("#pDesc").value.trim()};
+  p.projects.push(item);save();$("#pName").value="";$("#pDesc").value="";renderDash();
+  const r=await sendLead({tipo:"Nueva solicitud de proyecto",name:me().name,email:me().email,message:`Proyecto: ${item.name}\nTipo: ${item.type}\nPresupuesto: ${item.bud}\n\n${item.desc}`});
+  toast(r.ok?"Solicitud enviada al equipo ✔":"Solicitud guardada ✔");
 }
-function delProject(id){const u=me();u.projects=u.projects.filter(p=>p.id!==id);save();renderDash();}
-function addBooking(){
-  const u=me(),date=$("#aDate").value,time=$("#aTime").value;
-  if(!date){toast("Elige una fecha");return;}
-  if(u.bookings.some(b=>b.date===date&&b.time===time)){toast("Ya tienes una cita a esa hora");return;}
-  u.bookings.push({id:Date.now(),date,time,topic:$("#aTopic").value.trim()});
-  u.bookings.sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
-  save();$("#aTopic").value="";toast("Cita agendada ✔");renderDash();
+function delProject(id){const p=prof();p.projects=p.projects.filter(x=>x.id!==id);save();renderDash();}
+async function addBooking(){
+  const p=prof(),date=$("#aDate").value,time=$("#aTime").value;if(!date){toast("Elige una fecha");return;}
+  if(p.bookings.some(b=>b.date===date&&b.time===time)){toast("Ya tienes una cita a esa hora");return;}
+  const b={id:Date.now(),date,time,topic:$("#aTopic").value.trim()};p.bookings.push(b);p.bookings.sort((x,y)=>(x.date+x.time).localeCompare(y.date+y.time));
+  save();$("#aTopic").value="";renderDash();
+  const r=await sendLead({tipo:"Nueva cita",name:me().name,email:me().email,message:`Cita: ${b.date} a las ${b.time}\nTema: ${b.topic||"Videollamada"}`});
+  toast(r.ok?"Cita enviada al equipo ✔":"Cita agendada ✔");
 }
-function delBooking(id){const u=me();u.bookings=u.bookings.filter(b=>b.id!==id);save();renderDash();}
-function saveProfile(){const u=me(),n=$("#uName").value.trim();if(!n){toast("El nombre no puede estar vacío");return;}u.name=n;save();toast("Guardado ✔");renderDash();}
-function deleteAccount(){if(confirm("¿Eliminar tu cuenta y todos tus datos?")){delete DB.users[DB.session];DB.session=null;save();updateAuthUI();showSite();toast("Cuenta eliminada");}}
-function exportProjects(){
-  const u=me();if(!u.projects.length){toast("No hay proyectos");return;}
-  const csv=["Nombre,Tipo,Presupuesto,Descripcion",...u.projects.map(p=>[p.name,p.type,p.bud,p.desc].map(x=>`"${String(x||"").replace(/"/g,'""')}"`).join(","))].join("\n");
-  download("proyectos.csv","\ufeff"+csv,"text/csv");toast("Exportado ✔");
+function delBooking(id){const p=prof();p.bookings=p.bookings.filter(b=>b.id!==id);save();renderDash();}
+function saveProfile(){const n=$("#uName").value.trim();if(!n){toast("El nombre no puede estar vacío");return;}DB.session.name=n;if(DB.users[DB.session.id])DB.users[DB.session.id].name=n;save();toast("Guardado ✔");renderDash();}
+async function deleteAccount(){
+  if(!confirm("¿Borrar tus datos guardados en este navegador y cerrar sesión?"))return;
+  const id=me().id;delete DB.profiles[id];delete DB.users[id];await logout();toast("Datos borrados");
 }
-function exportAll(){const u=me();download("mis-datos.json",JSON.stringify({email:DB.session,name:u.name,since:u.since,projects:u.projects,bookings:u.bookings},null,2),"application/json");toast("Exportado ✔");}
+function exportProjects(){const p=prof();if(!p.projects.length){toast("No hay proyectos");return;}
+  const csv=["Nombre,Tipo,Presupuesto,Descripcion",...p.projects.map(x=>[x.name,x.type,x.bud,x.desc].map(v=>`"${String(v||"").replace(/"/g,'""')}"`).join(","))].join("\n");
+  download("proyectos.csv","\ufeff"+csv,"text/csv");toast("Exportado ✔");}
+function exportAll(){const p=prof(),s=me();download("mis-datos.json",JSON.stringify({email:s.email,name:s.name,since:p.since,plan:p.plan,projects:p.projects,bookings:p.bookings},null,2),"application/json");toast("Exportado ✔");}
 function exportICS(){
-  const u=me();if(!u.bookings.length){toast("No hay citas");return;}
-  const pad=n=>String(n).padStart(2,"0");
-  const ev=u.bookings.map(b=>{
-    const [Y,M,D]=b.date.split("-"),[h,m]=b.time.split(":");
-    return `BEGIN:VEVENT\nUID:${b.id}@pixelforge\nDTSTAMP:${new Date().toISOString().replace(/[-:]/g,"").split(".")[0]}Z\nDTSTART:${Y}${M}${D}T${h}${m}00\nDTEND:${Y}${M}${D}T${pad(+h+1)}${m}00\nSUMMARY:Llamada con ${CONFIG.brand}\nDESCRIPTION:${(b.topic||"").replace(/\n/g," ")}\nEND:VEVENT`;
-  }).join("\n");
+  const p=prof();if(!p.bookings.length){toast("No hay citas");return;}const pad=n=>String(n).padStart(2,"0");
+  const ev=p.bookings.map(b=>{const [Y,M,D]=b.date.split("-"),[h,m]=b.time.split(":");return `BEGIN:VEVENT\nUID:${b.id}@pixelforge\nDTSTAMP:${new Date().toISOString().replace(/[-:]/g,"").split(".")[0]}Z\nDTSTART:${Y}${M}${D}T${h}${m}00\nDTEND:${Y}${M}${D}T${pad(+h+1)}${m}00\nSUMMARY:Llamada con ${CONFIG.brand}\nDESCRIPTION:${(b.topic||"").replace(/\n/g," ")}\nEND:VEVENT`;}).join("\n");
   download("citas.ics",`BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//PixelForge//ES\n${ev}\nEND:VCALENDAR`,"text/calendar");toast("Calendario exportado ✔");
 }
 
 /* =====================================================
-   CHAT IA — respuestas locales + endpoint opcional
+   FORJA AI — base de conocimiento ampliada
+   Revisen y edita las respuestas para que reflejen SUS políticas reales.
    ===================================================== */
+const planTxt=()=>PLANS.map(p=>`${p.n}: ${money(p.p)}`).join(" · ");
 const KB=[
- {k:["precio","cuesta","costo","cotiz","cuánto","cuanto","presupuesto"],a:"Nuestros planes arrancan en $3,500 MXN (landing page). Un sitio completo ronda $9,500 y una app desde $24,000. Para un número exacto usa el Cotizador de esta página y dime qué extras necesitas. 🧮"},
- {k:["tiempo","tarda","entrega","días","dias","cuándo","cuando"],a:"Landing: 3–5 días. Sitio completo: 1–2 semanas. App: 3–4 semanas. Depende de los extras (login, pagos, panel, etc.)."},
- {k:["web","página","pagina","sitio","landing"],a:"Hacemos páginas web a medida: landing pages, sitios de negocio y tiendas. Responsivas, rápidas y con SEO básico. ¿De qué trata tu negocio?"},
- {k:["app","aplicación","aplicacion","pwa"],a:"Creamos apps web instalables (PWA) con login, base de datos, exportar datos y más. Funcionan en celular y computadora."},
- {k:["bot","script","automat","código","codigo"],a:"También hacemos bots, scripts y automatizaciones a la medida. Cuéntame qué tarea quieres ahorrarte y te digo cómo se haría."},
- {k:["pixel","retro","juego","game"],a:"El estilo pixel art es de nuestras especialidades: juegos, interfaces retro y marcas con identidad pixelada. 👾"},
- {k:["agendar","cita","llamada","reunión","reunion","calendario"],a:"Crea tu cuenta gratis y, en tu panel, entra a «Agenda» para reservar una videollamada y exportarla a tu calendario."},
- {k:["cuenta","registr","login","sesión","sesion"],a:"Toca «Empezar gratis» arriba a la derecha. Con tu cuenta puedes solicitar proyectos y agendar llamadas."},
- {k:["código fuente","propiedad","mío","mio"],a:"Sí, al terminar y liquidar el proyecto el código fuente es tuyo."},
- {k:["hola","buenas","hey","qué tal","que tal"],a:"¡Hola! Soy Forja AI 🤖. Puedo ayudarte con precios, tiempos, servicios o agendar una llamada. ¿Qué necesitas?"},
- {k:["gracias"],a:"¡Con gusto! Si quieres avanzar, crea tu cuenta o usa el Cotizador. 🚀"}
+ {k:["fundador","fundadores","quienes son","quien fundo","quien es el dueno","duenos","creador","creadores","equipo","cristobal","beto","mazon","lopez","quien esta detras","quienes estan"],a:()=>`Los fundadores de ${CONFIG.brand} son ${CONFIG.founders}. Ellos mismos programan y llevan cada proyecto. 👨‍💻👨‍💻`},
+ {k:["donde se inicio","donde empezo","donde nacio","donde surgio","historia","origen","como empezo","como empezaron","como nacio","desde cuando","cuando empezaron","cuando se fundo"],a:()=>CONFIG.origin||`${CONFIG.brand} fue fundado por ${CONFIG.founders}. Para contarte la historia completa, escríbenos en la sección Contacto. 📩`},
+ {k:["que hacen","a que se dedican","que ofrecen","servicios","que servicios","en que ayudan"],a:()=>"Creamos páginas web, apps web (PWA), bots y automatizaciones, juegos pixel art, herramientas educativas y damos mantenimiento a proyectos existentes."},
+ {k:["precio","cuesta","costo","cotiz","cuanto cobran","presupuesto","tarifa","planes"],a:()=>`Nuestros planes: ${planTxt()}. Mi recomendación: el plan Completo, porque por poco más que el Pro incluye app, panel y soporte de 60 días. Para algo más exacto usa el Cotizador. 🧮`},
+ {k:["tiempo","tarda","entrega","cuando estara","cuanto demora","plazo","dias"],a:()=>"Landing: 3–5 días. Sitio completo: 1–2 semanas. App: 3–4 semanas. Depende de los extras (login, pagos, panel, etc.)."},
+ {k:["pagina web","sitio web","landing","tienda en linea","ecommerce","pagina para mi negocio"],a:()=>"Hacemos páginas web a medida: landing pages, sitios de negocio y tiendas. Responsivas, rápidas y con SEO básico. ¿De qué trata tu negocio?"},
+ {k:["app","aplicacion","pwa","movil","celular"],a:()=>"Creamos apps web instaladas desde el navegador (PWA) con login, base de datos, exportación de datos y más. Funcionan en celular y computadora."},
+ {k:["bot","script","automat","scraper","telegram","discord"],a:()=>"También hacemos bots, scripts y automatizaciones. Cuéntame qué tarea quieres ahorrarte y te digo cómo se haría."},
+ {k:["pixel","retro","juego","videojuego","game"],a:()=>"El estilo pixel art es de nuestras especialidades: juegos, interfaces retro y marcas con identidad pixelada. 👾"},
+ {k:["educa","quiz","flashcard","aprender","ingles","escuela"],a:()=>"Hacemos herramientas educativas: quizzes, flashcards y apps para aprender, con seguimiento de progreso. Tenemos experiencia con apps para aprender inglés."},
+ {k:["tecnolog","lenguaje","stack","herramientas usan","con que programan","framework","react","python","javascript"],a:()=>"Trabajamos con HTML, CSS, JavaScript, React, Node.js y Python, y servicios como Firebase para cuentas y bases de datos. Elegimos lo que mejor le queda a tu proyecto."},
+ {k:["agendar","cita","llamada","reunion","videollamada","calendario"],a:()=>"Crea tu cuenta gratis y en tu panel entra a «Agenda» para reservar una videollamada. Puedes exportarla a tu calendario (.ics)."},
+ {k:["cuenta","registr","crear cuenta","sign up","unirme"],a:()=>"Toca «Empezar gratis» arriba a la derecha. Con tu cuenta puedes usar la mini-prueba, solicitar proyectos y agendar llamadas."},
+ {k:["iniciar sesion","login","google","entrar","contrasena","password"],a:()=>"Puedes iniciar sesión con email y contraseña o con Google desde el botón «Iniciar sesión». Si olvidaste tu contraseña, usa el enlace «¿Olvidaste tu contraseña?»."},
+ {k:["gratis","prueba","demo","mini","probar"],a:()=>`Con tu cuenta gratis puedes generar ${CONFIG.FREE.demos} mini-web de prueba (2 de 15 pasos) y usar ${CONFIG.FREE.chatPerDay} mensajes diarios conmigo. Para completar, descargar y publicar tu web necesitas un plan.`},
+ {k:["limite","limites","mensajes por dia","cuantos mensajes","plan gratis","plan pro"],a:()=>`El plan gratis incluye ${CONFIG.FREE.demos} mini-prueba y ${CONFIG.FREE.chatPerDay} mensajes diarios con Forja AI. Los planes de pago quitan esos límites.`},
+ {k:["codigo fuente","propiedad","es mio","soy dueno","me pertenece","derechos"],a:()=>"Sí, al terminar y liquidar el proyecto el código fuente es tuyo."},
+ {k:["cambios","revision","revisiones","modificar","ajustes"],a:()=>"Cada plan incluye rondas de cambios (Starter 1, Pro 2 y Completo ilimitadas durante el desarrollo). Después puedes contratar mantenimiento."},
+ {k:["soporte","ayuda despues","garantia","mantenimiento","despues de entregar"],a:()=>"Todos los planes incluyen soporte después de la entrega (7, 14 o 60 días según el plan). También ofrecemos mantenimiento mensual."},
+ {k:["dominio","hosting",".com","alojamiento","publicar","publicacion"],a:()=>"Te ayudamos a publicar tu proyecto y, en el plan Completo, a configurar tu dominio. El costo del dominio lo pagas tú directamente al registrador (suele ser una cuota anual)."},
+ {k:["seo","google","posicionar","aparecer en google"],a:()=>"Incluimos SEO básico (títulos, descripciones, estructura y velocidad) para que tu sitio tenga una buena base en buscadores."},
+ {k:["seguridad","privacidad","datos","seguro"],a:()=>"Cuidamos tus datos y no los compartimos. En proyectos con cuentas usamos servicios de autenticación reconocidos, sin guardar contraseñas en texto plano."},
+ {k:["pago","pagar","tarjeta","transferencia","anticipo","factura","metodo de pago","reembolso"],a:()=>"Los métodos de pago, anticipos y condiciones se definen por escrito antes de empezar cada proyecto. Platícalo en tu llamada gratis."},
+ {k:["idioma","ingles","espanol","multi-idioma","bilingue"],a:()=>"Trabajamos en español e inglés, y podemos hacer sitios multi-idioma."},
+ {k:["contacto","correo","email","escribir","comunicarme","telefono","whatsapp","numero"],a:()=>"Usa el formulario de Contacto al final de la página: llega directo a nuestro equipo y respondemos en menos de 24 horas."},
+ {k:["portafolio","proyectos hechos","ejemplos","trabajos","que han hecho"],a:()=>"En la sección Portafolio ves ejemplos, como una página de marcadores deportivos (Deportes hoy) y una app para aprender inglés (WordMaster PRO)."},
+ {k:["simulador","roi","cuanto ganaria","retorno","ganancia"],a:()=>"Usa el Simulador de ROI (menú Herramientas): pones tus visitas, ticket y conversión, y calcula cuánto podrías ganar con una web nueva y en cuánto tiempo se paga. Son estimaciones."},
+ {k:["proceso","como trabajan","pasos","como funciona"],a:()=>"Cuatro pasos: 1) Platicamos, 2) Diseñamos, 3) Construimos por etapas y 4) Lanzamos con soporte. Verás avances reales desde el principio."},
+ {k:["quien eres","que eres","eres una ia","eres humano","forja"],a:()=>"Soy Forja AI, el asistente virtual de PixelForge. Respondo dudas frecuentes al instante; para temas a detalle te conecto con el equipo vía Contacto."},
+ {k:["hola","buenas","hey","buenos dias","buenas tardes","que tal"],a:()=>"¡Hola! Soy Forja AI 🤖. Puedo ayudarte con precios, tiempos, servicios o cómo empezar. ¿Qué necesitas?"},
+ {k:["gracias","genial","perfecto","excelente"],a:()=>"¡Con gusto! Si quieres avanzar, prueba la mini-web gratis o usa el Cotizador. 🚀"},
+ {k:["adios","bye","hasta luego","nos vemos"],a:()=>"¡Hasta pronto! Aquí estaré cuando me necesites. 👋"}
 ];
+const SUGG=["¿Quiénes son los fundadores?","¿Cuánto cuesta?","¿Cuánto tarda?","¿Hacen apps?","¿Dónde empezó el negocio?","¿El código es mío?","¿Qué incluye el soporte?","¿Cómo publico mi web?","¿Qué es el plan gratis?","¿Cómo agendo una llamada?"];
 const chatHist=[];
 function openChat(force){
-  const c=$("#chat");c.classList.toggle("show",force===true?true:undefined);
+  const c=$("#chat");if(force===true)c.classList.add("show");else c.classList.toggle("show");
   if(c.classList.contains("show")&&!$("#msgs").children.length){
-    pushMsg("bot","¡Hola! Soy Forja AI 🤖 Pregúntame sobre precios, tiempos o servicios.");
-    $("#quick").innerHTML=["¿Cuánto cuesta?","¿Cuánto tarda?","¿Hacen apps?","Agendar llamada"].map(q=>`<button onclick="quickAsk('${q}')">${q}</button>`).join("");
+    pushMsg("bot","¡Hola! Soy Forja AI 🤖 Pregúntame sobre fundadores, precios, tiempos, soporte, dominios o cómo empezar.");
+    $("#quick").innerHTML=[...SUGG].sort(()=>Math.random()-.5).slice(0,4).map(q=>`<button onclick="quickAsk(this.textContent)">${q}</button>`).join("");
   }
+  updateChatCount();
 }
 function pushMsg(who,text){const d=document.createElement("div");d.className="m "+who;d.textContent=text;$("#msgs").appendChild(d);$("#msgs").scrollTop=1e9;return d;}
-function quickAsk(q){pushMsg("me",q);botReply(q);}
-function sendChat(){const i=$("#chatIn"),t=i.value.trim();if(!t)return;i.value="";pushMsg("me",t);botReply(t);}
-async function botReply(text){
-  chatHist.push({role:"user",content:text});
+function quickAsk(q){askAI(q);}
+function sendChat(){const i=$("#chatIn"),t=i.value.trim();if(!t)return;i.value="";askAI(t);}
+async function askAI(text){
+  const u=usage();
+  if(isFree()&&u.n>=CONFIG.FREE.chatPerDay){pushMsg("me",text);pushMsg("bot","Llegaste al límite de mensajes gratis de hoy. Con un plan de pago no hay límite. 🔓");payWall(`Usaste tus ${CONFIG.FREE.chatPerDay} mensajes gratis de hoy con Forja AI. Mañana se renuevan, o desbloquea acceso ilimitado con un plan.`);return;}
+  u.n++;save();updateChatCount();pushMsg("me",text);chatHist.push({role:"user",content:text});
   const typing=pushMsg("bot","…");
   if(CONFIG.AI_ENDPOINT){
-    try{
-      const r=await fetch(CONFIG.AI_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:chatHist.slice(-10)})});
-      const j=await r.json();typing.textContent=j.reply||"Lo siento, no pude responder.";chatHist.push({role:"assistant",content:typing.textContent});return;
-    }catch(e){/* cae al modo local */}
+    try{const r=await fetch(CONFIG.AI_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:chatHist.slice(-10)})});
+        const j=await r.json();typing.textContent=j.reply||"Lo siento, no pude responder.";chatHist.push({role:"assistant",content:typing.textContent});return;}catch(e){}
   }
   await new Promise(r=>setTimeout(r,450));
-  const low=text.toLowerCase();
-  const hit=KB.find(x=>x.k.some(k=>low.includes(k)));
-  const ans=hit?hit.a:"Buena pregunta. Para darte una respuesta precisa, déjanos tu mensaje en la sección Contacto o crea tu cuenta y agenda una llamada gratis. 📩";
+  const low=norm(text);let best=null,score=0;
+  KB.forEach(x=>{let s=0;x.k.forEach(k=>{if(low.includes(norm(k)))s+=k.length;});if(s>score){score=s;best=x;}});
+  const ans=best?best.a():"Buena pregunta. Todavía no tengo esa respuesta, pero puedes preguntarme por fundadores, precios, tiempos, soporte, dominio o servicios, o escribirnos en Contacto y el equipo te responde en menos de 24 h. 📩";
   typing.textContent=ans;chatHist.push({role:"assistant",content:ans});
 }
 
 /* =====================================================
    INIT
    ===================================================== */
-applyTheme();renderStatic();renderQuote();updateAuthUI();observeReveal();
+applyTheme();renderStatic();renderSteps(0);initSim();renderQuote();updateAuthUI();observeReveal();initFirebase();
 document.title=CONFIG.brand+" · Webs, apps y proyectos de código";
 </script>
 </body>
