@@ -7,10 +7,10 @@
 <meta name="description" content="Creamos webs, apps y proyectos de código a la medida.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Silkscreen:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0f1f;--bg2:#0f1730;--surface:#131c38;--surface2:#1a2547;--text:#eef2ff;--muted:#9aa7c9;--brand:#6366f1;--brand2:#22d3ee;--ok:#34d399;--warn:#fbbf24;--danger:#f87171;--border:rgba(255,255,255,.09);--shadow:0 20px 50px rgba(0,0,0,.4);--r:16px;--grad:linear-gradient(135deg,#6366f1 0%,#22d3ee 100%)}
-[data-theme="light"]{--bg:#f6f8ff;--bg2:#eef1fc;--surface:#ffffff;--surface2:#eef1fc;--text:#101733;--muted:#5b668a;--border:rgba(16,23,51,.1);--shadow:0 20px 50px rgba(60,70,160,.15)}
+:root{--bg:#0a0f1f;--bg2:#0f1730;--surface:#131c38;--surface2:#1a2547;--text:#eef2ff;--muted:#9aa7c9;--brand:#6366f1;--brand2:#22d3ee;--ok:#34d399;--warn:#fbbf24;--danger:#f87171;--border:rgba(255,255,255,.09);--line:rgba(255,255,255,.16);--hard:rgba(0,0,0,.5);--shadow:0 20px 50px rgba(0,0,0,.4);--r:10px;--grad:linear-gradient(135deg,#6366f1 0%,#22d3ee 100%);--pf:'Silkscreen','Press Start 2P',monospace}
+[data-theme="light"]{--bg:#f6f8ff;--bg2:#eef1fc;--surface:#ffffff;--surface2:#eef1fc;--text:#101733;--muted:#5b668a;--border:rgba(16,23,51,.1);--line:rgba(16,23,51,.22);--hard:rgba(16,23,51,.18);--shadow:0 20px 50px rgba(60,70,160,.15)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:80px}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;transition:background .3s,color .3s}
@@ -18,166 +18,256 @@ a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;color:inherit}
 .container{max-width:1160px;margin:auto;padding:0 20px}
 .pixel{font-family:'Press Start 2P',monospace}
+.i{width:1.15em;height:1.15em;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-.18em}
+.i.px{stroke:none}
+h1,h2,h3,.eyebrow{font-family:var(--pf);letter-spacing:.01em;font-weight:700}
+#sp{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad);z-index:999}
 /* NAV */
-header.nav{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
-.nav-in{display:flex;align-items:center;gap:20px;height:68px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800}
+header.nav{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);border-bottom:2px solid var(--border)}
+.nav-in{display:flex;align-items:center;gap:16px;height:68px}
+.logo{display:flex;align-items:center;gap:10px}
 .logo .pixel{font-size:12px;line-height:1.3}
 .logo b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.menu{display:flex;gap:4px;margin-left:12px}
+.menu{display:flex;gap:2px;margin-left:8px}
 .menu>li{list-style:none;position:relative}
-.menu>li>a,.menu>li>button{background:none;padding:8px 12px;border-radius:10px;font-weight:600;font-size:14px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.menu>li>a,.menu>li>button{background:none;padding:8px 12px;border-radius:8px;font-weight:600;font-size:14px;color:var(--muted);display:flex;align-items:center;gap:8px}
 .menu>li>a:hover,.menu>li>button:hover,.menu>li.open>button{color:var(--text);background:var(--surface)}
-.drop{position:absolute;top:calc(100% + 6px);left:0;min-width:270px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:8px;box-shadow:var(--shadow);opacity:0;visibility:hidden;transform:translateY(6px);transition:.18s}
-.menu>li:hover .drop,.menu>li.open .drop{opacity:1;visibility:visible;transform:none}
-.drop a{display:flex;gap:12px;padding:10px;border-radius:10px;align-items:flex-start}
+.chev{width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-top:-3px;transition:.2s}
+.menu>li.open .chev{transform:rotate(225deg);margin-top:3px}
+.drop{position:absolute;top:calc(100% + 6px);left:0;min-width:280px;background:var(--surface);border:2px solid var(--line);border-radius:var(--r);padding:8px;box-shadow:4px 4px 0 var(--hard);opacity:0;visibility:hidden;transform:translateY(6px);transition:.18s}
+.menu>li.open .drop{opacity:1;visibility:visible;transform:none}
+@media(hover:hover){.menu>li:hover .drop{opacity:1;visibility:visible;transform:none}.menu.closing .drop{opacity:0!important;visibility:hidden!important}}
+.drop a{display:flex;gap:12px;padding:10px;border-radius:8px;align-items:flex-start}
 .drop a:hover{background:var(--surface2)}
-.drop .ic{font-size:20px}.drop strong{display:block;font-size:14px}.drop small{color:var(--muted);font-size:12px}
+.drop .ic{width:36px;height:36px;border-radius:8px;background:var(--grad);display:grid;place-items:center;color:#fff;flex:none}
+.drop strong{display:block;font-size:14px}.drop small{color:var(--muted);font-size:12px}
 .spacer{flex:1}
-.icon-btn{background:var(--surface);width:40px;height:40px;border-radius:12px;font-size:18px;border:1px solid var(--border)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 20px;border-radius:12px;font-weight:700;font-size:14px;transition:.18s;background:var(--surface);border:1px solid var(--border)}
-.btn:hover{transform:translateY(-2px)}
-.btn.primary{background:var(--grad);color:#fff;border:none;box-shadow:0 8px 24px rgba(99,102,241,.4)}
-.btn.lg{padding:15px 28px;font-size:16px;border-radius:14px}
+.icon-btn{background:var(--surface);width:40px;height:40px;border-radius:8px;border:2px solid var(--line);box-shadow:0 3px 0 var(--hard);display:grid;place-items:center;font-size:18px}
+.icon-btn:active{transform:translateY(3px);box-shadow:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 18px;border-radius:8px;font-family:var(--pf);font-weight:700;font-size:12px;letter-spacing:.03em;transition:.12s;background:var(--surface);border:2px solid var(--line);box-shadow:0 4px 0 var(--hard)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--hard)}
+.btn:active{transform:translateY(4px);box-shadow:0 0 0 var(--hard)}
+.btn.primary{background:var(--grad);color:#fff;border-color:#1e1b4b;box-shadow:0 4px 0 #2e2a8f}
+.btn.primary:hover{box-shadow:0 6px 0 #2e2a8f}.btn.primary:active{box-shadow:0 0 0 #2e2a8f}
+.btn.lg{padding:15px 26px;font-size:13px}
 .btn.ghost{background:transparent}
-.btn.danger{background:rgba(248,113,113,.12);color:var(--danger);border-color:transparent}
-.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none}
+.btn.danger{background:rgba(248,113,113,.12);color:var(--danger)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
 .burger{display:none}
 @media(max-width:900px){
-.menu{position:fixed;top:68px;left:0;right:0;background:var(--bg);flex-direction:column;padding:14px 20px 24px;border-bottom:1px solid var(--border);display:none;max-height:calc(100vh - 68px);overflow:auto;margin:0}
+.menu{position:fixed;top:68px;left:0;right:0;background:var(--bg);flex-direction:column;padding:14px 20px 24px;border-bottom:2px solid var(--border);display:none;max-height:calc(100vh - 68px);overflow:auto;margin:0}
 .menu.show{display:flex}
-.drop{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;display:none;margin:4px 0 8px}
+.drop{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;display:none;margin:4px 0 8px;border:none;background:var(--bg2)}
 .menu>li.open .drop{display:block}
-.burger{display:inline-block}.nav-cta .hide-m{display:none}}
+.burger{display:grid}.nav-cta .hide-m{display:none}}
 /* HERO */
-.hero{position:relative;padding:90px 0 70px;text-align:center;overflow:hidden}
+.hero{position:relative;padding:70px 0 60px;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:-20% -10% auto;height:560px;background:radial-gradient(600px 300px at 30% 30%,rgba(99,102,241,.35),transparent 70%),radial-gradient(500px 300px at 75% 20%,rgba(34,211,238,.25),transparent 70%);pointer-events:none}
 .hero .container{position:relative}
-.badge{display:inline-flex;gap:8px;align-items:center;background:var(--surface);border:1px solid var(--border);padding:6px 14px;border-radius:999px;font-size:13px;color:var(--muted);margin-bottom:22px}
+.hgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+@media(max-width:900px){.hgrid{grid-template-columns:1fr}}
+.badge{display:inline-flex;gap:8px;align-items:center;background:var(--surface);border:2px solid var(--border);padding:6px 14px;border-radius:999px;font-size:13px;color:var(--muted);margin-bottom:22px}
 .badge i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(52,211,153,.2)}
-.hero h1{font-size:clamp(38px,7vw,76px);line-height:1.05;letter-spacing:-.03em;font-weight:800;margin-bottom:20px}
+.hero h1{font-size:clamp(28px,5.2vw,56px);line-height:1.18;margin-bottom:20px}
 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p.lead{max-width:640px;margin:0 auto 30px;color:var(--muted);font-size:18px}
-.row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.trust{margin-top:26px;color:var(--muted);font-size:14px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:54px}
-.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px}
-.stat b{font-size:32px;display:block}.stat span{color:var(--muted);font-size:13px}
+.caret{display:inline-block;width:.5em;height:1em;background:var(--brand2);margin-left:4px;vertical-align:-.1em;animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+.lead{max-width:560px;color:var(--muted);font-size:17px;margin-bottom:26px}
+.row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}.row.left{justify-content:flex-start}
+.trust{margin-top:20px;color:var(--muted);font-size:14px}
+.codewin{background:#0b1226;border:2px solid var(--line);border-radius:var(--r);box-shadow:8px 8px 0 var(--hard);overflow:hidden}
+.codewin .bar{display:flex;gap:6px;padding:10px 14px;background:#131c38;border-bottom:2px solid var(--line)}
+.codewin .bar i{width:10px;height:10px;background:#f87171}.codewin .bar i:nth-child(2){background:#fbbf24}.codewin .bar i:nth-child(3){background:#34d399}
+.codewin pre{padding:18px;font-family:'Press Start 2P',monospace;font-size:10px;line-height:2;color:#a5b4fc;min-height:230px;white-space:pre-wrap;color:#22d3ee}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}
+.stat{background:var(--surface);border:2px solid var(--border);border-radius:var(--r);padding:20px;box-shadow:4px 4px 0 var(--hard)}
+.stat b{font-size:30px;display:block;font-family:var(--pf)}.stat span{color:var(--muted);font-size:13px}
 @media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
+.marq{overflow:hidden;border-block:2px solid var(--border);background:var(--bg2);padding:14px 0}
+.marq .track{display:flex;gap:40px;width:max-content;animation:mq 28s linear infinite}
+.marq span{font-family:var(--pf);font-size:13px;color:var(--muted);white-space:nowrap}
+@keyframes mq{to{transform:translateX(-50%)}}
 /* SECCIONES */
 section.sec{padding:80px 0}section.alt{background:var(--bg2)}
-.eyebrow{font-family:'Press Start 2P',monospace;font-size:10px;color:var(--brand2);margin-bottom:14px;display:block}
-.sec h2{font-size:clamp(28px,4vw,42px);line-height:1.15;letter-spacing:-.02em;margin-bottom:12px}
-.sec .sub{color:var(--muted);max-width:640px;margin-bottom:40px}
+.eyebrow{font-size:11px;color:var(--brand2);margin-bottom:14px;display:block}
+.sec h2{font-size:clamp(22px,3.4vw,34px);line-height:1.3;margin-bottom:12px}
+.sec .sub{color:var(--muted);max-width:660px;margin-bottom:36px}
 .grid{display:grid;gap:18px}.g3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}.g4{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px;transition:.25s}
-.card:hover{transform:translateY(-4px);border-color:rgba(99,102,241,.5);box-shadow:var(--shadow)}
-.card .ic{width:50px;height:50px;border-radius:14px;background:var(--grad);display:grid;place-items:center;font-size:24px;margin-bottom:16px}
-.card h3{margin-bottom:8px;font-size:18px}.card p{color:var(--muted);font-size:14px}
+.card{background:var(--surface);border:2px solid var(--border);border-radius:var(--r);padding:24px;transition:.2s;box-shadow:4px 4px 0 var(--hard)}
+.card:hover{transform:translate(-2px,-2px);border-color:rgba(99,102,241,.6);box-shadow:6px 6px 0 var(--hard)}
+.card .ic{width:50px;height:50px;border-radius:8px;background:var(--grad);display:grid;place-items:center;font-size:24px;margin-bottom:16px;color:#fff}
+.card h3{margin-bottom:8px;font-size:15px;line-height:1.4}.card p{color:var(--muted);font-size:14px}
 .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
-.tag{font-size:12px;padding:3px 10px;border-radius:999px;background:var(--surface2);color:var(--muted)}
+.tag{font-size:12px;padding:3px 10px;border-radius:6px;background:var(--surface2);color:var(--muted)}
 .step .n{font-family:'Press Start 2P',monospace;font-size:22px;color:var(--brand);margin-bottom:12px}
 /* PRECIOS */
 .plan{display:flex;flex-direction:column;position:relative}
-.plan.pop{border-color:var(--brand);box-shadow:0 0 0 1px var(--brand),var(--shadow);transform:scale(1.03)}
-.plan.pop:hover{transform:scale(1.03) translateY(-4px)}
-.plan .ribbon{position:absolute;top:-12px;left:24px;background:var(--grad);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px}
-.price{font-size:42px;font-weight:800;margin:10px 0}
-.price small{font-size:14px;color:var(--muted);font-weight:500}
+.plan.pop{border-color:var(--brand);transform:scale(1.03)}.plan.pop:hover{transform:scale(1.03) translate(-2px,-2px)}
+.plan .ribbon{position:absolute;top:-14px;left:20px;background:var(--grad);color:#fff;font-family:var(--pf);font-size:10px;padding:5px 12px;border-radius:6px}
+.price{font-family:var(--pf);font-size:30px;margin:10px 0}.price small{font-size:12px;color:var(--muted);font-family:'Inter';font-weight:500}
 .plan ul{list-style:none;margin:16px 0 22px;flex:1}
-.plan li{padding:6px 0;font-size:14px;color:var(--muted)}
-.plan li::before{content:"✓ ";color:var(--ok);font-weight:800}
-/* COTIZADOR / FORMS */
+.plan li{padding:6px 0 6px 26px;font-size:14px;color:var(--muted);position:relative}
+.plan li::before{content:"";position:absolute;left:0;top:11px;width:16px;height:16px;background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2334d399' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E")}
+/* FORMS */
 .two{display:grid;grid-template-columns:1.2fr 1fr;gap:20px}
-@media(max-width:820px){.two{grid-template-columns:1fr}}
-.opt{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--border);border-radius:12px;margin-bottom:8px;cursor:pointer;background:var(--surface2)}
-.opt:has(input:checked){border-color:var(--brand);background:rgba(99,102,241,.12)}
-.opt b{margin-left:auto;font-size:14px}
-.total{font-size:44px;font-weight:800}
+@media(max-width:860px){.two{grid-template-columns:1fr}}
+.opt{display:flex;align-items:center;gap:12px;padding:12px 14px;border:2px solid var(--border);border-radius:8px;margin-bottom:8px;cursor:pointer;background:var(--surface2)}
+.opt:has(input:checked){border-color:var(--brand);background:rgba(99,102,241,.12)}.opt b{margin-left:auto;font-size:14px}
+.total{font-family:var(--pf);font-size:30px}
 label.f{display:block;font-size:13px;font-weight:600;margin:14px 0 6px}
-input.in,select.in,textarea.in{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-family:inherit;font-size:15px;outline:none}
-input.in:focus,select.in:focus,textarea.in:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.25)}
-input[type=color].in{padding:4px;height:46px}
+input.in,select.in,textarea.in{width:100%;padding:12px 14px;border-radius:8px;border:2px solid var(--border);background:var(--surface2);color:var(--text);font-family:inherit;font-size:15px;outline:none}
+input.in:focus,select.in:focus,textarea.in:focus{border-color:var(--brand)}
 input[type=range]{width:100%;accent-color:var(--brand)}
-/* SIMULADOR */
-.sim-out{display:grid;gap:14px}
-.bar-wrap{background:var(--surface2);border-radius:12px;overflow:hidden;height:34px;position:relative}
-.bar{height:100%;background:var(--grad);transition:width .5s;display:flex;align-items:center;padding-left:12px;font-weight:700;font-size:13px;color:#fff;white-space:nowrap}
-.bar.gray{background:#64748b}
-.kpi{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:15px}
-.kpi b{font-size:18px}
-.note{font-size:12px;color:var(--muted);margin-top:12px}
-/* PRUEBA GRATIS */
-.preview{width:100%;height:340px;border:1px solid var(--border);border-radius:14px;background:#fff}
-.steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:14px}
-.st{font-size:13px;padding:8px 12px;border-radius:10px;background:var(--surface2);color:var(--muted)}
-.st.done{color:var(--ok);background:rgba(52,211,153,.12)}
-.progress{height:10px;border-radius:99px;background:var(--surface2);overflow:hidden;margin:12px 0 4px}
+.note{font-size:12px;color:var(--muted);margin-top:10px}
+/* WIZARD */
+.wiz{display:grid;grid-template-columns:420px 1fr;gap:20px;align-items:start}
+@media(max-width:980px){.wiz{grid-template-columns:1fr}}
+#wsteps{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.wst{display:flex;gap:8px;align-items:center;padding:7px 12px;border-radius:8px;background:var(--surface2);font-size:12px;font-weight:600;color:var(--muted);border:2px solid transparent}
+.wst b{font-family:var(--pf);font-size:11px}
+.wst.on{border-color:var(--brand);color:var(--text)}.wst.done{color:var(--ok)}
+.tpls{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+.tpl{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 10px;border-radius:8px;background:var(--surface2);border:2px solid var(--border);font-weight:600;font-size:14px;font-size:14px}
+.tpl .i{font-size:26px}.tpl.on{border-color:var(--brand);background:rgba(99,102,241,.14)}
+.sws{display:flex;gap:8px;flex-wrap:wrap}
+.sw{width:34px;height:34px;border-radius:6px;border:3px solid transparent}.sw.on{border-color:var(--text)}
+.sg{display:flex;gap:8px;flex-wrap:wrap}
+.sg button{padding:9px 14px;border-radius:8px;background:var(--surface2);border:2px solid var(--border);font-weight:600;font-size:13px;display:flex;gap:6px;align-items:center}
+.sg button.on{border-color:var(--brand);background:rgba(99,102,241,.14)}
+.fbar{display:flex;align-items:center;gap:10px;background:var(--surface2);border:2px solid var(--border);border-bottom:none;border-radius:var(--r) var(--r) 0 0;padding:8px 12px}
+.fbar .u{flex:1;background:var(--bg);border-radius:6px;padding:4px 10px;font-size:12px;color:var(--muted);overflow:hidden;white-space:nowrap}
+.fbar button{background:var(--surface);border:2px solid var(--border);border-radius:6px;padding:4px 8px}
+.fbar button.on{border-color:var(--brand)}
+.frame{border:2px solid var(--border);border-radius:0 0 var(--r) var(--r);background:#e5e7eb;padding:0;transition:.3s;overflow:hidden}
+.frame iframe{width:100%;height:380px;border:none;background:#fff;display:block;margin:auto;transition:.3s}
+.frame.mob{padding:12px 0}.frame.mob iframe{width:375px;max-width:100%}
+.progress{height:10px;border-radius:99px;background:var(--surface2);overflow:hidden;margin:14px 0 4px}
 .progress i{display:block;height:100%;background:var(--grad);width:0;transition:width .6s}
-/* FAQ */
-details{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 20px;margin-bottom:10px}
+.steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:6px;margin-top:12px}
+.st{font-size:12px;padding:7px 10px;border-radius:6px;background:var(--surface2);color:var(--muted);display:flex;gap:6px;align-items:center}
+.st.done{color:var(--ok);background:rgba(52,211,153,.12)}
+/* SIM */
+.sim-out{display:grid;gap:14px}
+.bar-wrap{background:var(--surface2);border-radius:8px;overflow:hidden;height:36px}
+.bar{height:100%;background:var(--grad);transition:width .5s;display:flex;align-items:center;padding-left:12px;font-weight:700;font-size:13px;color:#fff;white-space:nowrap}.bar.gray{background:#64748b}
+.kpi{display:flex;justify-content:space-between;padding:10px 0;border-bottom:2px solid var(--border);font-size:15px}.kpi b{font-size:17px}
+/* FAQ / FOOTER */
+details{background:var(--surface);border:2px solid var(--border);border-radius:var(--r);padding:16px 20px;margin-bottom:10px}
 summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between}
-summary::after{content:"+";font-size:20px;color:var(--brand2)}details[open] summary::after{content:"–"}
+summary::after{content:"+";font-family:var(--pf);color:var(--brand2)}details[open] summary::after{content:"-"}
 details p{color:var(--muted);margin-top:10px;font-size:14px}
-/* FOOTER */
-footer{background:var(--bg2);border-top:1px solid var(--border);padding:60px 0 30px}
+footer{background:var(--bg2);border-top:2px solid var(--border);padding:60px 0 30px}
 .fgrid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:30px}
 @media(max-width:760px){.fgrid{grid-template-columns:1fr 1fr}}
-footer h4{font-size:13px;margin-bottom:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+footer h4{font-family:var(--pf);font-size:11px;margin-bottom:12px;color:var(--muted)}
 footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--muted)}footer li a:hover{color:var(--text)}
-.credits{margin-top:40px;padding-top:22px;border-top:1px solid var(--border);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:13px}
-.credits strong{color:var(--text)}
+.credits{margin-top:40px;padding-top:22px;border-top:2px solid var(--border);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:13px}.credits strong{color:var(--text)}
 /* MODALES */
-.overlay{position:fixed;inset:0;background:rgba(3,6,20,.75);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:300;padding:16px}
+.overlay{position:fixed;inset:0;background:rgba(3,6,20,.78);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:300;padding:16px}
 .overlay.show{display:flex}
-.auth{display:grid;grid-template-columns:1fr 1fr;max-width:880px;width:100%;border-radius:22px;overflow:hidden;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);max-height:92vh;position:relative}
+.auth{display:grid;grid-template-columns:1fr 1fr;max-width:880px;width:100%;border-radius:var(--r);overflow:hidden;background:var(--surface);border:2px solid var(--line);box-shadow:8px 8px 0 var(--hard);max-height:92vh;position:relative}
 .auth-side{background:var(--grad);padding:40px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden}
-.auth-side h3{font-size:30px;line-height:1.15;margin-bottom:10px;position:relative}.auth-side p{opacity:.9;font-size:14px;position:relative}
-.auth-side::before{content:"";position:absolute;width:260px;height:260px;border:30px solid rgba(255,255,255,.14);border-radius:50%;top:-60px;right:-60px}
-.auth-form{padding:34px;overflow:auto}
-.auth-form h3{font-size:24px;text-align:center}
+.auth-side h3{font-size:20px;line-height:1.4;margin-bottom:10px;position:relative}.auth-side p{opacity:.92;font-size:14px;position:relative}
+.auth-side::before{content:"";position:absolute;width:260px;height:260px;border:30px solid rgba(255,255,255,.14);top:-60px;right:-60px}
+.auth-form{padding:34px;overflow:auto}.auth-form h3{font-size:18px;text-align:center}
 .sub2{text-align:center;color:var(--muted);font-size:14px;margin-bottom:18px}
-.seg2{display:grid;grid-template-columns:1fr 1fr;background:var(--surface2);border-radius:12px;padding:4px;margin-bottom:6px}
-.seg2 button{background:none;padding:10px;border-radius:9px;font-weight:600;color:var(--muted)}
-.seg2 button.on{background:var(--surface);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.seg2{display:grid;grid-template-columns:1fr 1fr;background:var(--surface2);border-radius:8px;padding:4px;margin-bottom:6px}
+.seg2 button{background:none;padding:10px;border-radius:6px;font-weight:600;color:var(--muted)}.seg2 button.on{background:var(--surface);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,.2)}
 .lock{font-size:12px;color:var(--muted);margin:14px 0 10px}
 .or{text-align:center;color:var(--muted);font-size:12px;margin:14px 0}
 .err{color:var(--danger);font-size:13px;min-height:18px;margin-top:8px}
 .close{position:absolute;top:14px;right:14px;z-index:2}
-.paybox{max-width:460px;width:100%;background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:34px;text-align:center;box-shadow:var(--shadow)}
-.paybox .big{font-size:46px}.paybox h3{margin:10px 0 8px;font-size:22px}.paybox p{color:var(--muted);font-size:14px;margin-bottom:18px}
+.paybox{max-width:460px;width:100%;background:var(--surface);border:2px solid var(--line);border-radius:var(--r);padding:34px;text-align:center;box-shadow:8px 8px 0 var(--hard)}
+.paybox .big{width:64px;height:64px;margin:0 auto;border-radius:10px;background:var(--grad);display:grid;place-items:center;color:#fff;font-size:30px}
+.paybox h3{margin:14px 0 8px;font-size:16px;line-height:1.4}.paybox p{color:var(--muted);font-size:14px;margin-bottom:18px}
 @media(max-width:760px){.auth{grid-template-columns:1fr}.auth-side{display:none}}
+/* PALETA */
+#pal{align-items:flex-start;padding-top:12vh}
+.palbox{width:100%;max-width:560px;background:var(--surface);border:2px solid var(--line);border-radius:var(--r);box-shadow:8px 8px 0 var(--hard);overflow:hidden}
+.palbox input{width:100%;padding:16px 18px;background:transparent;border:none;border-bottom:2px solid var(--border);color:var(--text);font-size:16px;outline:none;font-family:inherit}
+.palbox ul{list-style:none;max-height:340px;overflow:auto}
+.palbox li{display:flex;gap:12px;align-items:center;padding:12px 18px;cursor:pointer;font-size:14px}
+.palbox li.on,.palbox li:hover{background:var(--surface2)}
+.kbd{font-family:var(--pf);font-size:10px;background:var(--surface2);border:2px solid var(--border);padding:2px 6px;border-radius:4px;color:var(--muted)}
 /* DASHBOARD */
 #dash{display:none;min-height:100vh}#dash.show{display:block}
 .dlayout{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 68px)}
-.side{background:var(--bg2);border-right:1px solid var(--border);padding:20px 14px}
-.side button{display:flex;gap:10px;width:100%;background:none;padding:11px 14px;border-radius:12px;font-weight:600;color:var(--muted);margin-bottom:4px;text-align:left}
+.side{background:var(--bg2);border-right:2px solid var(--border);padding:20px 14px}
+.side button{display:flex;gap:10px;align-items:center;width:100%;background:none;padding:11px 14px;border-radius:8px;font-weight:600;color:var(--muted);margin-bottom:4px;text-align:left}
 .side button.on,.side button:hover{background:var(--surface);color:var(--text)}
-.dmain{padding:30px;max-width:900px;width:100%}
+.dmain{padding:30px;max-width:920px;width:100%}.dmain h2{font-size:20px;margin-bottom:6px}
 .dview{display:none}.dview.on{display:block}
-.item{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-top:10px}
-.pill{font-size:12px;padding:3px 10px;border-radius:999px;font-weight:700;background:rgba(251,191,36,.15);color:var(--warn)}
-.pill.ok{background:rgba(52,211,153,.15);color:var(--ok)}
-@media(max-width:760px){.dlayout{grid-template-columns:1fr}.side{display:flex;overflow:auto;gap:6px;border-right:none;border-bottom:1px solid var(--border)}.side button{width:auto;white-space:nowrap;margin:0}.dmain{padding:20px}}
+.item{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--surface);border:2px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-top:10px;flex-wrap:wrap}
+.trk{display:flex;gap:4px;margin-top:10px;width:100%}
+.trk span{flex:1;text-align:center;font-size:11px;padding:6px 2px;border-radius:6px;background:var(--surface2);color:var(--muted)}
+.trk span.on{background:var(--grad);color:#fff}
+.act{list-style:none;margin-top:10px}.act li{padding:10px 0;border-bottom:2px solid var(--border);font-size:14px;display:flex;justify-content:space-between;gap:10px}.act small{color:var(--muted)}
+@media(max-width:760px){.dlayout{grid-template-columns:1fr}.side{display:flex;overflow:auto;gap:6px;border-right:none;border-bottom:2px solid var(--border)}.side button{width:auto;white-space:nowrap;margin:0}.dmain{padding:20px}}
 /* CHAT */
-#chatFab{position:fixed;right:20px;bottom:20px;z-index:200;width:60px;height:60px;border-radius:50%;background:var(--grad);font-size:26px;box-shadow:0 10px 30px rgba(99,102,241,.5);color:#fff}
-#chat{position:fixed;right:20px;bottom:92px;width:380px;max-width:calc(100vw - 40px);height:540px;max-height:calc(100vh - 120px);background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);display:none;flex-direction:column;z-index:200;overflow:hidden}
+#chatFab{position:fixed;right:20px;bottom:20px;z-index:200;width:62px;height:62px;border-radius:12px;background:var(--grad);color:#fff;border:2px solid #1e1b4b;box-shadow:0 5px 0 #2e2a8f;display:grid;place-items:center}
+#chatFab:active{transform:translateY(5px);box-shadow:none}
+#chat{position:fixed;right:20px;bottom:96px;width:390px;max-width:calc(100vw - 40px);height:560px;max-height:calc(100vh - 120px);background:var(--surface);border:2px solid var(--line);border-radius:var(--r);box-shadow:8px 8px 0 var(--hard);display:none;flex-direction:column;z-index:200;overflow:hidden}
 #chat.show{display:flex}
-.chat-h{background:var(--grad);padding:14px 16px;color:#fff;display:flex;justify-content:space-between;align-items:center}
-.chat-h b{display:block}.chat-h small{opacity:.9}
+.chat-h{background:var(--grad);padding:14px 16px;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.chat-h b{display:block;font-family:var(--pf);font-size:13px}.chat-h small{opacity:.92}
 #msgs{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
-.m{max-width:85%;padding:10px 14px;border-radius:16px;font-size:14px;white-space:pre-wrap}
-.m.bot{background:var(--surface2);border-bottom-left-radius:4px}
-.m.me{background:var(--brand);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.m{max-width:86%;padding:10px 14px;border-radius:10px;font-size:14px;white-space:pre-wrap}
+.m.bot{background:var(--surface2)}.m.me{background:var(--brand);color:#fff;align-self:flex-end}
 .quick{display:flex;gap:6px;flex-wrap:wrap;padding:0 14px 8px}
-.quick button{font-size:12px;padding:6px 10px;border-radius:999px;background:var(--surface2);border:1px solid var(--border)}
-.chat-f{display:flex;gap:8px;padding:12px;border-top:1px solid var(--border)}.chat-f input{flex:1}
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--surface);border:1px solid var(--border);padding:12px 20px;border-radius:12px;box-shadow:var(--shadow);z-index:500;transition:.3s;font-weight:600;font-size:14px;max-width:92vw;text-align:center}
+.quick button{font-size:12px;padding:6px 10px;border-radius:6px;background:var(--surface2);border:2px solid var(--border)}
+.chat-f{display:flex;gap:8px;padding:12px;border-top:2px solid var(--border)}.chat-f input{flex:1}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--surface);border:2px solid var(--line);padding:12px 20px;border-radius:8px;box-shadow:4px 4px 0 var(--hard);z-index:500;transition:.3s;font-weight:600;font-size:14px;max-width:92vw;text-align:center}
 .toast.show{transform:translateX(-50%)}
 .reveal{opacity:0;transform:translateY(24px);transition:.7s}.reveal.in{opacity:1;transform:none}
 </style>
 </head>
 <body>
+<div id="sp"></div>
+
+<!-- ICONOS SVG PROPIOS (sin emojis) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></symbol>
+<symbol id="i-code" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></symbol>
+<symbol id="i-gamepad" viewBox="0 0 24 24"><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="15" y1="13" x2="15.01" y2="13"/><line x1="18" y1="11" x2="18.01" y2="11"/><rect x="2" y="6" width="20" height="12" rx="2"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol>
+<symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+<symbol id="i-flask" viewBox="0 0 24 24"><path d="M10 2v7.31L4.5 19a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 9.31V2"/><line x1="8.5" y1="2" x2="15.5" y2="2"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></symbol>
+<symbol id="i-calc" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8.01" y2="10"/><line x1="12" y1="10" x2="12.01" y2="10"/><line x1="16" y1="10" x2="16.01" y2="10"/><line x1="8" y1="14" x2="8.01" y2="14"/><line x1="12" y1="14" x2="12.01" y2="14"/><line x1="16" y1="14" x2="16.01" y2="14"/><line x1="8" y1="18" x2="12" y2="18"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+<symbol id="i-folder" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+<symbol id="i-arrowl" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+<symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></symbol>
+<symbol id="i-printer" viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+<symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></symbol>
+<symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></symbol>
+<symbol id="i-brief" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+<symbol id="i-coffee" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></symbol>
+<symbol id="i-activity" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></symbol>
+<symbol id="i-msg" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
+<symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></symbol>
+<symbol id="i-bot" viewBox="0 0 12 12" shape-rendering="crispEdges"><rect x="5" y="0" width="2" height="2" fill="currentColor"/><rect x="1" y="2" width="10" height="7" fill="currentColor"/><rect x="0" y="4" width="1" height="3" fill="currentColor"/><rect x="11" y="4" width="1" height="3" fill="currentColor"/><rect x="3" y="4" width="2" height="2" fill="#fff"/><rect x="7" y="4" width="2" height="2" fill="#fff"/><rect x="3" y="7" width="6" height="1" fill="#fff"/><rect x="3" y="10" width="6" height="2" fill="currentColor"/></symbol>
+</defs></svg>
 
 <!-- ================= SITIO PÚBLICO ================= -->
 <div id="site">
@@ -187,49 +277,55 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
     <span class="pixel"><b>PIXEL</b><br>FORGE</span>
   </a>
   <ul class="menu" id="menu">
-    <li><button onclick="toggleDrop(this)">Servicios ▾</button><div class="drop">
-      <a href="#servicios"><span class="ic">🌐</span><span><strong>Páginas web</strong><small>Landing pages y sitios de negocio</small></span></a>
-      <a href="#servicios"><span class="ic">📱</span><span><strong>Apps</strong><small>Apps web instalables (PWA)</small></span></a>
-      <a href="#servicios"><span class="ic">⚙️</span><span><strong>Proyectos de código</strong><small>Bots, scripts y automatizaciones</small></span></a></div></li>
-    <li><button onclick="toggleDrop(this)">Proyectos ▾</button><div class="drop">
-      <a href="#portafolio"><span class="ic">🗂️</span><span><strong>Portafolio</strong><small>Lo que hemos construido</small></span></a>
-      <a href="#proceso"><span class="ic">🧭</span><span><strong>Cómo trabajamos</strong><small>De la idea al lanzamiento</small></span></a></div></li>
-    <li><button onclick="toggleDrop(this)">Herramientas ▾</button><div class="drop">
-      <a href="#probar"><span class="ic">🧪</span><span><strong>Prueba gratis</strong><small>Genera tu mini-web</small></span></a>
-      <a href="#simulador"><span class="ic">📈</span><span><strong>Simulador de ROI</strong><small>¿Cuánto podría generarte una web?</small></span></a>
-      <a href="#cotizador"><span class="ic">🧮</span><span><strong>Cotizador</strong><small>Estimado al instante</small></span></a>
-      <a href="#" onclick="openChat(true);return false"><span class="ic">🤖</span><span><strong>Forja AI</strong><small>Asistente virtual</small></span></a></div></li>
-    <li><a href="#precios">Precios</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#contacto">Contacto</a></li>
+    <li><button onclick="toggleDrop(this)">Servicios <span class="chev"></span></button><div class="drop">
+      <a href="#servicios"><span class="ic"><i data-ic="globe"></i></span><span><strong>Páginas web</strong><small>Landing pages y sitios de negocio</small></span></a>
+      <a href="#servicios"><span class="ic"><i data-ic="phone"></i></span><span><strong>Apps</strong><small>Apps web instalables (PWA)</small></span></a>
+      <a href="#servicios"><span class="ic"><i data-ic="code"></i></span><span><strong>Proyectos de código</strong><small>Bots, scripts y automatizaciones</small></span></a></div></li>
+    <li><button onclick="toggleDrop(this)">Proyectos <span class="chev"></span></button><div class="drop">
+      <a href="#portafolio"><span class="ic"><i data-ic="layers"></i></span><span><strong>Portafolio</strong><small>Lo que hemos construido</small></span></a>
+      <a href="#proceso"><span class="ic"><i data-ic="activity"></i></span><span><strong>Cómo trabajamos</strong><small>De la idea al lanzamiento</small></span></a></div></li>
+    <li><button onclick="toggleDrop(this)">Herramientas <span class="chev"></span></button><div class="drop">
+      <a href="#probar"><span class="ic"><i data-ic="flask"></i></span><span><strong>Prueba gratis</strong><small>Diseña tu mini-web en vivo</small></span></a>
+      <a href="#simulador"><span class="ic"><i data-ic="chart"></i></span><span><strong>Simulador de ROI</strong><small>¿Cuánto podría generarte una web?</small></span></a>
+      <a href="#cotizador"><span class="ic"><i data-ic="calc"></i></span><span><strong>Cotizador</strong><small>Estimado al instante</small></span></a>
+      <a href="#" onclick="openChat(true);return false"><span class="ic"><svg class="i px"><use href="#i-bot"/></svg></span><span><strong>Forja AI</strong><small>Asistente virtual</small></span></a></div></li>
+    <li><a href="#precios">Precios</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contacto">Contacto</a></li>
   </ul>
   <div class="spacer"></div>
   <div class="row nav-cta" style="gap:8px;flex-wrap:nowrap">
-    <button class="icon-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Tema">🌙</button>
+    <button class="icon-btn" onclick="openPal()" aria-label="Buscar"><i data-ic="search"></i></button>
+    <button class="icon-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Tema"></button>
     <button class="btn ghost hide-m" id="loginBtn" onclick="openAuth('login')">Iniciar sesión</button>
     <button class="btn primary hide-m" id="joinBtn" onclick="openAuth('join')">Empezar gratis</button>
     <button class="btn primary" id="panelBtn" style="display:none" onclick="showDash()">Mi panel</button>
-    <button class="icon-btn burger" onclick="document.getElementById('menu').classList.toggle('show')" aria-label="Menú">☰</button>
+    <button class="icon-btn burger" onclick="document.getElementById('menu').classList.toggle('show')" aria-label="Menú"><i data-ic="menu"></i></button>
   </div>
 </div></header>
 
 <main id="top">
 <section class="hero"><div class="container">
-  <div class="badge"><i></i> Aceptando nuevos proyectos</div>
-  <h1>Construimos tu idea.<br><span class="grad">Lanzamos tu producto.</span></h1>
-  <p class="lead">Somos un estudio de desarrollo que crea páginas web, apps y proyectos de código a la medida, con diseño profesional y detalles que se sienten como app.</p>
-  <div class="row">
-    <button class="btn primary lg" onclick="location.hash='probar'">🧪 Probar gratis</button>
-    <a class="btn lg" href="#cotizador">Cotizar mi proyecto →</a>
+  <div class="hgrid">
+    <div>
+      <div class="badge"><i></i> Aceptando nuevos proyectos</div>
+      <h1>Construimos <span class="grad" id="tw">páginas web</span><span class="caret"></span><br>que se sienten como app.</h1>
+      <p class="lead">Somos un estudio de desarrollo que crea páginas web, apps y proyectos de código a la medida, con diseño profesional y detalles de producto real.</p>
+      <div class="row left">
+        <button class="btn primary lg" onclick="location.hash='probar'"><i data-ic="flask"></i> Probar gratis</button>
+        <a class="btn lg" href="#cotizador">Cotizar mi proyecto <i data-ic="arrow"></i></a>
+      </div>
+      <p class="trust">Cotización gratis · Sin compromiso · Respuesta en menos de 24 h</p>
+    </div>
+    <div class="codewin reveal"><div class="bar"><i></i><i></i><i></i></div><pre id="code"></pre></div>
   </div>
-  <p class="trust">Cotización gratis · Sin compromiso · Respuesta en menos de 24 h</p>
   <div class="stats">
-    <div class="stat reveal"><b data-count="25">0</b><span>Proyectos entregados</span></div>
+    <div class="stat reveal"><b data-count="25">0</b><span>Proyectos construidos</span></div>
     <div class="stat reveal"><b data-count="100" data-suf="%">0</b><span>Código a la medida</span></div>
     <div class="stat reveal"><b data-count="24" data-suf="h">0</b><span>Tiempo de respuesta</span></div>
     <div class="stat reveal"><b data-count="2">0</b><span>Fundadores programando</span></div>
   </div>
 </div></section>
+
+<div class="marq"><div class="track" id="marq"></div></div>
 
 <section class="sec" id="servicios"><div class="container">
   <span class="eyebrow">SERVICIOS</span><h2>Todo lo que necesitas para lanzar</h2>
@@ -260,27 +356,25 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
   <div class="grid g3" id="planGrid" style="align-items:stretch"></div>
 </div></section>
 
-<!-- PRUEBA GRATIS -->
+<!-- PRUEBA GRATIS: WIZARD CON VISTA PREVIA EN VIVO -->
 <section class="sec" id="probar"><div class="container">
-  <span class="eyebrow">PRUEBA GRATIS</span><h2>Genera tu mini-web en 30 segundos</h2>
-  <p class="sub">Con tu cuenta gratis puedes generar <b>una</b> mini-prueba (2 de los 15 pasos de un proyecto real). Para completar tu web, descargarla y publicarla necesitas un plan.</p>
-  <div class="two">
+  <span class="eyebrow">PRUEBA GRATIS</span><h2>Diseña tu mini-web y míra cómo queda en vivo</h2>
+  <p class="sub">Juega con la plantilla, el nombre y los colores: la vista previa cambia al instante. Con tu cuenta gratis guardas tu diseño (2 de 15 pasos). Para completar, descargar y publicar tu web necesitas un plan.</p>
+  <div class="wiz">
     <div class="card">
-      <label class="f" style="margin-top:0">Nombre de tu negocio o proyecto</label><input class="in" id="dName" placeholder="Ej. Tacos El Güero" maxlength="40">
-      <label class="f">Tipo</label>
-      <select class="in" id="dType"><option value="Restaurante">Restaurante / comida</option><option value="Tienda">Tienda</option><option value="Servicios">Servicios profesionales</option><option value="Portafolio">Portafolio personal</option><option value="Educación">Educación</option></select>
-      <label class="f">Frase principal</label><input class="in" id="dTag" placeholder="Ej. Lo mejor de la ciudad" maxlength="70">
-      <label class="f">Color de marca</label><input class="in" type="color" id="dColor" value="#6366f1">
-      <div class="row" style="justify-content:flex-start;margin-top:18px"><button class="btn primary" onclick="genDemo()">✨ Generar mi mini-web</button></div>
+      <div id="wsteps"></div>
+      <div id="wpane"></div>
+      <div class="row left" style="margin-top:20px" id="wnav"></div>
       <p class="note" id="demoUsage"></p>
     </div>
-    <div class="card">
-      <h3 style="margin-bottom:10px">Vista previa</h3>
-      <iframe class="preview" id="prev" sandbox="" srcdoc="<body style='font-family:sans-serif;display:grid;place-items:center;height:100%;color:#888'>Tu vista previa aparecerá aquí</body>"></iframe>
+    <div>
+      <div class="fbar"><span class="u" id="furl">tu-marca.com</span>
+        <button class="on" id="dDesk" onclick="setDev('desk')" aria-label="Computadora"><i data-ic="monitor"></i></button>
+        <button id="dMob" onclick="setDev('mob')" aria-label="Celular"><i data-ic="phone"></i></button></div>
+      <div class="frame" id="frameBox"><iframe id="prev" sandbox title="Vista previa"></iframe></div>
       <div class="progress"><i id="prog"></i></div>
-      <p class="note" id="progTxt">Progreso: 0 de 15 pasos</p>
+      <p class="note" id="progTxt"></p>
       <div class="steps" id="stepsBox"></div>
-      <div class="row" style="justify-content:flex-start;margin-top:14px"><button class="btn primary" onclick="location.hash='precios'">🔓 Desbloquear mi web completa</button></div>
     </div>
   </div>
 </div></section>
@@ -292,7 +386,7 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
   <div class="two">
     <div class="card">
       <label class="f" style="margin-top:0">Visitas mensuales: <b id="vVis"></b></label><input type="range" id="sVis" min="100" max="20000" step="100" value="1500">
-      <label class="f">Ticket promedio por venta: <b id="vTk"></b></label><input type="range" id="sTk" min="10" max="1000" step="5" value="60">
+      <label class="f">Ticket promedio por venta: <b id="vTk"></b></label><input type="range" id="sTk" min="20" max="5000" step="10" value="300">
       <label class="f">Conversión actual: <b id="vC0"></b></label><input type="range" id="sC0" min="0.1" max="5" step="0.1" value="0.5">
       <label class="f">Conversión con tu web nueva: <b id="vC1"></b></label><input type="range" id="sC1" min="0.1" max="10" step="0.1" value="2.5">
       <label class="f">Plan a evaluar</label><select class="in" id="sPlan"></select>
@@ -319,12 +413,12 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
       <div class="total grad" id="qTotal">$0</div>
       <p style="color:var(--muted);font-size:14px" id="qDays"></p>
       <label class="f">Tu nombre</label><input class="in" id="qName" placeholder="Nombre">
-      <label class="f">Tu email (para enviarte la cotización)</label><input class="in" id="qMail" type="email" placeholder="tu@correo.com">
-      <div class="row" style="justify-content:flex-start;margin-top:16px">
-        <button class="btn primary" onclick="sendQuote()">📨 Enviar al equipo</button>
-        <button class="btn" onclick="printQuote()">🖨️ PDF</button>
-        <button class="btn" onclick="copyQuote()">Copiar</button>
-        <button class="btn" onclick="downloadQuote()">.txt</button>
+      <label class="f">Tu email</label><input class="in" id="qMail" type="email" placeholder="tu@correo.com">
+      <div class="row left" style="margin-top:16px">
+        <button class="btn primary" onclick="sendQuote()"><i data-ic="send"></i> Enviar al equipo</button>
+        <button class="btn" onclick="printQuote()"><i data-ic="printer"></i> PDF</button>
+        <button class="btn" onclick="copyQuote()"><i data-ic="copy"></i> Copiar</button>
+        <button class="btn" onclick="downloadQuote()"><i data-ic="download"></i> .txt</button>
       </div>
     </div>
   </div>
@@ -332,7 +426,7 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
 
 <section class="sec alt" id="faq"><div class="container" style="max-width:800px">
   <span class="eyebrow">FAQ</span><h2>Preguntas frecuentes</h2><br>
-  <details><summary>¿Cuánto tarda un proyecto?</summary><p>Una landing puede estar lista en 3–5 días; un sitio completo en 1–2 semanas; una app en 3–4 semanas, según lo que incluya.</p></details>
+  <details><summary>¿Cuánto tarda un proyecto?</summary><p>Una landing puede estar lista en 3 a 5 días; un sitio completo en 1 a 2 semanas; una app en 3 a 4 semanas, según lo que incluya.</p></details>
   <details><summary>¿Necesito saber de programación?</summary><p>No. Nos explicas la idea con tus palabras y nosotros nos encargamos de lo técnico.</p></details>
   <details><summary>¿El código es mío al final?</summary><p>Sí. Al terminar y liquidar el proyecto, recibes el código fuente completo.</p></details>
   <details><summary>¿Hacen cambios después de entregar?</summary><p>Sí, todos los planes incluyen un periodo de soporte. También ofrecemos mantenimiento mensual.</p></details>
@@ -348,7 +442,7 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
     <label class="f">¿Qué necesitas?</label>
     <select class="in" id="cType"><option>Página web</option><option>App</option><option>Proyecto de código</option><option>Otro</option></select>
     <label class="f">Mensaje</label><textarea class="in" id="cMsg" rows="4" required></textarea>
-    <div class="row" style="justify-content:flex-start;margin-top:18px"><button class="btn primary lg" type="submit" id="cBtn">Enviar mensaje</button><a class="btn lg" id="waBtn" style="display:none" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+    <div class="row left" style="margin-top:18px"><button class="btn primary lg" type="submit" id="cBtn">Enviar mensaje</button><a class="btn lg" id="waBtn" style="display:none" target="_blank" rel="noopener"><i data-ic="msg"></i> WhatsApp</a></div>
   </form>
 </div></section>
 </main>
@@ -356,9 +450,9 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
 <footer><div class="container">
   <div class="fgrid">
     <div><div class="logo" style="margin-bottom:12px"><span class="pixel"><b>PIXEL</b><br>FORGE</span></div><p style="color:var(--muted);font-size:14px;max-width:280px">Estudio de desarrollo de webs, apps y proyectos de código a la medida.</p></div>
-    <div><h4>Servicios</h4><ul><li><a href="#servicios">Páginas web</a></li><li><a href="#servicios">Apps</a></li><li><a href="#servicios">Código a medida</a></li></ul></div>
-    <div><h4>Empresa</h4><ul><li><a href="#portafolio">Portafolio</a></li><li><a href="#proceso">Proceso</a></li><li><a href="#precios">Precios</a></li></ul></div>
-    <div><h4>Ayuda</h4><ul><li><a href="#faq">FAQ</a></li><li><a href="#contacto">Contacto</a></li><li><a href="#" onclick="openChat(true);return false">Forja AI</a></li></ul></div>
+    <div><h4>SERVICIOS</h4><ul><li><a href="#servicios">Páginas web</a></li><li><a href="#servicios">Apps</a></li><li><a href="#servicios">Código a medida</a></li></ul></div>
+    <div><h4>EMPRESA</h4><ul><li><a href="#portafolio">Portafolio</a></li><li><a href="#proceso">Proceso</a></li><li><a href="#precios">Precios</a></li></ul></div>
+    <div><h4>AYUDA</h4><ul><li><a href="#faq">FAQ</a></li><li><a href="#contacto">Contacto</a></li><li><a href="#" onclick="openChat(true);return false">Forja AI</a></li></ul></div>
   </div>
   <div class="credits"><span>© <span id="yr"></span> PixelForge Studio. Todos los derechos reservados.</span><span>Hecho por <strong>Cristóbal López</strong> y <strong>Beto Mazón</strong></span></div>
 </div></footer>
@@ -369,13 +463,13 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
   <header class="nav"><div class="container nav-in">
     <a href="#" class="logo" onclick="showSite();return false"><span class="pixel"><b>PIXEL</b><br>FORGE</span></a>
     <div class="spacer"></div>
-    <button class="icon-btn" onclick="toggleTheme()">🌓</button>
-    <button class="btn" onclick="showSite()">← Sitio</button>
-    <button class="btn danger" onclick="logout()">Cerrar sesión</button>
+    <button class="icon-btn" onclick="toggleTheme()" aria-label="Tema"><i data-ic="sun"></i></button>
+    <button class="btn" onclick="showSite()"><i data-ic="arrowl"></i> Sitio</button>
+    <button class="btn danger" onclick="logout()"><i data-ic="logout"></i> Salir</button>
   </div></header>
   <div class="dlayout">
     <aside class="side">
-      <button class="on" data-d="resumen">🏠 Resumen</button><button data-d="proyectos">📁 Mis proyectos</button><button data-d="agenda">📅 Agenda</button><button data-d="cuenta">👤 Mi cuenta</button>
+      <button class="on" data-d="resumen"><i data-ic="home"></i> Resumen</button><button data-d="proyectos"><i data-ic="folder"></i> Mis proyectos</button><button data-d="agenda"><i data-ic="calendar"></i> Agenda</button><button data-d="cuenta"><i data-ic="user"></i> Mi cuenta</button>
     </aside>
     <div class="dmain">
       <div class="dview on" id="d-resumen">
@@ -383,25 +477,26 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
         <div class="grid g3" style="margin-top:20px">
           <div class="card"><p style="color:var(--muted);font-size:13px">Proyectos</p><div class="total" id="kP">0</div></div>
           <div class="card"><p style="color:var(--muted);font-size:13px">Citas agendadas</p><div class="total" id="kB">0</div></div>
-          <div class="card"><p style="color:var(--muted);font-size:13px">Tu plan</p><div style="font-size:22px;font-weight:800;margin:6px 0" id="kPlan">Gratis</div><p style="font-size:12px;color:var(--muted)" id="kUse"></p></div>
+          <div class="card"><p style="color:var(--muted);font-size:13px">Tu plan</p><div style="font-family:var(--pf);font-size:16px;margin:8px 0" id="kPlan">Gratis</div><p style="font-size:12px;color:var(--muted)" id="kUse"></p></div>
         </div>
-        <div class="row" style="justify-content:flex-start;margin-top:24px">
-          <button class="btn primary" onclick="dTab('proyectos')">+ Nuevo proyecto</button>
+        <div class="row left" style="margin-top:24px">
+          <button class="btn primary" onclick="dTab('proyectos')"><i data-ic="plus"></i> Nuevo proyecto</button>
           <button class="btn" onclick="dTab('agenda')">Agendar llamada</button>
-          <button class="btn" onclick="showSite();location.hash='precios'">⭐ Mejorar plan</button>
+          <button class="btn" onclick="showSite();location.hash='precios'">Mejorar plan</button>
         </div>
+        <h3 style="margin-top:30px;font-size:14px">Actividad reciente</h3><ul class="act" id="actList"></ul>
       </div>
       <div class="dview" id="d-proyectos">
         <h2>Mis proyectos</h2><p style="color:var(--muted)">Solicita un proyecto y sigue su estado.</p>
         <div class="card" style="margin-top:16px">
           <label class="f" style="margin-top:0">Nombre del proyecto</label><input class="in" id="pName">
           <label class="f">Tipo</label><select class="in" id="pType"><option>Página web</option><option>App</option><option>Proyecto de código</option><option>Juego pixel</option></select>
-          <label class="f">Presupuesto aproximado</label><select class="in" id="pBud"><option>Menos de $200</option><option>$200 – $400</option><option>$400 – $1,000</option><option>Más de $1,000</option></select>
+          <label class="f">Presupuesto aproximado</label><select class="in" id="pBud"><option>Menos de $500</option><option>$500 a $2,000</option><option>$2,000 a $10,000</option><option>Más de $10,000</option></select>
           <label class="f">Descripción</label><textarea class="in" id="pDesc" rows="3"></textarea>
-          <div class="row" style="justify-content:flex-start;margin-top:16px"><button class="btn primary" onclick="addProject()">Enviar solicitud</button></div>
+          <div class="row left" style="margin-top:16px"><button class="btn primary" onclick="addProject()">Enviar solicitud</button></div>
         </div>
         <div id="pList"></div>
-        <div class="row" style="justify-content:flex-start;margin-top:16px"><button class="btn" onclick="exportProjects()">Exportar CSV</button><button class="btn" onclick="exportAll()">Exportar todo (JSON)</button></div>
+        <div class="row left" style="margin-top:16px"><button class="btn" onclick="exportProjects()">Exportar CSV</button><button class="btn" onclick="exportAll()">Exportar todo (JSON)</button></div>
       </div>
       <div class="dview" id="d-agenda">
         <h2>Agenda</h2><p style="color:var(--muted)">Agenda una videollamada gratis con nosotros.</p>
@@ -411,30 +506,30 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
             <div><label class="f" style="margin-top:0">Hora</label><select class="in" id="aTime"><option>10:00</option><option>11:00</option><option>12:00</option><option>16:00</option><option>17:00</option><option>18:00</option></select></div>
           </div>
           <label class="f">Tema</label><input class="in" id="aTopic" placeholder="¿De qué quieres hablar?">
-          <div class="row" style="justify-content:flex-start;margin-top:16px"><button class="btn primary" onclick="addBooking()">Agendar</button></div>
+          <div class="row left" style="margin-top:16px"><button class="btn primary" onclick="addBooking()">Agendar</button></div>
         </div>
         <div id="aList"></div>
-        <div class="row" style="justify-content:flex-start;margin-top:16px"><button class="btn" onclick="exportICS()">📅 Exportar a calendario (.ics)</button></div>
+        <div class="row left" style="margin-top:16px"><button class="btn" onclick="exportICS()"><i data-ic="calendar"></i> Exportar a calendario (.ics)</button></div>
       </div>
       <div class="dview" id="d-cuenta">
         <h2>Mi cuenta</h2>
         <div class="card" style="margin-top:16px">
           <label class="f" style="margin-top:0">Nombre</label><input class="in" id="uName">
           <label class="f">Email</label><input class="in" id="uMail" disabled>
-          <div class="row" style="justify-content:flex-start;margin-top:16px"><button class="btn primary" onclick="saveProfile()">Guardar</button><button class="btn danger" onclick="deleteAccount()">Borrar mis datos</button></div>
+          <div class="row left" style="margin-top:16px"><button class="btn primary" onclick="saveProfile()">Guardar</button><button class="btn danger" onclick="deleteAccount()">Borrar mis datos</button></div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ================= MODAL LOGIN / REGISTRO ================= -->
+<!-- LOGIN / REGISTRO -->
 <div class="overlay" id="authOv" onclick="if(event.target===this)closeAuth()">
   <div class="auth">
-    <button class="icon-btn close" onclick="closeAuth()">✕</button>
-    <div class="auth-side"><h3>Tu equipo de desarrollo, tus ideas hechas realidad.</h3><p>Crea tu cuenta para probar gratis, solicitar proyectos y agendar llamadas.</p></div>
+    <button class="icon-btn close" onclick="closeAuth()" aria-label="Cerrar"><i data-ic="x"></i></button>
+    <div class="auth-side"><h3>Tu equipo de desarrollo, tus ideas hechas realidad.</h3><p>Crea tu cuenta para guardar tu diseño, solicitar proyectos y agendar llamadas.</p></div>
     <div class="auth-form">
-      <a href="#" onclick="closeAuth();return false" style="color:var(--muted);font-size:13px">← Volver al inicio</a>
+      <a href="#" onclick="closeAuth();return false" style="color:var(--muted);font-size:13px">Volver al inicio</a>
       <h3 style="margin-top:14px">Bienvenido a PixelForge</h3>
       <p class="sub2">Inicia sesión o crea una cuenta gratis</p>
       <div class="seg2"><button id="tLogin" class="on" onclick="authMode('login')">Iniciar sesión</button><button id="tJoin" onclick="authMode('join')">Crear cuenta</button></div>
@@ -443,82 +538,79 @@ footer li{list-style:none;margin:8px 0;font-size:14px}footer li a{color:var(--mu
       <label class="f">Contraseña</label><input class="in" id="aPass" type="password" placeholder="Mínimo 8 caracteres">
       <div style="text-align:right"><a href="#" onclick="forgot();return false" style="font-size:12px;color:var(--brand2)">¿Olvidaste tu contraseña?</a></div>
       <div class="err" id="aErr"></div>
-      <p class="lock">🔒 Tus datos son privados. Al crear tu cuenta avisamos a nuestro equipo de tu registro.</p>
+      <p class="lock"><i data-ic="lock"></i> Tus datos son privados. Al crear tu cuenta avisamos a nuestro equipo de tu registro.</p>
       <button class="btn primary lg" style="width:100%" id="aGo" onclick="submitAuth()">Iniciar sesión</button>
-      <p class="or">— O USA —</p>
-      <button class="btn" style="width:100%" onclick="googleAuth()"><b style="color:#4285f4">G</b> Continuar con Google</button>
+      <p class="or">O USA</p>
+      <button class="btn" style="width:100%" onclick="googleAuth()"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Continuar con Google</button>
       <p class="note" id="demoNote"></p>
     </div>
   </div>
 </div>
 
-<!-- ================= MODAL PAYWALL ================= -->
+<!-- PAYWALL -->
 <div class="overlay" id="payOv" onclick="if(event.target===this)closePay()">
-  <div class="paybox">
-    <div class="big">🔒</div><h3>Llegaste al límite del plan gratis</h3>
-    <p id="payMsg"></p>
-    <div class="row"><button class="btn primary" onclick="closePay();showSite();location.hash='precios'">Ver planes</button><button class="btn" onclick="closePay()">Ahora no</button></div>
-  </div>
+  <div class="paybox"><div class="big"><i data-ic="lock"></i></div><h3>Esto es parte de los planes de pago</h3><p id="payMsg"></p>
+    <div class="row"><button class="btn primary" onclick="closePay();showSite();location.hash='precios'">Ver planes</button><button class="btn" onclick="closePay()">Ahora no</button></div></div>
 </div>
 
-<!-- ================= CHAT IA ================= -->
-<button id="chatFab" onclick="openChat()" aria-label="Asistente">🤖</button>
+<!-- PALETA DE COMANDOS -->
+<div class="overlay" id="pal" onclick="if(event.target===this)closePal()">
+  <div class="palbox"><input id="palIn" placeholder="Busca una sección o acción..." autocomplete="off"><ul id="palList"></ul></div>
+</div>
+
+<!-- CHAT IA -->
+<button id="chatFab" onclick="openChat()" aria-label="Asistente"><svg class="i px" style="width:34px;height:34px"><use href="#i-bot"/></svg></button>
 <div id="chat">
-  <div class="chat-h"><div><b>Forja AI</b><small id="chatCount">Asistente de PixelForge</small></div><button class="icon-btn" style="background:rgba(255,255,255,.2);border:none;color:#fff" onclick="openChat()">✕</button></div>
+  <div class="chat-h"><div><b>Forja AI</b><small id="chatCount">Asistente de PixelForge</small></div><button class="icon-btn" style="background:rgba(255,255,255,.2);border-color:transparent;color:#fff;box-shadow:none" onclick="openChat()" aria-label="Cerrar"><i data-ic="x"></i></button></div>
   <div id="msgs"></div><div class="quick" id="quick"></div>
-  <div class="chat-f"><input class="in" id="chatIn" placeholder="Escribe tu pregunta…" onkeydown="if(event.key==='Enter')sendChat()"><button class="btn primary" onclick="sendChat()">➤</button></div>
+  <div class="chat-f"><input class="in" id="chatIn" placeholder="Escribe tu pregunta..." onkeydown="if(event.key==='Enter')sendChat()"><button class="btn primary" onclick="sendChat()" aria-label="Enviar"><i data-ic="send"></i></button></div>
 </div>
 <div class="toast" id="toast"></div>
 
+<script src="conocimiento.js"></script>
 <script>
 /* =====================================================
-   CONFIG — TODO lo que tienen que llenar está aquí
+   CONFIG: todo lo que tienen que llenar está aquí
    ===================================================== */
 const CONFIG = {
   brand: "PixelForge Studio",
   founders: "Cristóbal López y Beto Mazón",
   origin: "",          // Cuenten aquí dónde/cómo empezó el negocio. Forja AI lo usará al responder.
-  currency: "USD",     // Cambia a "MXN" si tus precios son en pesos
-  // Correos REALES: crea un formulario en web3forms.com o formspree.io (el correo destino se configura
-  // allá, NO aquí). Pega la URL y, si usas Web3Forms, su access key.
-  FORM_ENDPOINT: "",   // ej. "https://api.web3forms.com/submit"  o  "https://formspree.io/f/xxxxxxx"
-  FORM_KEY: "",        // access key de Web3Forms (público por diseño). Déjalo vacío con Formspree.
-  WHATSAPP: "",        // ej. "5216671234567" (código de país + número). Quedará PÚBLICO en la página.
+  currency: "MXN",
+  FORM_ENDPOINT: "",   // "https://api.web3forms.com/submit" o "https://formspree.io/f/xxxxxxx"
+  FORM_KEY: "",        // access key de Web3Forms (público por diseño). Vacío con Formspree.
+  WHATSAPP: "",        // código de país + número, ej. "5216671234567". Quedará PÚBLICO en la página.
   PAY_LINK: "",        // Link de pago (Stripe Payment Link, Mercado Pago, etc.)
   AI_ENDPOINT: "",     // URL de un backend que llame a una IA. NUNCA pongas API keys aquí.
-  // Login real + Google: crea un proyecto en Firebase y pega aquí su configuración web.
-  FIREBASE: null,      // ej. {apiKey:"...",authDomain:"...",projectId:"...",appId:"..."}
-  FREE: { chatPerDay: 8, demos: 1 }
+  FIREBASE: null,      // {apiKey:"...",authDomain:"...",projectId:"...",appId:"..."}
+  FREE: { chatPerDay: 12 }
 };
-const money=n=>"$"+Number(n).toLocaleString("en-US")+" "+CONFIG.currency;
+const money=n=>"$"+Number(n).toLocaleString("es-MX")+" "+CONFIG.currency;
+const ic=(n,c="")=>`<svg class="i ${c}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
+function hyd(root=document){root.querySelectorAll("i[data-ic]").forEach(el=>{el.outerHTML=ic(el.dataset.ic);});}
 
 const SERVICES=[
- {i:"🌐",t:"Páginas web",d:"Landing pages, sitios de negocio y tiendas. Rápidas, responsivas y listas para Google.",tags:["HTML","CSS","JavaScript"]},
- {i:"📱",t:"Apps web (PWA)",d:"Apps instalables en el celular con login, notificaciones y funcionamiento offline.",tags:["PWA","React","API"]},
- {i:"⚙️",t:"Proyectos de código",d:"Bots, scripts, scrapers y automatizaciones para ahorrarte horas de trabajo.",tags:["Python","Node.js","Bots"]},
- {i:"🎮",t:"Juegos pixel art",d:"Minijuegos retro para tu marca o comunidad, con arte y mecánicas a medida.",tags:["Canvas","Pixel art"]},
- {i:"🎓",t:"Herramientas educativas",d:"Quizzes, flashcards y plataformas para aprender, con seguimiento de progreso.",tags:["Quiz","UX","Progreso"]},
- {i:"🛠️",t:"Mejoras y soporte",d:"Arreglamos bugs, optimizamos velocidad y damos mantenimiento a tu proyecto actual.",tags:["Debug","Rendimiento"]}
+ {i:"globe",t:"Páginas web",d:"Landing pages, sitios de negocio y tiendas. Rápidas, responsivas y listas para Google.",tags:["HTML","CSS","JavaScript"]},
+ {i:"phone",t:"Apps web (PWA)",d:"Apps instalables en el celular con login, notificaciones y funcionamiento offline.",tags:["PWA","React","API"]},
+ {i:"code",t:"Proyectos de código",d:"Bots, scripts y automatizaciones para ahorrarte horas de trabajo.",tags:["Python","Node.js","Bots"]},
+ {i:"gamepad",t:"Juegos pixel art",d:"Minijuegos retro para tu marca o comunidad, con arte y mecánicas a medida.",tags:["Canvas","Pixel art"]},
+ {i:"book",t:"Herramientas educativas",d:"Quizzes, flashcards y plataformas para aprender, con seguimiento de progreso.",tags:["Quiz","UX","Progreso"]},
+ {i:"wrench",t:"Mejoras y soporte",d:"Arreglamos bugs, optimizamos velocidad y damos mantenimiento a tu proyecto actual.",tags:["Debug","Rendimiento"]}
 ];
 const PORTFOLIO=[
- {i:"⚽",t:"Deportes hoy",d:"Página de marcadores con Tenis, NFL, F1 y Fútbol en un solo lugar.",tags:["Web","Datos en vivo"]},
- {i:"📚",t:"WordMaster PRO",d:"App para aprender inglés con quizzes de nivel C1.",tags:["App","Educación"]},
- {i:"🚀",t:"Tu proyecto aquí",d:"Cambia esta tarjeta por tu siguiente proyecto.",tags:["Próximamente"]}
+ {i:"activity",t:"Deportes hoy",d:"Página de marcadores con Tenis, NFL, F1 y Fútbol en un solo lugar.",tags:["Web","Datos en vivo"]},
+ {i:"book",t:"WordMaster PRO",d:"App para aprender inglés con quizzes de nivel C1.",tags:["App","Educación"]},
+ {i:"zap",t:"Tu proyecto aquí",d:"Cambia esta tarjeta por tu siguiente proyecto.",tags:["Próximamente"]}
 ];
-/* Estrategia del señuelo: Starter (ancla barata) · Pro (señuelo: caro para lo poco que da) · Completo (mejor valor). */
+/* Señuelo: Starter (ancla barata) · Pro (señuelo) · Completo (mejor valor). Precios en MXN. */
 const PLANS=[
  {n:"Starter",p:199,u:"pago único",f:["Landing page de 1 sección","Diseño responsivo","Formulario de contacto","1 ronda de cambios","Soporte 7 días"]},
  {n:"Pro",p:349,u:"pago único",f:["Sitio de hasta 3 páginas","Diseño a medida","SEO básico","2 rondas de cambios","Soporte 14 días"]},
  {n:"Completo",p:399,u:"pago único",pop:true,f:["Todo lo del plan Pro","Sitio de hasta 6 páginas","App web con login y base de datos","Panel de administración","Dominio configurado","Cambios ilimitados en desarrollo","Soporte 60 días"]}
 ];
-const BASE=[
- {id:"landing",n:"Landing page",p:199,d:5},{id:"site",n:"Sitio multi-página",p:349,d:10},
- {id:"app",n:"Web + App completa",p:399,d:25},{id:"script",n:"Script / Bot",p:99,d:4},{id:"game",n:"Juego pixel art",p:299,d:14}
-];
-const EXTRAS=[
- {id:"login",n:"Login de usuarios",p:60,d:4},{id:"cal",n:"Calendario / reservas",p:40,d:3},{id:"export",n:"Exportar datos",p:20,d:1},
- {id:"pay",n:"Pagos en línea",p:80,d:5},{id:"ai",n:"Asistente con IA",p:100,d:6},{id:"pixel",n:"Estilo pixel art",p:30,d:2},{id:"admin",n:"Panel de administración",p:90,d:6}
-];
+const BASE=[{id:"landing",n:"Landing page",p:199,d:5},{id:"site",n:"Sitio multi-página",p:349,d:10},{id:"app",n:"Web + App completa",p:399,d:25},{id:"script",n:"Script / Bot",p:99,d:4},{id:"game",n:"Juego pixel art",p:299,d:14}];
+const EXTRAS=[{id:"login",n:"Login de usuarios",p:60,d:4},{id:"cal",n:"Calendario / reservas",p:40,d:3},{id:"export",n:"Exportar datos",p:20,d:1},{id:"pay",n:"Pagos en línea",p:80,d:5},{id:"ai",n:"Asistente con IA",p:100,d:6},{id:"pixel",n:"Estilo pixel art",p:30,d:2},{id:"admin",n:"Panel de administración",p:90,d:6}];
+const TECH=["HTML5","CSS3","JAVASCRIPT","REACT","NODE.JS","PYTHON","FIREBASE","GITHUB","CLOUDFLARE","STRIPE","CANVAS","PWA","API REST","SQL"];
 
 /* =====================================================
    UTILIDADES
@@ -534,71 +626,110 @@ const norm=s=>String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/
 /* =====================================================
    ALMACÉN LOCAL
    ===================================================== */
-const KEY="pixelforge_v2";
+const KEY="pixelforge_v3";
 let DB={theme:"dark",session:null,users:{},profiles:{},quote:{base:"landing",extras:[]},usage:{},contacts:[]};
-try{const r=localStorage.getItem(KEY);if(r)DB=Object.assign(DB,JSON.parse(r));}catch(e){}
+try{const r=localStorage.getItem(KEY)||localStorage.getItem("pixelforge_v2");if(r)DB=Object.assign(DB,JSON.parse(r));}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){}};
 const me=()=>DB.session;
 function prof(){
   const s=DB.session;if(!s)return null;
-  if(!DB.profiles[s.id]){
-    DB.profiles[s.id]={since:new Date().toISOString(),projects:[],bookings:[],demos:0,plan:"free"};save();
-    sendLead({tipo:"Nuevo registro",name:s.name,email:s.email,message:"Se creó una cuenta nueva en "+CONFIG.brand+"."});
-  }
+  if(!DB.profiles[s.id]){DB.profiles[s.id]={since:new Date().toISOString(),projects:[],bookings:[],design:null,plan:"free",act:[]};save();
+    sendLead({tipo:"Nuevo registro",name:s.name,email:s.email,message:"Se creó una cuenta nueva en "+CONFIG.brand+"."});act("Creaste tu cuenta");}
   return DB.profiles[s.id];
 }
+function act(txt){const p=DB.session&&DB.profiles[DB.session.id];if(!p)return;p.act=p.act||[];p.act.unshift({t:Date.now(),x:txt});p.act=p.act.slice(0,12);save();}
 
 /* =====================================================
-   ENVÍO REAL DE CORREOS (Web3Forms / Formspree)
+   CORREOS REALES (Web3Forms / Formspree)
    ===================================================== */
 async function sendLead(data){
   if(!CONFIG.FORM_ENDPOINT){DB.contacts.push(Object.assign({at:Date.now()},data));save();return {ok:false,demo:true};}
-  try{
-    const body=Object.assign({},data);
+  try{const body=Object.assign({},data);
     if(CONFIG.FORM_KEY){body.access_key=CONFIG.FORM_KEY;body.subject=(data.tipo||"Mensaje")+" · "+CONFIG.brand;}
     const r=await fetch(CONFIG.FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(body)});
-    return {ok:r.ok};
-  }catch(e){return {ok:false};}
+    return {ok:r.ok};}catch(e){return {ok:false};}
 }
 async function sendContact(e){
-  e.preventDefault();const b=$("#cBtn");b.disabled=true;b.textContent="Enviando…";
+  e.preventDefault();const b=$("#cBtn");b.disabled=true;b.textContent="Enviando...";
   const r=await sendLead({tipo:"Contacto",name:$("#cName").value,email:$("#cMail").value,servicio:$("#cType").value,message:$("#cMsg").value});
   b.disabled=false;b.textContent="Enviar mensaje";
-  if(r.ok){e.target.reset();toast("¡Mensaje enviado! Te respondemos pronto ✔");}
-  else if(r.demo){toast("Modo demo: configura FORM_ENDPOINT para recibir correos reales");}
+  if(r.ok){e.target.reset();toast("Mensaje enviado. Te respondemos pronto");}
+  else if(r.demo)toast("Modo demo: configura FORM_ENDPOINT para recibir correos reales");
   else toast("No se pudo enviar. Inténtalo de nuevo.");
 }
 
 /* =====================================================
-   TEMA / NAV / RENDER
+   TEMA / NAV / EFECTOS
    ===================================================== */
-function applyTheme(){document.documentElement.setAttribute("data-theme",DB.theme);$("#themeBtn").textContent=DB.theme==="dark"?"🌙":"☀️";}
+function applyTheme(){document.documentElement.setAttribute("data-theme",DB.theme);$("#themeBtn").innerHTML=ic(DB.theme==="dark"?"moon":"sun");}
 function toggleTheme(){DB.theme=DB.theme==="dark"?"light":"dark";save();applyTheme();}
+function closeMenus(){$$(".menu>li").forEach(x=>x.classList.remove("open"));const m=$("#menu");m.classList.remove("show");m.classList.add("closing");if(document.activeElement)document.activeElement.blur();setTimeout(()=>m.classList.remove("closing"),500);}
 function toggleDrop(btn){const li=btn.parentElement,was=li.classList.contains("open");$$(".menu>li").forEach(x=>x.classList.remove("open"));if(!was)li.classList.add("open");}
-document.addEventListener("click",e=>{if(!e.target.closest(".menu"))$$(".menu>li").forEach(x=>x.classList.remove("open"));});
-$$("#menu a").forEach(a=>a.addEventListener("click",()=>$("#menu").classList.remove("show")));
-function card(s){return `<div class="card reveal"><div class="ic">${s.i}</div><h3>${s.t}</h3><p>${s.d}</p><div class="tags">${s.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div></div>`;}
+document.addEventListener("click",e=>{
+  if(e.target.closest(".drop a, .menu>li>a")){closeMenus();return;}
+  if(!e.target.closest(".menu")&&!e.target.closest(".burger"))$$(".menu>li").forEach(x=>x.classList.remove("open"));
+});
+window.addEventListener("scroll",()=>{const h=document.documentElement;$("#sp").style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight||1)*100)+"%";},{passive:true});
+function typeWriter(){
+  const W=["páginas web","apps","bots","juegos pixel","tiendas en línea"],el=$("#tw");let wi=0,ci=W[0].length,del=true;
+  (function tick(){const w=W[wi];
+    if(del){ci--;if(ci<=0){del=false;wi=(wi+1)%W.length;}}else{ci++;if(ci>=W[wi].length){del=true;el.textContent=W[wi];return setTimeout(tick,1600);}}
+    el.textContent=W[wi].slice(0,Math.max(ci,0))||"\u00a0";setTimeout(tick,del?45:85);})();
+}
+function typeCode(){
+  const code=`<main class="hero">\n  <h1>Tu idea,</h1>\n  <h2>hecha código.</h2>\n  <button>Empezar</button>\n</main>\n\n// listo para lanzar_`;
+  const el=$("#code");let i=0;(function t(){el.textContent=code.slice(0,i++);if(i<=code.length)setTimeout(t,38);})();
+}
+function card(s){return `<div class="card reveal"><div class="ic">${ic(s.i)}</div><h3>${s.t}</h3><p>${s.d}</p><div class="tags">${s.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div></div>`;}
 function renderStatic(){
-  $("#servGrid").innerHTML=SERVICES.map(card).join("");
-  $("#portGrid").innerHTML=PORTFOLIO.map(card).join("");
+  $("#servGrid").innerHTML=SERVICES.map(card).join("");$("#portGrid").innerHTML=PORTFOLIO.map(card).join("");
   $("#planGrid").innerHTML=PLANS.map(p=>`<div class="card plan reveal ${p.pop?"pop":""}">${p.pop?'<span class="ribbon">MEJOR VALOR</span>':""}<h3>${p.n}</h3><div class="price">${money(p.p)}<small> ${p.u}</small></div><ul>${p.f.map(x=>`<li>${x}</li>`).join("")}</ul><button class="btn ${p.pop?"primary":""}" onclick="choosePlan('${p.n}')">Elegir ${p.n}</button></div>`).join("");
+  $("#marq").innerHTML=[...TECH,...TECH].map(t=>`<span>${t}</span>`).join("");
   $("#yr").textContent=new Date().getFullYear();
   if(CONFIG.WHATSAPP){const w=$("#waBtn");w.style.display="";w.href="https://wa.me/"+CONFIG.WHATSAPP.replace(/\D/g,"")+"?text="+encodeURIComponent("Hola, vi su página y quiero cotizar un proyecto.");}
 }
-function choosePlan(n){
-  $("#cMsg").value="Hola, me interesa el plan "+n+".";
-  if(CONFIG.PAY_LINK&&me())window.open(CONFIG.PAY_LINK,"_blank");
-  location.hash="contacto";toast("Plan "+n+" seleccionado. Cuéntanos de tu proyecto.");
-}
+function choosePlan(n){$("#cMsg").value="Hola, me interesa el plan "+n+".";if(CONFIG.PAY_LINK&&me())window.open(CONFIG.PAY_LINK,"_blank");location.hash="contacto";toast("Plan "+n+" seleccionado. Cuéntanos de tu proyecto.");}
 function observeReveal(){
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}}),{threshold:.12});
   $$(".reveal").forEach(el=>io.observe(el));
-  const co=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const el=e.target,end=+el.dataset.count,suf=el.dataset.suf||"";let n=0;const step=Math.max(1,Math.ceil(end/40));const t=setInterval(()=>{n=Math.min(end,n+step);el.textContent=n+suf;if(n>=end)clearInterval(t);},30);co.unobserve(el);}}),{threshold:.5});
+  const co=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const el=e.target,end=+el.dataset.count,suf=el.dataset.suf||"";let n=0;const st=Math.max(1,Math.ceil(end/40));const t=setInterval(()=>{n=Math.min(end,n+st);el.textContent=n+suf;if(n>=end)clearInterval(t);},30);co.unobserve(el);}}),{threshold:.5});
   $$("[data-count]").forEach(el=>co.observe(el));
 }
 
 /* =====================================================
-   PAYWALL / LÍMITES (cliente — ver notas: para blindarlo hace falta backend)
+   PALETA DE COMANDOS (Ctrl/Cmd + K)
+   ===================================================== */
+function jump(id){showSite();closePal();setTimeout(()=>{const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:"smooth"});},60);}
+const CMDS=[
+ {t:"Ir a Servicios",i:"globe",f:()=>jump("servicios")},{t:"Ir a Portafolio",i:"layers",f:()=>jump("portafolio")},
+ {t:"Ver precios",i:"star",f:()=>jump("precios")},{t:"Probar la mini-web gratis",i:"flask",f:()=>jump("probar")},
+ {t:"Simulador de ROI",i:"chart",f:()=>jump("simulador")},{t:"Cotizador",i:"calc",f:()=>jump("cotizador")},
+ {t:"Contacto",i:"mail",f:()=>jump("contacto")},{t:"Abrir Forja AI",i:"msg",f:()=>{closePal();openChat(true);}},
+ {t:"Cambiar tema claro u oscuro",i:"sun",f:()=>{closePal();toggleTheme();}},
+ {t:"Iniciar sesión",i:"user",f:()=>{closePal();openAuth("login");}},{t:"Crear cuenta gratis",i:"plus",f:()=>{closePal();openAuth("join");}},
+ {t:"Abrir mi panel",i:"home",f:()=>{closePal();showDash();}}
+];
+let palSel=0,palList=[];
+function openPal(){$("#pal").classList.add("show");$("#palIn").value="";renderPal();setTimeout(()=>$("#palIn").focus(),50);}
+function closePal(){$("#pal").classList.remove("show");}
+function renderPal(){
+  const q=norm($("#palIn").value);palList=CMDS.filter(c=>norm(c.t).includes(q));palSel=0;
+  $("#palList").innerHTML=palList.map((c,i)=>`<li class="${i===0?"on":""}" onclick="palRun(${i})">${ic(c.i)} ${c.t}</li>`).join("")||`<li>Sin resultados</li>`;
+}
+function palRun(i){if(palList[i])palList[i].f();}
+$("#palIn").addEventListener("input",renderPal);
+$("#palIn").addEventListener("keydown",e=>{
+  const lis=$$("#palList li");
+  if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();palSel=(palSel+(e.key==="ArrowDown"?1:-1)+lis.length)%lis.length;lis.forEach((l,i)=>l.classList.toggle("on",i===palSel));}
+  if(e.key==="Enter")palRun(palSel);
+});
+document.addEventListener("keydown",e=>{
+  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();openPal();}
+  if(e.key==="Escape"){closePal();closeAuth();closePay();}
+});
+
+/* =====================================================
+   PAYWALL / LÍMITES (en el navegador; para blindarlos hace falta backend)
    ===================================================== */
 function payWall(msg){$("#payMsg").textContent=msg;$("#payOv").classList.add("show");}
 function closePay(){$("#payOv").classList.remove("show");}
@@ -607,40 +738,73 @@ function usage(){const a=me()?me().id:"guest",d=today();let u=DB.usage[a];if(!u|
 function updateChatCount(){const u=usage();$("#chatCount").textContent=isFree()?`Mensajes hoy: ${u.n}/${CONFIG.FREE.chatPerDay}`:"Plan de pago: sin límite";}
 
 /* =====================================================
-   PRUEBA GRATIS (mini-web)
+   MINI-WEB: WIZARD CON VISTA PREVIA EN VIVO
    ===================================================== */
-const STEPS=["Nombre y estilo","Portada","Secciones","Galería","Formulario","SEO","Móvil avanzado","Animaciones","Login","Base de datos","Pagos","Panel admin","Dominio","Publicación","Soporte"];
-function renderSteps(done){
-  $("#stepsBox").innerHTML=STEPS.map((s,i)=>`<div class="st ${i<done?"done":""}">${i<done?"✔":"🔒"} ${i+1}. ${s}</div>`).join("");
-  $("#prog").style.width=(done/15*100)+"%";$("#progTxt").textContent=`Progreso: ${done} de 15 pasos`+(done<15&&done>0?" · desbloquea el resto con un plan":"");
+const TPL={
+ cafe:{n:"Restaurante",i:"coffee",eb:"Cocina local",items:["Menú del día","Ubicación","Horarios"],cta:"Ver menú",tag:"Sabor que se disfruta"},
+ tienda:{n:"Tienda",i:"bag",eb:"Tienda en línea",items:["Productos","Envíos","Pagos seguros"],cta:"Comprar ahora",tag:"Todo lo que buscas, en un solo lugar"},
+ serv:{n:"Servicios",i:"brief",eb:"Servicios profesionales",items:["Servicios","Casos de éxito","Agenda tu cita"],cta:"Agendar cita",tag:"Soluciones a tu medida"},
+ port:{n:"Portafolio",i:"user",eb:"Portafolio personal",items:["Proyectos","Sobre mí","Contacto"],cta:"Ver proyectos",tag:"Diseño y desarrollo con detalle"},
+ edu:{n:"Educación",i:"book",eb:"Plataforma educativa",items:["Cursos","Progreso","Comunidad"],cta:"Empezar a aprender",tag:"Aprende a tu ritmo"}
+};
+const COLORS=["#6366f1","#0ea5e9","#10b981","#f59e0b","#ef4444","#ec4899","#8b5cf6","#14b8a6"];
+const STEPS=["Plantilla","Marca","Secciones","Galería","Formulario","SEO","Móvil avanzado","Animaciones","Login","Base de datos","Pagos","Panel admin","Dominio","Publicación","Soporte"];
+let W={step:1,tpl:"cafe",name:"",tag:"",color:"#6366f1",font:"moderna",dev:"desk"};
+function pvHTML(){
+  const t=TPL[W.tpl],c=/^#[0-9a-f]{6}$/i.test(W.color)?W.color:"#6366f1",nm=esc(W.name||"Tu marca"),tg=esc(W.tag||t.tag),px=W.font==="pixel",
+  ff=px?"'Silkscreen',monospace":"'Inter',system-ui,sans-serif",rd=px?0:10;
+  return `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Silkscreen&display=swap" rel="stylesheet"><style>*{box-sizing:border-box;margin:0}body{font-family:${ff};color:#111;background:#fff}nav{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:${c};color:#fff;font-weight:800;gap:10px}nav span{font-size:11px;font-weight:600;opacity:.92}.h{padding:44px 20px;text-align:center;background:linear-gradient(180deg,${c}26,#fff)}.e{font-size:11px;letter-spacing:.12em;color:${c};font-weight:800;text-transform:uppercase}h1{font-size:30px;margin:10px 0;line-height:1.2}p{color:#555;max-width:440px;margin:0 auto 20px;font-size:15px}a{display:inline-block;background:${c};color:#fff;padding:12px 22px;border-radius:${rd}px;font-weight:700;font-size:14px}.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px;padding:8px 20px 22px}.g div{background:#f3f4f8;border-radius:${rd}px;padding:18px 10px;text-align:center;font-weight:700;font-size:13px;border-bottom:3px solid ${c}}footer{text-align:center;font-size:10px;color:#999;padding:10px}</style></head><body><nav>${nm}<span>Inicio · ${t.items[0]} · Contacto</span></nav><div class="h"><div class="e">${t.eb}</div><h1>${nm}</h1><p>${tg}</p><a>${t.cta}</a></div><div class="g">${t.items.map(x=>`<div>${x}</div>`).join("")}</div><footer>Vista previa · hecho con PixelForge</footer></body></html>`;
 }
-function demoUsageTxt(){const p=prof();$("#demoUsage").textContent=!me()?"Crea tu cuenta gratis para usar tu mini-prueba.":(isFree()?`Mini-pruebas usadas: ${p.demos}/${CONFIG.FREE.demos}`:"Plan de pago: mini-webs ilimitadas");}
-function genDemo(){
-  if(!me()){toast("Crea tu cuenta gratis para usar tu mini-prueba");openAuth("join");return;}
+let pvT;function schedPrev(){clearTimeout(pvT);pvT=setTimeout(()=>{$("#prev").srcdoc=pvHTML();$("#furl").textContent=(W.name?W.name.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""):"tu-marca")+".com";},120);}
+function setDev(d){W.dev=d;$("#frameBox").classList.toggle("mob",d==="mob");$("#dDesk").classList.toggle("on",d==="desk");$("#dMob").classList.toggle("on",d==="mob");}
+function setW(k,v,noRender){W[k]=v;if(!noRender)renderWiz();schedPrev();}
+function wizGo(n){W.step=n;renderWiz();}
+function savedDesign(){const p=prof();return p&&p.design;}
+function renderSteps(done){
+  $("#stepsBox").innerHTML=STEPS.map((s,i)=>`<div class="st ${i<done?"done":""}">${ic(i<done?"check":"lock")} ${i+1}. ${s}</div>`).join("");
+  $("#prog").style.width=(done/15*100)+"%";$("#progTxt").textContent=`Progreso: ${done} de 15 pasos`+(done<15?" · desbloquea el resto con un plan":"");
+}
+function renderWiz(){
+  const s=W.step;
+  $("#wsteps").innerHTML=["Plantilla","Marca","Secciones"].map((n,i)=>`<button class="wst ${s===i+1?"on":""} ${s>i+1?"done":""}" onclick="wizGo(${i+1})"><b>${i+1}</b>${n}</button>`).join("")+`<span class="wst">${ic("lock")} 4 a 15</span>`;
+  let h="";
+  if(s===1)h=`<h3>Elige una plantilla</h3><p class="note">Toca una opción: la vista previa cambia al instante.</p><div class="tpls">${Object.entries(TPL).map(([k,t])=>`<button class="tpl ${W.tpl===k?"on":""}" onclick="setW('tpl','${k}')">${ic(t.i)}<span>${t.n}</span></button>`).join("")}</div>`;
+  if(s===2)h=`<h3>Dale identidad a tu marca</h3>
+   <label class="f">Nombre</label><input class="in" value="${esc(W.name)}" maxlength="32" placeholder="Ej. Tacos El Güero" oninput="setW('name',this.value,true)">
+   <label class="f">Frase principal</label><input class="in" value="${esc(W.tag)}" maxlength="70" placeholder="${esc(TPL[W.tpl].tag)}" oninput="setW('tag',this.value,true)">
+   <label class="f">Color de marca</label><div class="sws">${COLORS.map(c=>`<button class="sw ${W.color===c?"on":""}" style="background:${c}" onclick="setW('color','${c}')" aria-label="${c}"></button>`).join("")}</div>
+   <label class="f">Estilo de letra</label><div class="sg"><button class="${W.font==="moderna"?"on":""}" onclick="setW('font','moderna')">Moderna</button><button class="${W.font==="pixel"?"on":""}" onclick="setW('font','pixel')" style="font-family:var(--pf)">Pixel</button></div>`;
+  if(s===3){const sc=["Galería","Testimonios","Precios","Mapa","Blog","Tienda"];
+   h=`<h3>Secciones extra</h3><p class="note">Tu mini-web ya incluye portada y 3 bloques. Las secciones extra son de los planes de pago.</p><div class="sg" style="margin-top:12px">${sc.map(x=>`<button onclick="payWall('Las secciones extra, la descarga del código y la publicación son parte de los planes de pago.')">${ic("lock")} ${x}</button>`).join("")}</div>`;}
+  $("#wpane").innerHTML=h;
+  $("#wnav").innerHTML=(s>1?`<button class="btn" onclick="wizGo(${s-1})">${ic("arrowl")} Atrás</button>`:"")+(s<3?`<button class="btn primary" onclick="wizGo(${s+1})">Siguiente ${ic("arrow")}</button>`:`<button class="btn primary" onclick="saveDesign()">${ic("check")} Guardar mi diseño</button>`)+`<button class="btn ghost" onclick="newDesign()">Reiniciar</button>`;
+  renderSteps(savedDesign()?2:Math.min(s,3)-1);demoUsageTxt();
+}
+function demoUsageTxt(){
   const p=prof();
-  if(isFree()&&p.demos>=CONFIG.FREE.demos){payWall("Ya usaste tu mini-prueba gratis. Con un plan puedes crear tu web completa, descargarla y publicarla.");return;}
-  const name=esc($("#dName").value.trim()||"Mi negocio"),type=esc($("#dType").value),tag=esc($("#dTag").value.trim()||"Bienvenido a nuestra página"),
-        col=/^#[0-9a-f]{6}$/i.test($("#dColor").value)?$("#dColor").value:"#6366f1";
-  const feats={Restaurante:["🍽️ Menú","📍 Ubicación","🕒 Horarios"],Tienda:["🛍️ Productos","🚚 Envíos","⭐ Reseñas"],Servicios:["🧰 Servicios","📞 Contacto","✅ Garantía"],Portafolio:["🖼️ Proyectos","👤 Sobre mí","✉️ Contacto"],"Educación":["📚 Cursos","🎯 Metas","🏆 Logros"]}[$("#dType").value]||["✨ Uno","✨ Dos","✨ Tres"];
-  const html=`<body style="margin:0;font-family:system-ui,sans-serif;color:#111"><div style="background:${col};color:#fff;padding:14px 20px;font-weight:800">${name}</div><div style="padding:46px 24px;text-align:center"><div style="font-size:13px;color:${col};font-weight:700;letter-spacing:.1em">${type.toUpperCase()}</div><h1 style="font-size:34px;margin:10px 0">${name}</h1><p style="color:#555;max-width:460px;margin:0 auto 22px">${tag}</p><a style="background:${col};color:#fff;padding:12px 24px;border-radius:10px;font-weight:700;display:inline-block">Contáctanos</a></div><div style="display:flex;gap:12px;padding:0 24px 20px;flex-wrap:wrap;justify-content:center">${feats.map(f=>`<div style="flex:1;min-width:110px;background:#f3f4f6;border-radius:12px;padding:16px;text-align:center;font-weight:600">${f}</div>`).join("")}</div><div style="text-align:center;font-size:11px;color:#999;padding:8px">Vista previa · Hecho con PixelForge (demo)</div></body>`;
-  $("#prev").srcdoc=html;p.demos++;save();renderSteps(2);demoUsageTxt();toast("¡Mini-web generada! Pasos 1 y 2 completados ✔");
+  $("#demoUsage").textContent=!me()?"Prueba libre. Crea tu cuenta gratis para guardar tu diseño.":(isFree()?(p.design?"Mini-prueba usada (1/1). Puedes seguir editando tu diseño guardado.":"Mini-prueba disponible (0/1)."):"Plan de pago: diseños ilimitados.");
+}
+function saveDesign(){
+  if(!me()){toast("Crea tu cuenta gratis para guardar tu diseño");openAuth("join");return;}
+  const p=prof();p.design={tpl:W.tpl,name:W.name,tag:W.tag,color:W.color,font:W.font};save();act("Guardaste tu diseño de prueba");renderWiz();toast("Diseño guardado");
+}
+function newDesign(){
+  if(me()&&isFree()&&savedDesign()){payWall("Tu plan gratis incluye una mini-prueba por cuenta. Con un plan puedes crear tantos diseños como quieras.");return;}
+  W={step:1,tpl:"cafe",name:"",tag:"",color:"#6366f1",font:"moderna",dev:W.dev};renderWiz();schedPrev();
 }
 
 /* =====================================================
    SIMULADOR DE ROI
    ===================================================== */
-function initSim(){
-  $("#sPlan").innerHTML=PLANS.map(p=>`<option value="${p.p}">${p.n} (${money(p.p)})</option>`).join("");
-  $$("#simulador input,#simulador select").forEach(i=>i.oninput=updSim);updSim();
-}
+function initSim(){$("#sPlan").innerHTML=PLANS.map(p=>`<option value="${p.p}">${p.n} (${money(p.p)})</option>`).join("");$$("#simulador input,#simulador select").forEach(i=>i.oninput=updSim);updSim();}
 function updSim(){
   const v=+$("#sVis").value,tk=+$("#sTk").value,c0=+$("#sC0").value,c1=+$("#sC1").value,price=+$("#sPlan").value;
-  $("#vVis").textContent=v.toLocaleString("en-US");$("#vTk").textContent=money(tk);$("#vC0").textContent=c0+"%";$("#vC1").textContent=c1+"%";
+  $("#vVis").textContent=v.toLocaleString("es-MX");$("#vTk").textContent=money(tk);$("#vC0").textContent=c0+"%";$("#vC1").textContent=c1+"%";
   const r0=v*c0/100*tk,r1=v*c1/100*tk,diff=r1-r0,max=Math.max(r0,r1,1);
-  $("#b0").style.width=Math.max(8,r0/max*100)+"%";$("#b0").textContent=money(Math.round(r0))+"/mes";
-  $("#b1").style.width=Math.max(8,r1/max*100)+"%";$("#b1").textContent=money(Math.round(r1))+"/mes";
+  $("#b0").style.width=Math.max(10,r0/max*100)+"%";$("#b0").textContent=money(Math.round(r0))+"/mes";
+  $("#b1").style.width=Math.max(10,r1/max*100)+"%";$("#b1").textContent=money(Math.round(r1))+"/mes";
   $("#kDiff").textContent=(diff>=0?"+":"")+money(Math.round(diff));$("#kYear").textContent=(diff>=0?"+":"")+money(Math.round(diff*12));
-  $("#kPay").textContent=diff>0?(price/diff<1?"menos de 1 mes":(price/diff).toFixed(1)+" meses"):"—";
+  $("#kPay").textContent=diff>0?(price/diff<1?"menos de 1 mes":(price/diff).toFixed(1)+" meses"):"sin retorno";
 }
 
 /* =====================================================
@@ -656,12 +820,12 @@ function renderQuote(){
 function calcQuote(){const b=BASE.find(x=>x.id===DB.quote.base)||BASE[0];let p=b.p,d=b.d;const ex=[];DB.quote.extras.forEach(id=>{const e=EXTRAS.find(x=>x.id===id);if(e){p+=e.p;d+=e.d;ex.push(e);}});return {b,p,d,ex};}
 function updQuote(){const q=calcQuote();$("#qTotal").textContent=money(q.p);$("#qDays").textContent="Entrega aproximada: "+q.d+" días";}
 function quoteText(){const q=calcQuote(),nm=$("#qName").value.trim();return `${CONFIG.brand} · Cotización\n${nm?"Cliente: "+nm+"\n":""}Fecha: ${today()}\n\n${q.b.n}: ${money(q.b.p)}\n${q.ex.map(e=>`  + ${e.n}: ${money(e.p)}`).join("\n")}\n\nTOTAL: ${money(q.p)}\nEntrega aproximada: ${q.d} días\n\n(Estimado sin compromiso)\n`;}
-function copyQuote(){navigator.clipboard.writeText(quoteText()).then(()=>toast("Copiado ✔")).catch(()=>toast("No se pudo copiar"));}
-function downloadQuote(){download("cotizacion.txt",quoteText());toast("Descargado ✔");}
+function copyQuote(){navigator.clipboard.writeText(quoteText()).then(()=>toast("Copiado")).catch(()=>toast("No se pudo copiar"));}
+function downloadQuote(){download("cotizacion.txt",quoteText());toast("Descargado");}
 async function sendQuote(){
   const mail=$("#qMail").value.trim();if(!/^\S+@\S+\.\S+$/.test(mail)){toast("Escribe un email válido para enviarte la cotización");return;}
   const r=await sendLead({tipo:"Cotización",name:$("#qName").value||"Sin nombre",email:mail,message:quoteText()});
-  toast(r.ok?"¡Cotización enviada! Te contactamos pronto ✔":(r.demo?"Modo demo: configura FORM_ENDPOINT para enviar":"No se pudo enviar"));
+  toast(r.ok?"Cotización enviada. Te contactamos pronto":(r.demo?"Modo demo: configura FORM_ENDPOINT para enviar":"No se pudo enviar"));
 }
 function printQuote(){
   const q=calcQuote(),nm=esc($("#qName").value.trim()||"Cliente"),folio="PF-"+Date.now().toString().slice(-6);
@@ -671,7 +835,7 @@ function printQuote(){
 }
 
 /* =====================================================
-   AUTH — Firebase real (si CONFIG.FIREBASE) o demo local
+   AUTH: Firebase real (si CONFIG.FIREBASE) o demo local
    ===================================================== */
 let FB=null,authM="login";
 async function initFirebase(){
@@ -681,21 +845,15 @@ async function initFirebase(){
     const app=await import(A+"firebase-app.js"),au=await import(A+"firebase-auth.js");
     const auth=au.getAuth(app.initializeApp(CONFIG.FIREBASE));
     FB={auth,signIn:(m,p)=>au.signInWithEmailAndPassword(auth,m,p),create:(m,p)=>au.createUserWithEmailAndPassword(auth,m,p),
-        google:()=>au.signInWithPopup(auth,new au.GoogleAuthProvider()),reset:m=>au.sendPasswordResetEmail(auth,m),out:()=>au.signOut(auth),
-        upd:(u,n)=>au.updateProfile(u,{displayName:n})};
-    au.onAuthStateChanged(auth,u=>{
-      if(u)setSession(u);
-      else if(DB.session&&DB.session.fb){DB.session=null;save();updateAuthUI();}
-    });
-    $("#demoNote").textContent="";
+      google:async()=>{const pr=new au.GoogleAuthProvider();try{return await au.signInWithPopup(auth,pr);}catch(e){if(e.code==="auth/popup-blocked"||e.code==="auth/operation-not-supported-in-this-environment"){await au.signInWithRedirect(auth,pr);return null;}throw e;}},
+      reset:m=>au.sendPasswordResetEmail(auth,m),out:()=>au.signOut(auth),upd:(u,n)=>au.updateProfile(u,{displayName:n})};
+    au.getRedirectResult(auth).catch(()=>{});
+    au.onAuthStateChanged(auth,u=>{if(u)setSession(u);else if(DB.session&&DB.session.fb){DB.session=null;save();updateAuthUI();}});
   }catch(e){console.warn("Firebase no cargó",e);FB=null;}
 }
-function setSession(u,n){
-  DB.session={id:u.uid,email:u.email,name:n||u.displayName||(u.email||"usuario").split("@")[0],fb:true};
-  prof();save();updateAuthUI();
-}
-function fbMsg(c){return({"auth/invalid-credential":"Email o contraseña incorrectos.","auth/wrong-password":"Email o contraseña incorrectos.","auth/user-not-found":"Email o contraseña incorrectos.","auth/email-already-in-use":"Ese email ya tiene cuenta. Inicia sesión.","auth/weak-password":"Contraseña demasiado débil.","auth/popup-closed-by-user":"Cerraste la ventana de Google.","auth/unauthorized-domain":"Este dominio no está autorizado en Firebase.","auth/too-many-requests":"Demasiados intentos. Espera un momento."})[c]||"Ocurrió un error. Inténtalo de nuevo.";}
-function openAuth(m){authMode(m);$("#authOv").classList.add("show");$("#aErr").textContent="";$("#demoNote").textContent=FB?"":"Modo demo: las cuentas se guardan solo en este navegador. Activa Firebase en CONFIG para cuentas reales.";}
+function setSession(u,n){DB.session={id:u.uid,email:u.email,name:n||u.displayName||(u.email||"usuario").split("@")[0],fb:true};prof();save();updateAuthUI();}
+function fbMsg(c){return({"auth/invalid-credential":"Email o contraseña incorrectos.","auth/wrong-password":"Email o contraseña incorrectos.","auth/user-not-found":"Email o contraseña incorrectos.","auth/email-already-in-use":"Ese email ya tiene cuenta. Inicia sesión.","auth/weak-password":"Contraseña demasiado débil.","auth/popup-closed-by-user":"Cerraste la ventana de Google.","auth/unauthorized-domain":"Este dominio no está autorizado en Firebase (Authentication, Settings, Authorized domains).","auth/operation-not-allowed":"Ese método de acceso no está activado en Firebase.","auth/too-many-requests":"Demasiados intentos. Espera un momento."})[c]||"Ocurrió un error. Inténtalo de nuevo.";}
+function openAuth(m){authMode(m);$("#authOv").classList.add("show");$("#aErr").textContent="";$("#demoNote").textContent=FB?"":"Modo demo: las cuentas se guardan solo en este navegador y Google no está conectado. Activa Firebase en CONFIG para cuentas reales.";}
 function closeAuth(){$("#authOv").classList.remove("show");}
 function authMode(m){authM=m;$("#tLogin").classList.toggle("on",m==="login");$("#tJoin").classList.toggle("on",m==="join");$("#nameBox").style.display=m==="join"?"block":"none";$("#aGo").textContent=m==="join"?"Crear cuenta y empezar":"Iniciar sesión";$("#aErr").textContent="";}
 async function submitAuth(){
@@ -704,158 +862,110 @@ async function submitAuth(){
   if(pass.length<8){err.textContent="La contraseña debe tener al menos 8 caracteres.";return;}
   if(authM==="join"&&!name){err.textContent="Escribe tu nombre.";return;}
   try{
-    if(FB){
-      if(authM==="join"){const c=await FB.create(mail,pass);await FB.upd(c.user,name);setSession(c.user,name);}
-      else{const c=await FB.signIn(mail,pass);setSession(c.user);}
-    }else{
-      const h=await sha256(mail+"::"+pass);
-      if(authM==="join"){
-        if(DB.users[mail]){err.textContent="Ese email ya tiene cuenta. Inicia sesión.";return;}
-        DB.users[mail]={name,hash:h};DB.session={id:mail,email:mail,name};
-      }else{
-        const u=DB.users[mail];if(!u||u.hash!==h){err.textContent="Email o contraseña incorrectos.";return;}
-        DB.session={id:mail,email:mail,name:u.name};
-      }
-      prof();save();
-    }
+    if(FB){if(authM==="join"){const c=await FB.create(mail,pass);await FB.upd(c.user,name);setSession(c.user,name);}else{const c=await FB.signIn(mail,pass);setSession(c.user);}}
+    else{const h=await sha256(mail+"::"+pass);
+      if(authM==="join"){if(DB.users[mail]){err.textContent="Ese email ya tiene cuenta. Inicia sesión.";return;}DB.users[mail]={name,hash:h};DB.session={id:mail,email:mail,name};}
+      else{const u=DB.users[mail];if(!u||u.hash!==h){err.textContent="Email o contraseña incorrectos.";return;}DB.session={id:mail,email:mail,name:u.name};}
+      prof();save();}
   }catch(e){err.textContent=fbMsg(e.code);return;}
-  $("#aPass").value="";closeAuth();updateAuthUI();toast("¡Hola, "+me().name.split(" ")[0]+"! 🎉");showDash();
+  $("#aPass").value="";closeAuth();updateAuthUI();toast("Hola, "+me().name.split(" ")[0]);showDash();
 }
 async function googleAuth(){
-  if(!FB){toast("Para Google real, activa Firebase en CONFIG (ver pasos)");return;}
-  try{const c=await FB.google();setSession(c.user);closeAuth();toast("¡Hola, "+me().name.split(" ")[0]+"! 🎉");showDash();}
+  if(!FB){$("#aErr").textContent="Google aún no está conectado. Falta pegar la configuración de Firebase en CONFIG.FIREBASE.";return;}
+  try{const c=await FB.google();if(c){setSession(c.user);closeAuth();toast("Hola, "+me().name.split(" ")[0]);showDash();}}
   catch(e){$("#aErr").textContent=fbMsg(e.code);}
 }
 async function forgot(){
   const m=$("#aMail").value.trim();if(!/^\S+@\S+\.\S+$/.test(m)){$("#aErr").textContent="Escribe tu email arriba primero.";return;}
   if(!FB){toast("Recuperar contraseña requiere Firebase activo");return;}
-  try{await FB.reset(m);toast("Te enviamos un correo para restablecerla ✔");}catch(e){$("#aErr").textContent=fbMsg(e.code);}
+  try{await FB.reset(m);toast("Te enviamos un correo para restablecerla");}catch(e){$("#aErr").textContent=fbMsg(e.code);}
 }
 async function logout(){if(FB){try{await FB.out();}catch(e){}}DB.session=null;save();updateAuthUI();showSite();toast("Sesión cerrada");}
-function updateAuthUI(){const u=me();$("#loginBtn").style.display=u?"none":"";$("#joinBtn").style.display=u?"none":"";$("#panelBtn").style.display=u?"":"none";demoUsageTxt();updateChatCount();if($("#dash").classList.contains("show"))renderDash();}
+function updateAuthUI(){const u=me();$("#loginBtn").style.display=u?"none":"";$("#joinBtn").style.display=u?"none":"";$("#panelBtn").style.display=u?"":"none";if($("#wpane").innerHTML)demoUsageTxt();updateChatCount();if($("#dash").classList.contains("show"))renderDash();}
 function showSite(){$("#dash").classList.remove("show");$("#site").style.display="";}
 function showDash(){if(!me()){openAuth("login");return;}$("#site").style.display="none";$("#dash").classList.add("show");window.scrollTo(0,0);renderDash();}
 
 /* =====================================================
    PANEL DE CLIENTE
    ===================================================== */
+const STAGES=["Recibido","Diseño","Desarrollo","Entrega"];
 function dTab(id){$$(".side button").forEach(b=>b.classList.toggle("on",b.dataset.d===id));$$(".dview").forEach(v=>v.classList.toggle("on",v.id==="d-"+id));}
 $$(".side button").forEach(b=>b.onclick=()=>dTab(b.dataset.d));
 function renderDash(){
   const s=me(),p=prof();if(!s||!p)return;
-  $("#hello").textContent="Hola, "+s.name.split(" ")[0]+" 👋";
+  $("#hello").textContent="Hola, "+s.name.split(" ")[0];
   $("#kP").textContent=p.projects.length;$("#kB").textContent=p.bookings.length;
-  $("#kPlan").textContent=p.plan==="free"?"Gratis":"Plan "+p.plan;
-  $("#kUse").textContent=p.plan==="free"?`Mini-pruebas ${p.demos}/${CONFIG.FREE.demos} · Chat hoy ${usage().n}/${CONFIG.FREE.chatPerDay}`:"Sin límites";
-  $("#pList").innerHTML=p.projects.length?p.projects.map(x=>`<div class="item"><div><strong>${esc(x.name)}</strong><br><small style="color:var(--muted)">${esc(x.type)} · ${esc(x.bud)}</small></div><div class="row" style="flex-wrap:nowrap"><span class="pill">En revisión</span><button class="btn danger" onclick="delProject(${x.id})">✕</button></div></div>`).join(""):`<p style="color:var(--muted);margin-top:16px">Aún no tienes proyectos. ¡Crea el primero!</p>`;
-  $("#aList").innerHTML=p.bookings.length?p.bookings.map(b=>`<div class="item"><div><strong>📅 ${esc(b.date)} · ${esc(b.time)}</strong><br><small style="color:var(--muted)">${esc(b.topic||"Videollamada")}</small></div><button class="btn danger" onclick="delBooking(${b.id})">✕</button></div>`).join(""):`<p style="color:var(--muted);margin-top:16px">Sin citas todavía.</p>`;
+  $("#kPlan").textContent=p.plan==="free"?"GRATIS":p.plan.toUpperCase();
+  $("#kUse").textContent=p.plan==="free"?`Diseño ${p.design?1:0}/1 · Chat hoy ${usage().n}/${CONFIG.FREE.chatPerDay}`:"Sin límites";
+  $("#actList").innerHTML=(p.act&&p.act.length)?p.act.map(a=>`<li><span>${esc(a.x)}</span><small>${new Date(a.t).toLocaleString("es-MX",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})}</small></li>`).join(""):`<li><span style="color:var(--muted)">Todavía no hay actividad.</span></li>`;
+  $("#pList").innerHTML=p.projects.length?p.projects.map(x=>`<div class="item"><div><strong>${esc(x.name)}</strong><br><small style="color:var(--muted)">${esc(x.type)} · ${esc(x.bud)}</small></div><button class="btn danger" onclick="delProject(${x.id})" aria-label="Quitar">${ic("trash")}</button><div class="trk">${STAGES.map((g,i)=>`<span class="${i<=(x.stage||0)?"on":""}">${g}</span>`).join("")}</div></div>`).join(""):`<p style="color:var(--muted);margin-top:16px">Aún no tienes proyectos. Crea el primero.</p>`;
+  $("#aList").innerHTML=p.bookings.length?p.bookings.map(b=>`<div class="item"><div><strong>${esc(b.date)} · ${esc(b.time)}</strong><br><small style="color:var(--muted)">${esc(b.topic||"Videollamada")}</small></div><button class="btn danger" onclick="delBooking(${b.id})" aria-label="Quitar">${ic("trash")}</button></div>`).join(""):`<p style="color:var(--muted);margin-top:16px">Sin citas todavía.</p>`;
   $("#uName").value=s.name;$("#uMail").value=s.email||"";
   const t=new Date();t.setDate(t.getDate()+1);$("#aDate").min=t.toISOString().slice(0,10);
 }
 async function addProject(){
   const p=prof(),name=$("#pName").value.trim();if(!name){toast("Ponle nombre al proyecto");return;}
-  const item={id:Date.now(),name,type:$("#pType").value,bud:$("#pBud").value,desc:$("#pDesc").value.trim()};
-  p.projects.push(item);save();$("#pName").value="";$("#pDesc").value="";renderDash();
-  const r=await sendLead({tipo:"Nueva solicitud de proyecto",name:me().name,email:me().email,message:`Proyecto: ${item.name}\nTipo: ${item.type}\nPresupuesto: ${item.bud}\n\n${item.desc}`});
-  toast(r.ok?"Solicitud enviada al equipo ✔":"Solicitud guardada ✔");
+  const it={id:Date.now(),name,type:$("#pType").value,bud:$("#pBud").value,desc:$("#pDesc").value.trim(),stage:0};
+  p.projects.push(it);act("Solicitaste el proyecto "+name);save();$("#pName").value="";$("#pDesc").value="";renderDash();
+  const r=await sendLead({tipo:"Nueva solicitud de proyecto",name:me().name,email:me().email,message:`Proyecto: ${it.name}\nTipo: ${it.type}\nPresupuesto: ${it.bud}\n\n${it.desc}`});
+  toast(r.ok?"Solicitud enviada al equipo":"Solicitud guardada");
 }
 function delProject(id){const p=prof();p.projects=p.projects.filter(x=>x.id!==id);save();renderDash();}
 async function addBooking(){
   const p=prof(),date=$("#aDate").value,time=$("#aTime").value;if(!date){toast("Elige una fecha");return;}
   if(p.bookings.some(b=>b.date===date&&b.time===time)){toast("Ya tienes una cita a esa hora");return;}
   const b={id:Date.now(),date,time,topic:$("#aTopic").value.trim()};p.bookings.push(b);p.bookings.sort((x,y)=>(x.date+x.time).localeCompare(y.date+y.time));
-  save();$("#aTopic").value="";renderDash();
+  act("Agendaste una llamada el "+date);save();$("#aTopic").value="";renderDash();
   const r=await sendLead({tipo:"Nueva cita",name:me().name,email:me().email,message:`Cita: ${b.date} a las ${b.time}\nTema: ${b.topic||"Videollamada"}`});
-  toast(r.ok?"Cita enviada al equipo ✔":"Cita agendada ✔");
+  toast(r.ok?"Cita enviada al equipo":"Cita agendada");
 }
 function delBooking(id){const p=prof();p.bookings=p.bookings.filter(b=>b.id!==id);save();renderDash();}
-function saveProfile(){const n=$("#uName").value.trim();if(!n){toast("El nombre no puede estar vacío");return;}DB.session.name=n;if(DB.users[DB.session.id])DB.users[DB.session.id].name=n;save();toast("Guardado ✔");renderDash();}
-async function deleteAccount(){
-  if(!confirm("¿Borrar tus datos guardados en este navegador y cerrar sesión?"))return;
-  const id=me().id;delete DB.profiles[id];delete DB.users[id];await logout();toast("Datos borrados");
-}
+function saveProfile(){const n=$("#uName").value.trim();if(!n){toast("El nombre no puede estar vacío");return;}DB.session.name=n;if(DB.users[DB.session.id])DB.users[DB.session.id].name=n;save();toast("Guardado");renderDash();}
+async function deleteAccount(){if(!confirm("¿Borrar tus datos guardados en este navegador y cerrar sesión?"))return;const id=me().id;delete DB.profiles[id];delete DB.users[id];await logout();toast("Datos borrados");}
 function exportProjects(){const p=prof();if(!p.projects.length){toast("No hay proyectos");return;}
   const csv=["Nombre,Tipo,Presupuesto,Descripcion",...p.projects.map(x=>[x.name,x.type,x.bud,x.desc].map(v=>`"${String(v||"").replace(/"/g,'""')}"`).join(","))].join("\n");
-  download("proyectos.csv","\ufeff"+csv,"text/csv");toast("Exportado ✔");}
-function exportAll(){const p=prof(),s=me();download("mis-datos.json",JSON.stringify({email:s.email,name:s.name,since:p.since,plan:p.plan,projects:p.projects,bookings:p.bookings},null,2),"application/json");toast("Exportado ✔");}
+  download("proyectos.csv","\ufeff"+csv,"text/csv");toast("Exportado");}
+function exportAll(){const p=prof(),s=me();download("mis-datos.json",JSON.stringify({email:s.email,name:s.name,since:p.since,plan:p.plan,design:p.design,projects:p.projects,bookings:p.bookings},null,2),"application/json");toast("Exportado");}
 function exportICS(){
   const p=prof();if(!p.bookings.length){toast("No hay citas");return;}const pad=n=>String(n).padStart(2,"0");
   const ev=p.bookings.map(b=>{const [Y,M,D]=b.date.split("-"),[h,m]=b.time.split(":");return `BEGIN:VEVENT\nUID:${b.id}@pixelforge\nDTSTAMP:${new Date().toISOString().replace(/[-:]/g,"").split(".")[0]}Z\nDTSTART:${Y}${M}${D}T${h}${m}00\nDTEND:${Y}${M}${D}T${pad(+h+1)}${m}00\nSUMMARY:Llamada con ${CONFIG.brand}\nDESCRIPTION:${(b.topic||"").replace(/\n/g," ")}\nEND:VEVENT`;}).join("\n");
-  download("citas.ics",`BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//PixelForge//ES\n${ev}\nEND:VCALENDAR`,"text/calendar");toast("Calendario exportado ✔");
+  download("citas.ics",`BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//PixelForge//ES\n${ev}\nEND:VCALENDAR`,"text/calendar");toast("Calendario exportado");
 }
 
 /* =====================================================
-   FORJA AI — base de conocimiento ampliada
-   Revisen y edita las respuestas para que reflejen SUS políticas reales.
+   FORJA AI (las respuestas viven en conocimiento.js)
    ===================================================== */
-const planTxt=()=>PLANS.map(p=>`${p.n}: ${money(p.p)}`).join(" · ");
-const KB=[
- {k:["fundador","fundadores","quienes son","quien fundo","quien es el dueno","duenos","creador","creadores","equipo","cristobal","beto","mazon","lopez","quien esta detras","quienes estan"],a:()=>`Los fundadores de ${CONFIG.brand} son ${CONFIG.founders}. Ellos mismos programan y llevan cada proyecto. 👨‍💻👨‍💻`},
- {k:["donde se inicio","donde empezo","donde nacio","donde surgio","historia","origen","como empezo","como empezaron","como nacio","desde cuando","cuando empezaron","cuando se fundo"],a:()=>CONFIG.origin||`${CONFIG.brand} fue fundado por ${CONFIG.founders}. Para contarte la historia completa, escríbenos en la sección Contacto. 📩`},
- {k:["que hacen","a que se dedican","que ofrecen","servicios","que servicios","en que ayudan"],a:()=>"Creamos páginas web, apps web (PWA), bots y automatizaciones, juegos pixel art, herramientas educativas y damos mantenimiento a proyectos existentes."},
- {k:["precio","cuesta","costo","cotiz","cuanto cobran","presupuesto","tarifa","planes"],a:()=>`Nuestros planes: ${planTxt()}. Mi recomendación: el plan Completo, porque por poco más que el Pro incluye app, panel y soporte de 60 días. Para algo más exacto usa el Cotizador. 🧮`},
- {k:["tiempo","tarda","entrega","cuando estara","cuanto demora","plazo","dias"],a:()=>"Landing: 3–5 días. Sitio completo: 1–2 semanas. App: 3–4 semanas. Depende de los extras (login, pagos, panel, etc.)."},
- {k:["pagina web","sitio web","landing","tienda en linea","ecommerce","pagina para mi negocio"],a:()=>"Hacemos páginas web a medida: landing pages, sitios de negocio y tiendas. Responsivas, rápidas y con SEO básico. ¿De qué trata tu negocio?"},
- {k:["app","aplicacion","pwa","movil","celular"],a:()=>"Creamos apps web instaladas desde el navegador (PWA) con login, base de datos, exportación de datos y más. Funcionan en celular y computadora."},
- {k:["bot","script","automat","scraper","telegram","discord"],a:()=>"También hacemos bots, scripts y automatizaciones. Cuéntame qué tarea quieres ahorrarte y te digo cómo se haría."},
- {k:["pixel","retro","juego","videojuego","game"],a:()=>"El estilo pixel art es de nuestras especialidades: juegos, interfaces retro y marcas con identidad pixelada. 👾"},
- {k:["educa","quiz","flashcard","aprender","ingles","escuela"],a:()=>"Hacemos herramientas educativas: quizzes, flashcards y apps para aprender, con seguimiento de progreso. Tenemos experiencia con apps para aprender inglés."},
- {k:["tecnolog","lenguaje","stack","herramientas usan","con que programan","framework","react","python","javascript"],a:()=>"Trabajamos con HTML, CSS, JavaScript, React, Node.js y Python, y servicios como Firebase para cuentas y bases de datos. Elegimos lo que mejor le queda a tu proyecto."},
- {k:["agendar","cita","llamada","reunion","videollamada","calendario"],a:()=>"Crea tu cuenta gratis y en tu panel entra a «Agenda» para reservar una videollamada. Puedes exportarla a tu calendario (.ics)."},
- {k:["cuenta","registr","crear cuenta","sign up","unirme"],a:()=>"Toca «Empezar gratis» arriba a la derecha. Con tu cuenta puedes usar la mini-prueba, solicitar proyectos y agendar llamadas."},
- {k:["iniciar sesion","login","google","entrar","contrasena","password"],a:()=>"Puedes iniciar sesión con email y contraseña o con Google desde el botón «Iniciar sesión». Si olvidaste tu contraseña, usa el enlace «¿Olvidaste tu contraseña?»."},
- {k:["gratis","prueba","demo","mini","probar"],a:()=>`Con tu cuenta gratis puedes generar ${CONFIG.FREE.demos} mini-web de prueba (2 de 15 pasos) y usar ${CONFIG.FREE.chatPerDay} mensajes diarios conmigo. Para completar, descargar y publicar tu web necesitas un plan.`},
- {k:["limite","limites","mensajes por dia","cuantos mensajes","plan gratis","plan pro"],a:()=>`El plan gratis incluye ${CONFIG.FREE.demos} mini-prueba y ${CONFIG.FREE.chatPerDay} mensajes diarios con Forja AI. Los planes de pago quitan esos límites.`},
- {k:["codigo fuente","propiedad","es mio","soy dueno","me pertenece","derechos"],a:()=>"Sí, al terminar y liquidar el proyecto el código fuente es tuyo."},
- {k:["cambios","revision","revisiones","modificar","ajustes"],a:()=>"Cada plan incluye rondas de cambios (Starter 1, Pro 2 y Completo ilimitadas durante el desarrollo). Después puedes contratar mantenimiento."},
- {k:["soporte","ayuda despues","garantia","mantenimiento","despues de entregar"],a:()=>"Todos los planes incluyen soporte después de la entrega (7, 14 o 60 días según el plan). También ofrecemos mantenimiento mensual."},
- {k:["dominio","hosting",".com","alojamiento","publicar","publicacion"],a:()=>"Te ayudamos a publicar tu proyecto y, en el plan Completo, a configurar tu dominio. El costo del dominio lo pagas tú directamente al registrador (suele ser una cuota anual)."},
- {k:["seo","google","posicionar","aparecer en google"],a:()=>"Incluimos SEO básico (títulos, descripciones, estructura y velocidad) para que tu sitio tenga una buena base en buscadores."},
- {k:["seguridad","privacidad","datos","seguro"],a:()=>"Cuidamos tus datos y no los compartimos. En proyectos con cuentas usamos servicios de autenticación reconocidos, sin guardar contraseñas en texto plano."},
- {k:["pago","pagar","tarjeta","transferencia","anticipo","factura","metodo de pago","reembolso"],a:()=>"Los métodos de pago, anticipos y condiciones se definen por escrito antes de empezar cada proyecto. Platícalo en tu llamada gratis."},
- {k:["idioma","ingles","espanol","multi-idioma","bilingue"],a:()=>"Trabajamos en español e inglés, y podemos hacer sitios multi-idioma."},
- {k:["contacto","correo","email","escribir","comunicarme","telefono","whatsapp","numero"],a:()=>"Usa el formulario de Contacto al final de la página: llega directo a nuestro equipo y respondemos en menos de 24 horas."},
- {k:["portafolio","proyectos hechos","ejemplos","trabajos","que han hecho"],a:()=>"En la sección Portafolio ves ejemplos, como una página de marcadores deportivos (Deportes hoy) y una app para aprender inglés (WordMaster PRO)."},
- {k:["simulador","roi","cuanto ganaria","retorno","ganancia"],a:()=>"Usa el Simulador de ROI (menú Herramientas): pones tus visitas, ticket y conversión, y calcula cuánto podrías ganar con una web nueva y en cuánto tiempo se paga. Son estimaciones."},
- {k:["proceso","como trabajan","pasos","como funciona"],a:()=>"Cuatro pasos: 1) Platicamos, 2) Diseñamos, 3) Construimos por etapas y 4) Lanzamos con soporte. Verás avances reales desde el principio."},
- {k:["quien eres","que eres","eres una ia","eres humano","forja"],a:()=>"Soy Forja AI, el asistente virtual de PixelForge. Respondo dudas frecuentes al instante; para temas a detalle te conecto con el equipo vía Contacto."},
- {k:["hola","buenas","hey","buenos dias","buenas tardes","que tal"],a:()=>"¡Hola! Soy Forja AI 🤖. Puedo ayudarte con precios, tiempos, servicios o cómo empezar. ¿Qué necesitas?"},
- {k:["gracias","genial","perfecto","excelente"],a:()=>"¡Con gusto! Si quieres avanzar, prueba la mini-web gratis o usa el Cotizador. 🚀"},
- {k:["adios","bye","hasta luego","nos vemos"],a:()=>"¡Hasta pronto! Aquí estaré cuando me necesites. 👋"}
-];
-const SUGG=["¿Quiénes son los fundadores?","¿Cuánto cuesta?","¿Cuánto tarda?","¿Hacen apps?","¿Dónde empezó el negocio?","¿El código es mío?","¿Qué incluye el soporte?","¿Cómo publico mi web?","¿Qué es el plan gratis?","¿Cómo agendo una llamada?"];
+const planTxt=()=>PLANS.map(p=>`${p.n}: ${money(p.p)}`).join(" | ");
+const FALLBACK=[["fundador|fundadores|quienes son","Los fundadores de {brand} son {founders}."],["precio|cuesta|cotiz","Nuestros planes: {plans}."]];
+const KB=((window.KB_DATA&&window.KB_DATA.length)?window.KB_DATA:FALLBACK).map(([k,a])=>({k:k.split("|"),a}));
+const SUGG=window.SUGG||["¿Quiénes son los fundadores?","¿Cuánto cuesta?","¿Cuánto tarda?"];
+function fill(a){return a.replace(/\{brand\}/g,CONFIG.brand).replace(/\{founders\}/g,CONFIG.founders).replace(/\{plans\}/g,planTxt()).replace(/\{free_chat\}/g,CONFIG.FREE.chatPerDay).replace(/\{origin\}/g,CONFIG.origin||`${CONFIG.brand} fue fundado por ${CONFIG.founders}. Para contarte la historia completa, escríbenos en la sección Contacto.`);}
+const hit=(low,k)=>k.length<=4?new RegExp("\\b"+k+"\\b").test(low):low.includes(k);
+function answer(text){const low=norm(text);let best=null,score=0;KB.forEach(x=>{let s=0;x.k.forEach(k=>{if(hit(low,k))s+=k.length;});if(s>score){score=s;best=x;}});
+  return best?fill(best.a):"Buena pregunta, pero todavía no tengo esa respuesta. Puedes preguntarme por fundadores, precios, tiempos, soporte, dominio o servicios, o escribirnos en Contacto y el equipo te responde en menos de 24 horas.";}
 const chatHist=[];
+function chips(){$("#quick").innerHTML=[...SUGG].sort(()=>Math.random()-.5).slice(0,4).map(q=>`<button onclick="askAI(this.textContent)">${esc(q)}</button>`).join("");}
 function openChat(force){
   const c=$("#chat");if(force===true)c.classList.add("show");else c.classList.toggle("show");
-  if(c.classList.contains("show")&&!$("#msgs").children.length){
-    pushMsg("bot","¡Hola! Soy Forja AI 🤖 Pregúntame sobre fundadores, precios, tiempos, soporte, dominios o cómo empezar.");
-    $("#quick").innerHTML=[...SUGG].sort(()=>Math.random()-.5).slice(0,4).map(q=>`<button onclick="quickAsk(this.textContent)">${q}</button>`).join("");
-  }
+  if(c.classList.contains("show")&&!$("#msgs").children.length){pushMsg("bot","Hola, soy Forja AI. Pregúntame sobre fundadores, precios, tiempos, soporte, dominios o cómo empezar.");chips();}
   updateChatCount();
 }
 function pushMsg(who,text){const d=document.createElement("div");d.className="m "+who;d.textContent=text;$("#msgs").appendChild(d);$("#msgs").scrollTop=1e9;return d;}
-function quickAsk(q){askAI(q);}
 function sendChat(){const i=$("#chatIn"),t=i.value.trim();if(!t)return;i.value="";askAI(t);}
 async function askAI(text){
   const u=usage();
-  if(isFree()&&u.n>=CONFIG.FREE.chatPerDay){pushMsg("me",text);pushMsg("bot","Llegaste al límite de mensajes gratis de hoy. Con un plan de pago no hay límite. 🔓");payWall(`Usaste tus ${CONFIG.FREE.chatPerDay} mensajes gratis de hoy con Forja AI. Mañana se renuevan, o desbloquea acceso ilimitado con un plan.`);return;}
+  if(isFree()&&u.n>=CONFIG.FREE.chatPerDay){pushMsg("me",text);pushMsg("bot","Llegaste al límite de mensajes gratis de hoy. Con un plan de pago no hay límite.");payWall(`Usaste tus ${CONFIG.FREE.chatPerDay} mensajes gratis de hoy con Forja AI. Mañana se renuevan, o desbloquea acceso ilimitado con un plan.`);return;}
   u.n++;save();updateChatCount();pushMsg("me",text);chatHist.push({role:"user",content:text});
-  const typing=pushMsg("bot","…");
-  if(CONFIG.AI_ENDPOINT){
-    try{const r=await fetch(CONFIG.AI_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:chatHist.slice(-10)})});
-        const j=await r.json();typing.textContent=j.reply||"Lo siento, no pude responder.";chatHist.push({role:"assistant",content:typing.textContent});return;}catch(e){}
-  }
+  const typing=pushMsg("bot","...");
+  if(CONFIG.AI_ENDPOINT){try{const r=await fetch(CONFIG.AI_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:chatHist.slice(-10)})});const j=await r.json();typing.textContent=j.reply||"Lo siento, no pude responder.";chatHist.push({role:"assistant",content:typing.textContent});return;}catch(e){}}
   await new Promise(r=>setTimeout(r,450));
-  const low=norm(text);let best=null,score=0;
-  KB.forEach(x=>{let s=0;x.k.forEach(k=>{if(low.includes(norm(k)))s+=k.length;});if(s>score){score=s;best=x;}});
-  const ans=best?best.a():"Buena pregunta. Todavía no tengo esa respuesta, pero puedes preguntarme por fundadores, precios, tiempos, soporte, dominio o servicios, o escribirnos en Contacto y el equipo te responde en menos de 24 h. 📩";
-  typing.textContent=ans;chatHist.push({role:"assistant",content:ans});
+  const ans=answer(text);typing.textContent=ans;chatHist.push({role:"assistant",content:ans});chips();
 }
 
 /* =====================================================
    INIT
    ===================================================== */
-applyTheme();renderStatic();renderSteps(0);initSim();renderQuote();updateAuthUI();observeReveal();initFirebase();
+hyd();applyTheme();renderStatic();renderWiz();schedPrev();initSim();renderQuote();updateAuthUI();observeReveal();typeWriter();typeCode();initFirebase();
 document.title=CONFIG.brand+" · Webs, apps y proyectos de código";
 </script>
 </body>
