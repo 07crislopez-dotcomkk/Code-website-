@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://07crislopez-dotcomkk.github.io/sitemap.xml
